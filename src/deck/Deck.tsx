@@ -15,10 +15,7 @@ export function Deck() {
   const nav = useDeckNav();
   const [helpOpen, setHelpOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const slideRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => { setMounted(true); }, []);
 
   useHotkeys({
     ArrowRight: () => nav.next(),
@@ -50,8 +47,6 @@ export function Deck() {
 
   const currentSlide = SLIDES.find((s) => s.id === nav.index) || SLIDES[0];
   const doClose = useCallback(() => setOpen(false), [setOpen]);
-
-  if (!mounted) return <div className="min-h-screen bg-white" />;
 
   return (
     <div className="min-h-screen bg-white text-[color:var(--ink)] flex overflow-hidden">
