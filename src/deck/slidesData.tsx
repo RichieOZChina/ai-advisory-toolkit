@@ -545,8 +545,8 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(34, "Paul's Claude Code tips", () => (
-    <L.Body kicker="Working tips" title="Paul's Claude Code tips">
+  s(34, "Claude Code tips", () => (
+    <L.Body kicker="Working tips" title="Claude Code tips">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
           ["/compact","Summarise the conversation so far, freeing up the context window without losing the thread."],
