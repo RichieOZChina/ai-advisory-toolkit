@@ -14,39 +14,63 @@ type Provider = {
 };
 
 const CLOSED_PROVIDERS: Provider[] = [
-  { name: "OpenAI", flagship: "GPT-5 / GPT-4o", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
-  { name: "Anthropic", flagship: "Claude Sonnet 4.5", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
-  { name: "Google DeepMind", flagship: "Gemini 2.5 Pro", hq: "London / Mountain View", note: "Native multimodal; embedded across Workspace." },
-  { name: "xAI", flagship: "Grok 4", hq: "San Francisco, US", note: "Real-time X integration." },
+  { name: "OpenAI", flagship: "GPT-5.1", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
+  { name: "Anthropic", flagship: "Claude Opus 4.5", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
+  { name: "Google DeepMind", flagship: "Gemini 3 Pro", hq: "London / Mountain View", note: "Native multimodal; embedded across Workspace." },
+  { name: "xAI", flagship: "Grok 5", hq: "San Francisco, US", note: "Real-time X integration." },
 ];
 
 const OPEN_PROVIDERS: Provider[] = [
   { name: "Meta", flagship: "Llama 4", hq: "Menlo Park, US", note: "Largest open-weight family in the West." },
   { name: "Mistral", flagship: "Mistral Large 3", hq: "Paris, France", note: "European alternative, permissive licensing." },
-  { name: "DeepSeek", flagship: "DeepSeek V3.2", hq: "Hangzhou, China", note: "Frontier-adjacent quality at a fraction of the training cost." },
-  { name: "Qwen (Alibaba)", flagship: "Qwen 3", hq: "Hangzhou, China", note: "Strong multilingual and coding performance." },
+  { name: "DeepSeek", flagship: "DeepSeek R2", hq: "Hangzhou, China", note: "Frontier-adjacent quality at a fraction of the training cost." },
+  { name: "Qwen (Alibaba)", flagship: "Qwen 3 Max", hq: "Hangzhou, China", note: "Strong multilingual and coding performance." },
   { name: "Moonshot AI", flagship: "Kimi K2", hq: "Beijing, China", note: "Long-context specialist; open-weight release." },
+];
+
+const FAQS: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "What are \"weights\"?",
+    a: (
+      <>
+        Weights are the billions of tuned numbers the model learned during training — the model's <span className="font-semibold text-[#0a2540]">secret recipe</span>. Closed vendors keep the recipe in-house and sell access via API; open-source vendors publish the recipe so you can run the model yourself.
+      </>
+    ),
+  },
+  {
+    q: "What is an API?",
+    a: (
+      <>
+        An <span className="font-semibold text-[#0a2540]">API</span> (Application Programming Interface) is a way for one piece of software to call another over the internet. With a closed model you send your prompt to the vendor's API, their servers run the model, and they send the answer back — you pay per token used. You never touch the model itself.
+      </>
+    ),
+  },
+  {
+    q: "What does \"per-token\" pricing mean?",
+    a: (
+      <>
+        Models don't read words, they read <span className="font-semibold text-[#0a2540]">tokens</span> — chunks of text roughly ¾ of a word each. Closed vendors charge a fraction of a cent per 1,000 tokens sent in and generated out, so cost scales directly with usage.
+      </>
+    ),
+  },
+  {
+    q: "What does \"fine-tuning\" mean?",
+    a: (
+      <>
+        Fine-tuning is taking an existing model and continuing training on your own data so it picks up your firm's tone, terminology or workflows. It's much easier with open-source models because you have the weights; closed vendors offer a limited, hosted version.
+      </>
+    ),
+  },
 ];
 
 type PanelKey = "closed" | "open";
 
 export function OpenClosedAccordion() {
   const [openPanel, setOpenPanel] = useState<PanelKey | null>("closed");
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="mt-4 space-y-4">
-      <div className="rounded-xl border border-[#0a2540]/10 bg-[#f7f9fc] p-4 flex items-start gap-4">
-        <div className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-xs font-semibold shrink-0">
-          ?
-        </div>
-        <div>
-          <div className="text-sm font-semibold text-[#0a2540]">What are "weights"?</div>
-          <p className="mt-1 text-[13px] leading-relaxed text-[#0a2540]/75">
-            Weights are the billions of tuned numbers the model learned during training. Think of them as the model's <span className="font-semibold text-[#0a2540]">secret recipe</span>. Closed vendors keep the recipe in-house and sell access via API; open-source vendors publish the recipe so you can run the model yourself.
-          </p>
-        </div>
-      </div>
-
+    <div className="mt-4 space-y-6">
       <div className="grid md:grid-cols-2 gap-5">
         <Panel
           tone="closed"
@@ -89,9 +113,40 @@ export function OpenClosedAccordion() {
           providers={OPEN_PROVIDERS}
         />
       </div>
+
+      <div>
+        <div className="text-[10px] uppercase tracking-[0.18em] text-[#0a2540]/55 font-semibold mb-2">
+          Jargon buster — click to expand
+        </div>
+        <div className="rounded-xl border border-[#0a2540]/10 bg-white overflow-hidden divide-y divide-[#0a2540]/10">
+          {FAQS.map((f, i) => {
+            const active = openFaq === i;
+            return (
+              <div key={f.q}>
+                <button
+                  onClick={() => setOpenFaq(active ? null : i)}
+                  className="w-full text-left px-5 py-3.5 flex items-center gap-3 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
+                >
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-[11px] font-semibold shrink-0">
+                    ?
+                  </span>
+                  <span className="flex-1 text-[14px] font-semibold text-[#0a2540]">{f.q}</span>
+                  <span aria-hidden className={`text-[#0a2540]/45 transition-transform ${active ? "rotate-180" : ""}`}>▾</span>
+                </button>
+                {active && (
+                  <div className="px-5 pb-4 pl-14 text-[13px] leading-relaxed text-[#0a2540]/80">
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
+
 
 function Panel({
   tone,
