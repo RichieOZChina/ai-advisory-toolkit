@@ -14,18 +14,53 @@ type Provider = {
 };
 
 const CLOSED_PROVIDERS: Provider[] = [
-  { name: "OpenAI", flagship: "GPT-5 / GPT-4o", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
-  { name: "Anthropic", flagship: "Claude Sonnet 4.5", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
-  { name: "Google DeepMind", flagship: "Gemini 2.5 Pro", hq: "London / Mountain View", note: "Native multimodal; embedded across Workspace." },
-  { name: "xAI", flagship: "Grok 4", hq: "San Francisco, US", note: "Real-time X integration." },
+  { name: "OpenAI", flagship: "GPT-5.1", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
+  { name: "Anthropic", flagship: "Claude Opus 4.5", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
+  { name: "Google DeepMind", flagship: "Gemini 3 Pro", hq: "London / Mountain View", note: "Native multimodal; embedded across Workspace." },
+  { name: "xAI", flagship: "Grok 5", hq: "San Francisco, US", note: "Real-time X integration." },
 ];
 
 const OPEN_PROVIDERS: Provider[] = [
   { name: "Meta", flagship: "Llama 4", hq: "Menlo Park, US", note: "Largest open-weight family in the West." },
   { name: "Mistral", flagship: "Mistral Large 3", hq: "Paris, France", note: "European alternative, permissive licensing." },
-  { name: "DeepSeek", flagship: "DeepSeek V3.2", hq: "Hangzhou, China", note: "Frontier-adjacent quality at a fraction of the training cost." },
-  { name: "Qwen (Alibaba)", flagship: "Qwen 3", hq: "Hangzhou, China", note: "Strong multilingual and coding performance." },
+  { name: "DeepSeek", flagship: "DeepSeek R2", hq: "Hangzhou, China", note: "Frontier-adjacent quality at a fraction of the training cost." },
+  { name: "Qwen (Alibaba)", flagship: "Qwen 3 Max", hq: "Hangzhou, China", note: "Strong multilingual and coding performance." },
   { name: "Moonshot AI", flagship: "Kimi K2", hq: "Beijing, China", note: "Long-context specialist; open-weight release." },
+];
+
+const FAQS: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "What are \"weights\"?",
+    a: (
+      <>
+        Weights are the billions of tuned numbers the model learned during training — the model's <span className="font-semibold text-[#0a2540]">secret recipe</span>. Closed vendors keep the recipe in-house and sell access via API; open-source vendors publish the recipe so you can run the model yourself.
+      </>
+    ),
+  },
+  {
+    q: "What is an API?",
+    a: (
+      <>
+        An <span className="font-semibold text-[#0a2540]">API</span> (Application Programming Interface) is a way for one piece of software to call another over the internet. With a closed model you send your prompt to the vendor's API, their servers run the model, and they send the answer back — you pay per token used. You never touch the model itself.
+      </>
+    ),
+  },
+  {
+    q: "What does \"per-token\" pricing mean?",
+    a: (
+      <>
+        Models don't read words, they read <span className="font-semibold text-[#0a2540]">tokens</span> — chunks of text roughly ¾ of a word each. Closed vendors charge a fraction of a cent per 1,000 tokens sent in and generated out, so cost scales directly with usage.
+      </>
+    ),
+  },
+  {
+    q: "What does \"fine-tuning\" mean?",
+    a: (
+      <>
+        Fine-tuning is taking an existing model and continuing training on your own data so it picks up your firm's tone, terminology or workflows. It's much easier with open-source models because you have the weights; closed vendors offer a limited, hosted version.
+      </>
+    ),
+  },
 ];
 
 type PanelKey = "closed" | "open";
