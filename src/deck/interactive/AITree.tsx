@@ -1,75 +1,225 @@
 import { useState } from "react";
 
-type Node = { id: string; label: string; def: string; color: string; children?: Node[] };
+/**
+ * Nested containment diagram sourced from 1.1_The_AI_Landscape.pdf p.3–4.
+ * AI ⊃ ML ⊃ { Supervised, Unsupervised, Reinforcement, Deep Learning, NLP, CV, Robotics }
+ * LLMs live inside Deep Learning — highlighted as "you are here".
+ */
 
-const TREE: Node = {
-  id: "ai", label: "Artificial Intelligence", color: "#0a2540",
-  def: "Machines performing tasks that would need human intelligence.",
-  children: [{
-    id: "ml", label: "Machine Learning", color: "#0369a1",
-    def: "Systems that learn patterns from data rather than being explicitly programmed.",
-    children: [{
-      id: "dl", label: "Deep Learning", color: "#005cff",
-      def: "Multi-layered neural networks that learn complex, non-linear patterns.",
-      children: [
-        { id: "nlp", label: "NLP", color: "#7c3aed", def: "Text understanding and generation." },
-        { id: "cv", label: "Computer Vision", color: "#059669", def: "Image and video understanding." },
-        { id: "gen", label: "Generative AI", color: "#d97706", def: "Creates new content: text, code, images, audio." },
-      ],
-    }],
-  }],
+type Field = {
+  id: string;
+  label: string;
+  short?: string;
+  techniques: string[];
+  blurb: string;
 };
 
+const FIELDS: Field[] = [
+  {
+    id: "sup",
+    label: "Supervised Learning",
+    techniques: ["Linear / logistic regression", "Support vector machines", "Random forests", "k-nearest neighbours", "Boosting ensembles"],
+    blurb: "Models trained on labelled examples — input mapped to a known output.",
+  },
+  {
+    id: "unsup",
+    label: "Unsupervised Learning",
+    techniques: ["Principal component analysis", "Independent component analysis", "k-means clustering"],
+    blurb: "Finds hidden structure in unlabelled data — no predefined answers.",
+  },
+  {
+    id: "rl",
+    label: "Reinforcement Learning",
+    techniques: ["Policy gradients", "Q-learning", "Actor–critic methods"],
+    blurb: "An agent learns by taking actions and receiving rewards over time.",
+  },
+  {
+    id: "dl",
+    label: "Deep Learning",
+    techniques: ["GANs", "Autoencoders", "CNNs", "Diffusion models", "Transformers", "Large language models"],
+    blurb: "Multi-layer neural networks that learn hierarchical patterns. Home of the transformer — and therefore of LLMs.",
+  },
+  {
+    id: "nlp",
+    label: "Natural Language Processing",
+    techniques: ["Tokenisation", "Named entity recognition", "Machine translation", "Speech recognition"],
+    blurb: "Making machines understand and produce human language.",
+  },
+  {
+    id: "cv",
+    label: "Computer Vision",
+    techniques: ["Image classification", "Object detection", "Segmentation", "OCR"],
+    blurb: "Interpreting images and video — recognising objects, scenes and text.",
+  },
+  {
+    id: "rob",
+    label: "Robotics",
+    techniques: ["Control systems", "Motion planning", "Sensor fusion", "SLAM"],
+    blurb: "Physical machines perceiving and acting in the real world.",
+  },
+];
+
 export function AITree() {
-  const [open, setOpen] = useState<string | null>("ai");
-  const [selected, setSelected] = useState<string>("ai");
-  const flat = flatten(TREE);
-  const sel = flat.find((n) => n.id === selected) || flat[0];
+  const [selected, setSelected] = useState<string>("dl");
+  const sel = FIELDS.find((f) => f.id === selected)!;
 
   return (
-    <div className="mt-4 grid md:grid-cols-[1fr_320px] gap-8 items-start">
-      <svg viewBox="0 0 720 380" className="w-full h-auto">
-        {/* Root */}
-        <g>
-          <NodeBox x={280} y={20} w={160} node={TREE} active={selected === TREE.id} onClick={() => setSelected(TREE.id)} />
-          <line x1={360} y1={70} x2={360} y2={100} stroke="#cbd5e1" />
-          {/* ML */}
-          <NodeBox x={280} y={100} w={160} node={TREE.children![0]} active={selected === "ml"} onClick={() => setSelected("ml")} />
-          <line x1={360} y1={150} x2={360} y2={180} stroke="#cbd5e1" />
-          {/* DL */}
-          <NodeBox x={280} y={180} w={160} node={TREE.children![0].children![0]} active={selected === "dl"} onClick={() => setSelected("dl")} />
-          {/* Branches to leaves */}
-          <line x1={360} y1={230} x2={360} y2={260} stroke="#cbd5e1" />
-          <line x1={140} y1={260} x2={580} y2={260} stroke="#cbd5e1" />
-          {TREE.children![0].children![0].children!.map((leaf, i) => {
-            const x = [80, 280, 480][i];
+    <div className="mt-6 grid lg:grid-cols-[1fr_340px] gap-8 items-start">
+      {/* Diagram */}
+      <div className="relative">
+        {/* AI outer container */}
+        <div className="relative rounded-2xl border border-[#0a2540]/15 bg-[#f7f9fc] p-6 pt-14 shadow-[0_1px_0_rgba(10,37,64,0.04),0_20px_60px_-30px_rgba(10,37,64,0.25)]">
+          <RingLabel tone="ai">Artificial Intelligence</RingLabel>
+
+          {/* ML container */}
+          <div className="relative rounded-xl border border-[#0a2540]/20 bg-white p-5 pt-12">
+            <RingLabel tone="ml">Machine Learning</RingLabel>
+
+            {/* Grid of subfields */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {FIELDS.map((f) => (
+                <FieldCard
+                  key={f.id}
+                  field={f}
+                  active={selected === f.id}
+                  onClick={() => setSelected(f.id)}
+                />
+              ))}
+            </div>
+
+            {/* Fine-print footnote */}
+            <div className="mt-4 flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[#0a2540]/45">
+              <span className="inline-block h-px w-6 bg-[#0a2540]/25" />
+              Techniques nested inside each subfield · click to inspect
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Detail panel */}
+      <aside className="rounded-2xl border border-[#0a2540]/10 bg-white p-6 shadow-[0_20px_60px_-30px_rgba(10,37,64,0.25)]">
+        <div className="text-[11px] uppercase tracking-[0.18em] text-[#0a2540]/50">
+          {sel.id === "dl" ? "You are here" : "Sub-field"}
+        </div>
+        <div className="mt-2 text-2xl font-semibold text-[#0a2540] leading-tight tracking-tight">
+          {sel.label}
+        </div>
+        <p className="mt-3 text-[15px] leading-relaxed text-[#0a2540]/75">{sel.blurb}</p>
+
+        <div className="mt-6 text-[11px] uppercase tracking-[0.18em] text-[#0a2540]/50">Techniques</div>
+        <ul className="mt-3 space-y-2">
+          {sel.techniques.map((t) => {
+            const isLLM = t === "Large language models";
             return (
-              <g key={leaf.id}>
-                <line x1={x + 80} y1={260} x2={x + 80} y2={290} stroke="#cbd5e1" />
-                <NodeBox x={x} y={290} w={160} node={leaf} active={selected === leaf.id} onClick={() => setSelected(leaf.id)} />
-              </g>
+              <li
+                key={t}
+                className={`flex items-start gap-3 text-[14px] leading-snug ${
+                  isLLM ? "text-[#005cff] font-semibold" : "text-[#0a2540]/85"
+                }`}
+              >
+                <span
+                  className={`mt-[7px] h-1.5 w-1.5 rounded-full ${
+                    isLLM ? "bg-[#005cff]" : "bg-[#0a2540]/30"
+                  }`}
+                />
+                <span>
+                  {t}
+                  {isLLM && <span className="ml-2 text-[10px] uppercase tracking-[0.15em] text-[#005cff]/70">← the workshop</span>}
+                </span>
+              </li>
             );
           })}
-        </g>
-      </svg>
-      <div className="slide-card">
-        <div className="slide-chip" style={{ background: `${sel.color}18`, color: sel.color }}>{sel.label}</div>
-        <p className="slide-body mt-4">{sel.def}</p>
-        <div className="slide-caption mt-6">Click any node in the tree to reveal its definition.</div>
-      </div>
+        </ul>
+      </aside>
     </div>
   );
 }
 
-function NodeBox({ x, y, w, node, active, onClick }: { x: number; y: number; w: number; node: Node; active: boolean; onClick: () => void }) {
+function FieldCard({ field, active, onClick }: { field: Field; active: boolean; onClick: () => void }) {
+  const isDL = field.id === "dl";
+  const highlight = isDL;
+
   return (
-    <g style={{ cursor: "pointer" }} onClick={onClick}>
-      <rect x={x} y={y} width={w} height={50} rx={8} fill={active ? node.color : "#fff"} stroke={node.color} strokeWidth={active ? 0 : 1.5} />
-      <text x={x + w / 2} y={y + 30} textAnchor="middle" fontSize={13} fontWeight={600} fill={active ? "#fff" : node.color}>{node.label}</text>
-    </g>
+    <button
+      onClick={onClick}
+      className={[
+        "group text-left rounded-lg border p-4 transition-all duration-200",
+        "focus:outline-none focus:ring-2 focus:ring-[#005cff]/40",
+        active
+          ? "border-[#0a2540] bg-[#0a2540] text-white shadow-[0_10px_30px_-15px_rgba(10,37,64,0.6)]"
+          : highlight
+          ? "border-[#005cff]/40 bg-gradient-to-br from-[#eef4ff] to-white hover:border-[#005cff]"
+          : "border-[#0a2540]/12 bg-white hover:border-[#0a2540]/40",
+      ].join(" ")}
+    >
+      <div
+        className={`text-[10px] uppercase tracking-[0.16em] ${
+          active ? "text-white/60" : highlight ? "text-[#005cff]/80" : "text-[#0a2540]/45"
+        }`}
+      >
+        {isDL ? "Contains LLMs" : "Sub-field"}
+      </div>
+      <div
+        className={`mt-1.5 text-[15px] font-semibold leading-tight tracking-tight ${
+          active ? "text-white" : "text-[#0a2540]"
+        }`}
+      >
+        {field.label}
+      </div>
+
+      {/* Technique chips — clipped preview */}
+      <div className="mt-3 flex flex-wrap gap-1">
+        {field.techniques.slice(0, 3).map((t) => {
+          const isLLMChip = t === "Large language models";
+          return (
+            <span
+              key={t}
+              className={[
+                "text-[10px] px-1.5 py-0.5 rounded-sm border leading-tight",
+                active
+                  ? "border-white/25 text-white/80"
+                  : isLLMChip
+                  ? "border-[#005cff]/50 text-[#005cff] bg-white"
+                  : "border-[#0a2540]/15 text-[#0a2540]/70",
+              ].join(" ")}
+            >
+              {isLLMChip ? "LLMs" : t.replace(/\s*\(.*\)/, "").split(" ").slice(0, 2).join(" ")}
+            </span>
+          );
+        })}
+        {field.techniques.length > 3 && (
+          <span
+            className={`text-[10px] px-1 py-0.5 leading-tight ${
+              active ? "text-white/60" : "text-[#0a2540]/45"
+            }`}
+          >
+            +{field.techniques.length - 3}
+          </span>
+        )}
+      </div>
+    </button>
   );
 }
 
-function flatten(n: Node): Node[] {
-  return [n, ...(n.children || []).flatMap(flatten)];
+function RingLabel({ tone, children }: { tone: "ai" | "ml"; children: React.ReactNode }) {
+  const isAI = tone === "ai";
+  return (
+    <div className="absolute left-5 top-4 flex items-center gap-3">
+      <span
+        className={`text-[10px] font-mono uppercase tracking-[0.22em] ${
+          isAI ? "text-[#0a2540]/45" : "text-[#0a2540]/40"
+        }`}
+      >
+        {isAI ? "01" : "02"}
+      </span>
+      <span
+        className={`text-[13px] font-semibold uppercase tracking-[0.22em] ${
+          isAI ? "text-[#0a2540]" : "text-[#0a2540]/85"
+        }`}
+      >
+        {children}
+      </span>
+      <span className="h-px w-16 bg-[#0a2540]/15" />
+    </div>
+  );
 }
