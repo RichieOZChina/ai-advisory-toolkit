@@ -18,7 +18,7 @@ import { StampExercise } from "./interactive/StampExercise";
 import { TextPredictor } from "./interactive/TextPredictor";
 import { SurveyBar } from "./interactive/SurveyBar";
 import { RatioBar } from "./interactive/RatioBar";
-import { OpenClosedTree } from "./interactive/OpenClosedTree";
+import { OpenClosedAccordion } from "./interactive/OpenClosedAccordion";
 import * as L from "./layouts";
 
 export type Section = {
@@ -209,15 +209,9 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(11, "The provider landscape", () => (
-    <L.Body kicker="Slide 12 · Source: AI Landscape p.14 + LLM History pp.19–20" title="The provider landscape">
-      <OpenClosedTree />
-    </L.Body>
-  )),
-
-  s(12, "Providers at a glance", () => (
-    <L.Body kicker="Slide 13 · Source: AI Landscape pp.15–23" title="Providers at a glance">
-      <ProviderGrid />
+  s(11, "Closed vs open — and who's who", () => (
+    <L.Body kicker="Slide 12 · Source: AI Landscape p.14 + LLM History pp.19–20" title="Closed vs open — and who's who">
+      <OpenClosedAccordion />
     </L.Body>
   )),
 
