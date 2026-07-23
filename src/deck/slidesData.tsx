@@ -125,16 +125,37 @@ export const SLIDES: Slide[] = [
   )),
 
   // ===== SECTION 2: HOW MODERN AI WORKS =====
-  s(6, "The simplest useful model of an LLM", () => (
-    <L.Body kicker="Intuition first" title="The simplest useful model of an LLM">
-      <p className="slide-subtitle mt-2 max-w-3xl">A large language model is a very sophisticated next-word predictor.</p>
-      <TextPredictor />
-      <p className="slide-caption mt-6">That's it. Everything else is engineering to make the prediction better, faster, and safer.</p>
+  s(6, "What is a Large Language Model?", () => (
+    <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3" title="What is a Large Language Model?">
+      <p className="slide-subtitle mt-2 max-w-4xl">"AI systems trained on vast amounts of text data, capable of understanding and generating human-like language."</p>
+      <div className="grid md:grid-cols-2 gap-6 mt-8">
+        <div className="slide-card">
+          <div className="slide-chip">Scale</div>
+          <p className="slide-body mt-3">Billions of parameters, trained on billions of words scraped from across the internet. GPT-3 (June 2020) was the first true LLM at 175B parameters — a 100× jump over GPT-2.</p>
+        </div>
+        <div className="slide-card">
+          <div className="slide-chip">Emergent properties</div>
+          <p className="slide-body mt-3">Capabilities that arise from training rather than being explicitly programmed. Like a chef who has memorised 1,000 recipes and can now improvise a meal from ingredients they've never seen combined before.</p>
+        </div>
+      </div>
+      <div className="mt-8 slide-card-dark max-w-4xl">
+        <div className="slide-chip" style={{background:"rgba(0,92,255,0.2)",color:"#7ab0ff"}}>One way to picture it</div>
+        <p className="slide-body mt-3 text-white/90">A very sophisticated next-word predictor. Everything else is engineering to make the prediction better, faster, and safer.</p>
+        <div className="mt-4"><TextPredictor /></div>
+      </div>
     </L.Body>
   )),
 
-  s(7, "Module 2 — How modern AI works", () => (
-    <L.Section number="02" title="How modern AI works" subtitle="From family tree to attention — the concepts that actually change how you work." />
+  s(7, "So what actually is an LLM?", () => (
+    <L.Body kicker="Module 2 · How modern AI works" title="So what actually is an LLM?">
+      <p className="slide-subtitle mt-2 max-w-3xl">Before we go under the hood, one plain-English answer.</p>
+      <div className="mt-10 max-w-3xl space-y-5">
+        <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
+        <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
+        <p className="slide-body">It doesn't <i>know</i> things the way you do. It recognises patterns extremely well.</p>
+      </div>
+      <p className="slide-caption mt-10">Everything else in this section is detail on top of that one idea.</p>
+    </L.Body>
   )),
 
   s(8, "The AI family tree", () => (
