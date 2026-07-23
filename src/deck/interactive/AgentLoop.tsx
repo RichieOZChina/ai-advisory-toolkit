@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const STEPS = [
-  { t: "1 · Goal", d: '"Draft a buyer outreach email for Northstar targeting UK infra funds."', tone: "goal" as const },
+  { t: "1 · Goal", d: '"Draft a buyer outreach email for a specific deal targeting UK infra funds."', tone: "goal" as const },
   { t: "2 · Plan",   d: "LLM decomposes: pull deal one-pager · look up top 5 UK infra funds · draft email · check tone.", tone: "think" as const },
   { t: "3 · Act",    d: "Calls tools: file-reader, web-search, drafting model, tone-checker.", tone: "act" as const },
   { t: "4 · Observe",d: "Reads tool outputs. Was the fund list current? Did the tone check pass?", tone: "obs" as const },
@@ -9,7 +9,7 @@ const STEPS = [
 ];
 
 const TOOLS = [
-  { name: "File reader", ex: "read('CIM_Northstar.pdf')" },
+  { name: "File reader", ex: "read('CIM_deal.pdf')" },
   { name: "Web search",  ex: "search('UK infra fund AUM > £500m')" },
   { name: "Email draft", ex: "draft(to, subject, body)" },
   { name: "CRM",         ex: "log_activity(deal_id, ...)" },

@@ -331,7 +331,7 @@ export const SLIDES: Slide[] = [
     <L.Body kicker="Slide 22 · Source: LLM Field Work pp.46–47" title="Claude Code — your afternoon workbench">
       <div className="grid md:grid-cols-2 gap-6 mt-4 items-center">
         <div className="slide-card-dark font-mono text-[13px]" style={{padding:"22px 24px"}}>
-          <div className="text-emerald-300">➜ ~/tenet/deal-northstar</div>
+          <div className="text-emerald-300">➜ ~/tenet/deal-folder</div>
           <div className="mt-3"><span className="text-slate-400">$</span> claude</div>
           <div className="mt-2 text-slate-300">Welcome to Claude Code. What are we building?</div>
           <div className="mt-3"><span className="text-slate-400">&gt;</span> Extract every EBITDA adjustment from vdd_v3.pdf and output as a markdown table with page refs</div>
@@ -760,8 +760,8 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(53, "Project Northstar", () => (
-    <L.Body kicker="Shared evidence base" title="Project Northstar — one source pack, one truth">
+  s(53, "Project source pack", () => (
+    <L.Body kicker="Shared evidence base" title="Project source pack — one source pack, one truth">
       <div className="mt-4 grid md:grid-cols-2 gap-6">
         <div>
           <p className="slide-body">A single source pack every team member works from. Ensures consistent outputs across the room and across the week.</p>
@@ -775,7 +775,7 @@ A: | Risk | Page | Severity | Rationale |
         </div>
         <div className="slide-card-dark">
           <div className="slide-caption text-slate-400 uppercase tracking-widest">Rule</div>
-          <div className="mt-2 text-lg">If a fact isn't in the Northstar pack, it doesn't go in your output.</div>
+          <div className="mt-2 text-lg">If a fact isn't in the source pack, it doesn't go in your output.</div>
         </div>
       </div>
     </L.Body>
@@ -842,7 +842,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   s(58, "Lab 1 · Build step 1 · Set up", () => (
-    <L.Build step={1} of={5} title="Set up your workspace" prompt="Open Claude Code in your Northstar folder. Confirm you can read the DD notes file." />
+    <L.Build step={1} of={5} title="Set up your workspace" prompt="Open Claude Code in your deal folder. Confirm you can read the DD notes file." />
   )),
   s(59, "Lab 1 · Build step 2 · Build", () => (
     <L.Build step={2} of={5} title="Build the instruction" prompt="Draft the Role/Task/Specifics/Notes for the issue-log workflow. 20 minutes." />
@@ -965,7 +965,7 @@ A: | Risk | Page | Severity | Rationale |
     <L.Body kicker="Lab 2 · Main exercise" title="Build a four-page excerpt and its reusable creator">
       <div className="grid md:grid-cols-2 gap-5 mt-6">
         {[
-          ["Output","A four-page company overview from the Northstar source pack."],
+          ["Output","A four-page company overview from the deal source pack."],
           ["Byproduct","The reusable prompt/instruction that could produce the same quality for any company."],
         ].map(([t,d]) => (
           <div key={t} className="slide-card"><div className="font-semibold">{t}</div><p className="slide-body mt-2">{d}</p></div>
@@ -1231,7 +1231,7 @@ A: | Risk | Page | Severity | Rationale |
           ["Prompt templates","Role/Task/Notes patterns for the five moves"],
           ["STAMP checklist","One page. Pin above your monitor."],
           ["Build-lab outputs","The reusable asset you built today"],
-          ["Northstar pack","Your reference source discipline"],
+          ["Source pack","Your reference source discipline"],
         ].map(([t,d]) => (
           <div key={t} className="slide-card"><div className="font-semibold">{t}</div><p className="slide-body mt-2">{d}</p></div>
         ))}

@@ -17,7 +17,7 @@ export function RagFlow() {
           <div className="slide-chip">Why RAG exists</div>
           <p className="slide-body mt-3">
             An LLM only knows what it was trained on — <b>public internet up to a cut-off date</b>. It has never seen
-            your VDR, your CIM, your comps, or your models. Ask it about the Northstar deal and it will either say
+            your VDR, your CIM, your comps, or your models. Ask it about a specific deal. and it will either say
             "I don't know" or, worse, <b>invent</b> something plausible.
           </p>
           <p className="slide-body mt-3">
@@ -70,7 +70,7 @@ export function RagFlow() {
         <div className="mt-3 grid md:grid-cols-[1.1fr_1.4fr] gap-4">
           <div className="slide-card">
             <div className="slide-caption">User question</div>
-            <div className="mt-2 font-medium">"What's the biggest revenue risk on Northstar?"</div>
+          <div className="mt-2 font-medium">"What's the biggest revenue risk on this deal?"</div>
             <div className="slide-caption mt-4">↓ embed the question, search the vector DB (cosine similarity), return the <b>top-k</b> most similar chunks</div>
             <button
               onClick={() => setShowAnswer(!showAnswer)}
