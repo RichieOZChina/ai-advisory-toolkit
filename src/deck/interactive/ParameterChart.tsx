@@ -42,7 +42,7 @@ export function ParameterChart() {
       <div className="slide-caption mt-4">
         Parameters, in billions. Log scale — otherwise GPT-1 wouldn't be visible next to GPT-3.
         <br />
-        <span className="text-[10px]">* GPT-4 not officially disclosed; ~1.76T figure from SemiAnalysis leak (Jul 2023). OpenAI has not published parameter counts for GPT-4o or GPT-5. Anthropic and Google do not publish parameter counts for Claude or Gemini.</span>
+        <span className="text-[10px]">* GPT-4 parameter count is an estimate; OpenAI has not officially disclosed it. Anthropic and Google do not publish parameter counts for Claude or Gemini.</span>
       </div>
     </div>
   );
