@@ -328,6 +328,14 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
+  s(20, "Four ways to run an agent", () => (
+    <L.Body kicker="Agents · autonomy ladder" title="Four ways to run an agent">
+      <AgentLoopTypes />
+    </L.Body>
+  ), { notes: "Same loop, four levels of autonomy. Land the point: the more you hand off, the more governance you need — leading into STAMP." }),
+
+
+
   s(21, "Claude Code — your afternoon workbench", () => (
     <L.Body kicker="Slide 22" title="Claude Code — your afternoon workbench">
       <div className="grid md:grid-cols-2 gap-6 mt-4 items-center">
