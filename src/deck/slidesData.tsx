@@ -74,7 +74,8 @@ export const SLIDES: Slide[] = [
   s(2, "The ratio we are trying to change", () => (
     <L.Body kicker="The problem" title="The ratio we are trying to change">
       <RatioBar />
-      <p className="slide-body mt-8 max-w-2xl">In a typical M&amp;A week, 78% of your time is spent <b>assembling</b> materials. Only 22% is spent <b>deciding</b>. The goal today: <span className="text-[color:var(--accent)] font-semibold">flip the ratio</span>.</p>
+      <p className="slide-body mt-8 max-w-3xl">Most of your M&amp;A week goes into <b>assembling</b> materials — pulling data, formatting decks, chasing sources. Only a sliver goes into <b>the decision itself</b>. Today is about <span className="text-[color:var(--accent)] font-semibold">flipping that ratio</span>.</p>
+      <p className="slide-caption mt-4">We'll validate the actual split with the pre-workshop survey.</p>
     </L.Body>
   )),
 
