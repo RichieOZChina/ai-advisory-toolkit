@@ -237,7 +237,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(13, "Embeddings & semantic meaning", () => (
-    <L.Body kicker="Source: LLM Theory pp.17–25" title="Embeddings — giving tokens meaning">
+    <L.Body kicker="Slide 13" title="Embeddings — giving tokens meaning">
       <EmbeddingSpace />
     </L.Body>
   )),
