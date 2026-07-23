@@ -228,13 +228,8 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(14, "Model size: from thousands to trillions", () => (
-    <L.Body kicker="Slide 14 · Source: LLM Theory p.1 + LLM History pp.2–8" title="Model size: from thousands to trillions">
-      <ParameterChart />
-    </L.Body>
-  )),
-
   s(15, "Neural networks in one slide", () => (
+
     <L.Body kicker="Slide 15 · Source: LLM Theory pp.4–10" title="Neural networks in one slide">
       <NeuronCompare />
     </L.Body>
