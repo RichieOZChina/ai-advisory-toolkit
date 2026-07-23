@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const PRICING = [
-  { m: "OpenAI GPT-5.1", in: "$2.50", out: "$10.00", best: "Frontier reasoning" },
-  { m: "Anthropic Claude Opus 4.5", in: "$3.00", out: "$15.00", best: "Long-form analysis" },
-  { m: "Google Gemini 3 Pro", in: "$1.25", out: "$5.00", best: "Multimodal + long context" },
-  { m: "DeepSeek R2", in: "$0.14", out: "$0.28", best: "High-volume, cost-sensitive" },
+  { m: "OpenAI GPT-5.1", in: "$1.25", out: "$10.00", best: "Frontier reasoning" },
+  { m: "Anthropic Claude Opus 4.5", in: "$5.00", out: "$25.00", best: "Long-form analysis" },
+  { m: "Google Gemini 3 Pro", in: "$2.00", out: "$12.00", best: "Multimodal + long context" },
+  { m: "DeepSeek R2", in: "$0.55", out: "$2.19", best: "High-volume, cost-sensitive" },
   { m: "Llama 4 (self-hosted)", in: "infra only", out: "infra only", best: "Full data privacy" },
 ];
 
