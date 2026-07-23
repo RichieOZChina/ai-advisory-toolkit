@@ -1,53 +1,50 @@
+## What the video shows
 
-## Three targeted edits
+An animated infographic titled **"Four types of loops — four ways to structure agentic work"**, with four stacked rows:
 
-### 1. Slide 2 — "The ratio we are trying to change" (the 78/22 slide)
+1. **Turn-based — you steer every move** (prompt → gather/check → act → reply)
+2. **Goal-based — it checks itself** (agent works → evaluator → loops until goal met)
+3. **Time-based — the clock triggers it** (interval fires → runs task → waits for next tick)
+4. **Proactive — no human present** (event/schedule → triage → fix → review → close)
 
-The 78% / 22% numbers are not from your PDFs — I invented them. Fix by removing the fake precision:
+The through-line: **"the more you hand off, the less you babysit"** — an autonomy spectrum from tight human-in-the-loop to fully autonomous.
 
-- Replace `RatioBar` numeric split with a **qualitative** two-bar visual labeled "Assembling" vs "Deciding" (no percentages).
-- Rewrite body copy: *"Most of your M&A week goes into assembling materials — pulling data, formatting decks, chasing sources. Only a sliver goes into the decision itself. Today is about flipping that ratio."*
-- Add a small caption: *"We'll validate the actual split with the pre-workshop survey."*
+## Why this fits slide 19
 
-(If you'd rather keep numbers, tell me a source or a range you're comfortable citing and I'll wire that in instead.)
+Slide 19 currently uses `AgentLoop.tsx` to explain *one* generic agent loop (goal → plan → act → observe → decide). That's great for defining what an agent is, but it doesn't answer the natural next question the M&A team will ask: *"So how much do we let it run on its own?"* The four-loop taxonomy is exactly that framing — an autonomy ladder — and lands the STAMP governance point that follows.
 
-### 2. Slide 6 — Reframe from "next-word predictor" to the PDF's definition
+## Proposal — rebuild natively, don't embed the mp4
 
-Right now slide 6 leads with my simplification. Rewrite it to match your source material:
+Recreating it as a native React/SVG component (rather than dropping the .mp4 into the deck) keeps:
+- The deck's visual language (navy / #005cff accent, consulting typography) instead of the video's purple/coral palette
+- Everything vector-sharp when projected at 1920×1080
+- No "someone else's graphic" feel — consistent with your earlier instruction to strip external references
 
-- Title: **"What is a Large Language Model?"**
-- Lead definition (verbatim from `LLM Theory` p.2): *"AI systems trained on vast amounts of text data, capable of understanding and generating human-like language."*
-- Two supporting pillars as cards:
-  - **Scale** — billions of parameters, trained on billions of words.
-  - **Emergent properties** — capabilities that arise from training, not explicit programming (the "chef who memorized 1000 recipes" analogy in a short caption).
-- Keep the `TextPredictor` interactive as a secondary "intuition" panel below, framed as *"One way to picture it: a very sophisticated next-word predictor."* — so the intuition is present but not presented as the definition.
-- Source citation footer: *"LLM Theory pp.1–3."*
+Same idea, same 4-row structure, same animation feel (nodes lighting up in sequence along each loop path), but styled as one of your slides.
 
-### 3. Slide 7 — Convert from section divider to "Intro: What is an LLM?"
+## Placement
 
-Currently slide 7 is `L.Section` ("Module 2 — How modern AI works"). Replace with a simple intro-body slide:
+Insert as a **new slide 20**, immediately after the current slide 19 (agent loop definition):
 
-- Kicker: *"Module 2 · How modern AI works"*
-- Title: **"So what actually is an LLM?"**
-- One-sentence lead: *"Before we go under the hood, one plain-English answer."*
-- Body: a short 3-line explanation in your voice, plain language, no jargon — something like:
-  > *"An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language. When you type something, it predicts, one piece at a time, what a helpful response looks like. It doesn't 'know' things the way you do — it recognises patterns extremely well."*
-- Footer: *"Everything else in this section is detail on top of that one idea."*
+- **19** — What is an agent? (current `AgentLoop`, unchanged) — defines the loop
+- **20 (new)** — *Four ways to run an agent* — autonomy ladder, animated
+- **21** — STAMP / governance (previously 20) — now lands harder because we've just shown the autonomy spectrum
 
-This makes slide 7 the **soft on-ramp**, slide 6 becomes the **formal definition**, and the AI family tree (slide 8) then makes sense as the next beat.
+M&A framing per row, tied to their world:
+1. **Turn-based** — analyst prompts, reviews each output. Drafting a buyer list.
+2. **Goal-based** — "produce a first-draft IC memo, stop when the evaluator says it hits the checklist." Human reviews the finished artefact.
+3. **Time-based** — every Monday 7am, scan the deal pipeline for stale items, post a summary to the deal channel.
+4. **Proactive** — event-driven. New filing hits SEC EDGAR for a target → agent triages, drafts a note, pings the deal lead.
 
-### Order check
+Bottom strapline in your voice: *"The more you hand off, the less you babysit — but also the more governance you need. STAMP (next slide) is how we decide which loops are safe to run where."*
 
-After these edits the opening of Section 2 reads:
-- **6** — What is a Large Language Model? (formal definition + scale + emergent properties)
-- **7** — So what actually is an LLM? (plain-English intro)
-- **8** — The AI family tree
+## Technical
 
-You may actually want **7 before 6** (plain-English first, formal second). Tell me which order you prefer and I'll wire it that way.
+- New component `src/deck/interactive/AgentLoopTypes.tsx` — four stacked rows, each an SVG flow diagram with a small animated pulse traveling along the path (CSS `@keyframes` on `stroke-dashoffset`, no new deps).
+- Register new slide in `src/deck/slidesData.tsx` at position 20; downstream slides renumber automatically via the array.
+- Keep `AgentLoop.tsx` untouched.
+- No routing, no dependencies, no data changes.
 
-### Technical notes
+## Open question
 
-- Edits touch only `src/deck/slidesData.tsx` and `src/deck/interactive/RatioBar.tsx`.
-- No new dependencies, no routing changes, sidebar auto-updates from `SLIDES`.
-
-Approve and I'll make the changes. Also confirm the 6/7 order.
+Do you want the four-loop slide **after** the current agent-definition slide (my recommendation, above), or **replacing** it? Replacing would be tighter but loses the "what is an agent" grounding for people who need the basic definition first.
