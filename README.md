@@ -1,29 +1,52 @@
-# Welcome to your Lovable project
+# Tenet × Sentia — AI Advisory Toolkit
 
-This project was built with [Lovable](https://lovable.dev).
+A web-based slide deck for the full-day AI workshop delivered to the Tenet Advisory M&A team. Built as a React SPA with a collapsible sidebar, keyboard navigation, and custom interactive diagrams — designed to feel like a premium consulting deliverable, not PowerPoint.
 
-## Build with Lovable
+Live preview (via Lovable): https://id-preview--b4a44578-ac3f-4cbd-ac4a-b6c85e5b36a9.lovable.app
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Team workflow
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+This repo is the source of truth. Anyone with access can edit the deck locally (Claude Code, Cursor, VS Code) and push. Lovable stays in two-way sync — pushes here update the Lovable preview, and edits in Lovable get committed back here.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+git clone https://github.com/RichieOZChina/ai-advisory-toolkit.git
+cd ai-advisory-toolkit
+npm install
 npm run dev
 ```
 
+Then open http://localhost:8080.
+
+### Making changes
+
+- **Slide content, order, section grouping** → `src/deck/slidesData.tsx`
+- **Layout templates** (Title / Body / Section / Move / Build) → `src/deck/layouts.tsx`
+- **Interactive diagrams** → `src/deck/interactive/*.tsx` (one component per diagram)
+- **Sidebar, progress bar, keyboard shortcuts** → `src/deck/components/*` and `src/deck/hooks/*`
+- **Global styles / palette** → `src/styles.css`
+
+Palette: navy `#0a2540`, accent blue `#005cff`, white. Typography: Inter.
+
+### Working with Claude Code
+
+There is a `CLAUDE.md` at the repo root with orientation for AI coding agents (file map, conventions, do/don't). Point Claude Code at it before making edits.
+
+### Push / pull
+
+Standard Git. `main` is the working branch — feature branches + PRs are optional but recommended for anything larger than a copy edit.
+
+```sh
+git checkout -b tweak-slide-14
+# edit
+git commit -am "Slide 14: tighten intro copy"
+git push -u origin tweak-slide-14
+```
+
+Lovable picks up pushes to `main` automatically.
+
 ## Built with
 
-- TanStack Start
+- Vite + React 19 (authored as a client-side SPA on the TanStack Start template)
 - TypeScript
-- React
-- Tailwind CSS
+- Tailwind CSS v4
+- Hand-rolled SVG for all diagrams — no chart library
