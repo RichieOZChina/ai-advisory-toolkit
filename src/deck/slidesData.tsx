@@ -265,9 +265,9 @@ export const SLIDES: Slide[] = [
             dependencies broke.
           </p>
           <p className="slide-body mt-3">
-            The 2017 <b>Transformer</b> paper fixed this with one idea: <b>self-attention</b>. Every word looks at
-            every other word simultaneously and decides which ones matter most for its meaning. That parallel
-            reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
+            In 2017 the <b>Transformer</b> architecture fixed this with one idea: <b>self-attention</b>. Every word
+            looks at every other word simultaneously and decides which ones matter most for its meaning. That
+            parallel reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
           </p>
         </div>
         <div className="slide-card-dark">
