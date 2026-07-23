@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const DOC = "The vendor DD identified three material risks on Project Northstar. First, customer concentration — the top three clients account for 62% of FY24 revenue, quantified in Appendix B, page 47. Second, key-person dependency: the founder holds every material supplier relationship personally. Third, gross margin compression of 340bps year-on-year, driven by input cost inflation not yet passed through to price.";
+const DOC = "The vendor DD identified three material risks on the target company. First, customer concentration — the top three clients account for 62% of FY24 revenue, quantified in Appendix B, page 47. Second, key-person dependency: the founder holds every material supplier relationship personally. Third, gross margin compression of 340bps year-on-year, driven by input cost inflation not yet passed through to price.";
 
 type Strategy = "tiny" | "right" | "huge";
 
