@@ -34,47 +34,61 @@ export function OpenClosedAccordion() {
   const [openPanel, setOpenPanel] = useState<PanelKey | null>("closed");
 
   return (
-    <div className="mt-6 grid md:grid-cols-2 gap-5">
-      <Panel
-        tone="closed"
-        active={openPanel === "closed"}
-        onToggle={() => setOpenPanel(openPanel === "closed" ? null : "closed")}
-        label="Closed-source"
-        oneLiner="API-only. The vendor hosts the model; you send data to their servers."
-        definition="You never see the weights. Access is metered by API call, pricing is per-token, and the provider controls versioning, updates and deprecation."
-        pros={[
-          "Turnkey — no infrastructure to run",
-          "Frontier-quality models, first",
-          "Managed safety, evals and uptime",
-        ]}
-        cons={[
-          "Data leaves your environment",
-          "Per-token cost scales with usage",
-          "Limited customisation & fine-tuning",
-          "Vendor lock-in on prompts and tooling",
-        ]}
-        providers={CLOSED_PROVIDERS}
-      />
-      <Panel
-        tone="open"
-        active={openPanel === "open"}
-        onToggle={() => setOpenPanel(openPanel === "open" ? null : "open")}
-        label="Open-source"
-        oneLiner="Downloadable weights. You run the model in your own environment."
-        definition="The model file is published under a permissive or research licence. You can host it on your own infrastructure, fine-tune it on private data, and keep every prompt inside your perimeter."
-        pros={[
-          "Data never leaves your environment",
-          "Fixed infra cost — no per-token bill",
-          "Full fine-tuning and customisation",
-          "No vendor lock-in",
-        ]}
-        cons={[
-          "Requires ML engineering to run well",
-          "Peak quality still trails frontier closed models",
-          "You own safety, evals and uptime",
-        ]}
-        providers={OPEN_PROVIDERS}
-      />
+    <div className="mt-4 space-y-4">
+      <div className="rounded-xl border border-[#0a2540]/10 bg-[#f7f9fc] p-4 flex items-start gap-4">
+        <div className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-xs font-semibold shrink-0">
+          ?
+        </div>
+        <div>
+          <div className="text-sm font-semibold text-[#0a2540]">What are "weights"?</div>
+          <p className="mt-1 text-[13px] leading-relaxed text-[#0a2540]/75">
+            Weights are the billions of tuned numbers the model learned during training. Think of them as the model's <span className="font-semibold text-[#0a2540]">secret recipe</span>. Closed vendors keep the recipe in-house and sell access via API; open-source vendors publish the recipe so you can run the model yourself.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <Panel
+          tone="closed"
+          active={openPanel === "closed"}
+          onToggle={() => setOpenPanel(openPanel === "closed" ? null : "closed")}
+          label="Closed-source"
+          oneLiner="API-only. The vendor hosts the model; you send data to their servers."
+          definition="You never see the weights. Access is metered by API call, pricing is per-token, and the provider controls versioning, updates and deprecation."
+          pros={[
+            "Turnkey — no infrastructure to run",
+            "Frontier-quality models, first",
+            "Managed safety, evals and uptime",
+          ]}
+          cons={[
+            "Data leaves your environment",
+            "Per-token cost scales with usage",
+            "Limited customisation & fine-tuning",
+            "Vendor lock-in on prompts and tooling",
+          ]}
+          providers={CLOSED_PROVIDERS}
+        />
+        <Panel
+          tone="open"
+          active={openPanel === "open"}
+          onToggle={() => setOpenPanel(openPanel === "open" ? null : "open")}
+          label="Open-source"
+          oneLiner="Downloadable weights. You run the model in your own environment."
+          definition="The model file is published under a permissive or research licence. You can host it on your own infrastructure, fine-tune it on private data, and keep every prompt inside your perimeter."
+          pros={[
+            "Data never leaves your environment",
+            "Fixed infra cost — no per-token bill",
+            "Full fine-tuning and customisation",
+            "No vendor lock-in",
+          ]}
+          cons={[
+            "Requires ML engineering to run well",
+            "Peak quality still trails frontier closed models",
+            "You own safety, evals and uptime",
+          ]}
+          providers={OPEN_PROVIDERS}
+        />
+      </div>
     </div>
   );
 }
