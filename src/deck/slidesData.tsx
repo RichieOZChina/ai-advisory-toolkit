@@ -10,6 +10,7 @@ import { ChunkingCompare } from "./interactive/ChunkingCompare";
 import { AttentionDiagram } from "./interactive/AttentionDiagram";
 import { TemperatureSlider } from "./interactive/TemperatureSlider";
 import { AgentLoop } from "./interactive/AgentLoop";
+import { AgentLoopTypes } from "./interactive/AgentLoopTypes";
 import { PrivacyTiers } from "./interactive/PrivacyTiers";
 import { WorkflowTimeline } from "./interactive/WorkflowTimeline";
 import { StampAccordion } from "./interactive/StampAccordion";
