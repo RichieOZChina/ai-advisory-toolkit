@@ -88,7 +88,9 @@
 
 .slide-card { background: #ffffff; border: 1px solid var(--muted-line); border-radius: 14px; padding: 22px; transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
 .slide-card:hover { border-color: #cfd8e3; transform: translateY(-2px); }
-.slide-card-dark { background: var(--navy); color: #eaf1fb; border: 1px solid var(--navy-3); border-radius: 14px; padding: 22px; }
+.slide-card-dark { background: var(--navy-2); color: #ffffff; border: 1px solid var(--navy-3); border-radius: 14px; padding: 22px; }
+.slide-card-dark .slide-body { color: #ffffff; }
+.slide-card-dark .slide-caption { color: #a8bdd6; }
 .slide-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
 .fade-up { animation: fadeUp 300ms ease-out both; }
