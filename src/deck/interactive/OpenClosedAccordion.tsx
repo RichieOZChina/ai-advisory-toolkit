@@ -67,21 +67,10 @@ type PanelKey = "closed" | "open";
 
 export function OpenClosedAccordion() {
   const [openPanel, setOpenPanel] = useState<PanelKey | null>("closed");
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="mt-4 space-y-4">
-      <div className="rounded-xl border border-[#0a2540]/10 bg-[#f7f9fc] p-4 flex items-start gap-4">
-        <div className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-xs font-semibold shrink-0">
-          ?
-        </div>
-        <div>
-          <div className="text-sm font-semibold text-[#0a2540]">What are "weights"?</div>
-          <p className="mt-1 text-[13px] leading-relaxed text-[#0a2540]/75">
-            Weights are the billions of tuned numbers the model learned during training. Think of them as the model's <span className="font-semibold text-[#0a2540]">secret recipe</span>. Closed vendors keep the recipe in-house and sell access via API; open-source vendors publish the recipe so you can run the model yourself.
-          </p>
-        </div>
-      </div>
-
+    <div className="mt-4 space-y-6">
       <div className="grid md:grid-cols-2 gap-5">
         <Panel
           tone="closed"
@@ -124,9 +113,40 @@ export function OpenClosedAccordion() {
           providers={OPEN_PROVIDERS}
         />
       </div>
+
+      <div>
+        <div className="text-[10px] uppercase tracking-[0.18em] text-[#0a2540]/55 font-semibold mb-2">
+          Jargon buster — click to expand
+        </div>
+        <div className="rounded-xl border border-[#0a2540]/10 bg-white overflow-hidden divide-y divide-[#0a2540]/10">
+          {FAQS.map((f, i) => {
+            const active = openFaq === i;
+            return (
+              <div key={f.q}>
+                <button
+                  onClick={() => setOpenFaq(active ? null : i)}
+                  className="w-full text-left px-5 py-3.5 flex items-center gap-3 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
+                >
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-[11px] font-semibold shrink-0">
+                    ?
+                  </span>
+                  <span className="flex-1 text-[14px] font-semibold text-[#0a2540]">{f.q}</span>
+                  <span aria-hidden className={`text-[#0a2540]/45 transition-transform ${active ? "rotate-180" : ""}`}>▾</span>
+                </button>
+                {active && (
+                  <div className="px-5 pb-4 pl-14 text-[13px] leading-relaxed text-[#0a2540]/80">
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
+
 
 function Panel({
   tone,
