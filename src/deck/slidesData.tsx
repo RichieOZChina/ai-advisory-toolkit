@@ -127,8 +127,7 @@ export const SLIDES: Slide[] = [
   // ===== SECTION 2: HOW MODERN AI WORKS =====
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3 + LLM History pp.2–8" title="What is a Large Language Model?">
-      <p className="slide-subtitle mt-2 max-w-4xl">"AI systems trained on vast amounts of text data, capable of understanding and generating human-like language."</p>
-      <div className="mt-6 max-w-4xl space-y-3">
+      <div className="mt-2 max-w-4xl space-y-3">
         <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
         <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
         <p className="slide-body">It doesn't <i>know</i> things the way you do. It recognises patterns extremely well.</p>
