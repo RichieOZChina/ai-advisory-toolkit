@@ -322,7 +322,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(19, "AI agents, tools & OpenClaw", () => (
+  s(19, "AI agents, tools & the loop", () => (
     <L.Body kicker="Slide 21" title="AI agents, tools & the loop">
       <AgentLoop />
     </L.Body>
