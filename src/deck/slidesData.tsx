@@ -128,6 +128,11 @@ export const SLIDES: Slide[] = [
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3 + LLM History pp.2–8" title="What is a Large Language Model?">
       <p className="slide-subtitle mt-2 max-w-4xl">"AI systems trained on vast amounts of text data, capable of understanding and generating human-like language."</p>
+      <div className="mt-6 max-w-4xl space-y-3">
+        <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
+        <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
+        <p className="slide-body">It doesn't <i>know</i> things the way you do. It recognises patterns extremely well.</p>
+      </div>
       <div className="grid md:grid-cols-2 gap-6 mt-8">
         <div className="slide-card">
           <div className="slide-chip">Scale</div>
@@ -148,17 +153,6 @@ export const SLIDES: Slide[] = [
   )),
 
 
-  s(7, "So what actually is an LLM?", () => (
-    <L.Body kicker="Module 2 · How modern AI works" title="So what actually is an LLM?">
-      <p className="slide-subtitle mt-2 max-w-3xl">Before we go under the hood, one plain-English answer.</p>
-      <div className="mt-10 max-w-3xl space-y-5">
-        <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
-        <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
-        <p className="slide-body">It doesn't <i>know</i> things the way you do. It recognises patterns extremely well.</p>
-      </div>
-      <p className="slide-caption mt-10">Everything else in this section is detail on top of that one idea.</p>
-    </L.Body>
-  )),
 
   s(8, "The AI family tree", () => (
     <L.Body kicker="Slide 8 · Source: AI Landscape p.3" title="The AI family tree">
