@@ -30,9 +30,9 @@ export function AgentLoop() {
             behalf; an <b>AI agent</b> is a system that <b>takes actions on your behalf</b>, not just talks about them.
           </p>
           <p className="slide-body mt-3">
-            The Field Work PDF defines the three ingredients: an <b>LLM</b> for reasoning, a <b>prompt</b> that sets
-            its goal, and <b>tools</b> it can call — files, search, email, databases. Wire those together in a loop
-            and you have an agent.
+            An agent has three ingredients: an <b>LLM</b> for reasoning, a <b>prompt</b> that sets its goal, and
+            <b>tools</b> it can call — files, search, email, databases. Wire those together in a loop and you have
+            an agent.
           </p>
         </div>
         <div className="slide-card-dark">
