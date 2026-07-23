@@ -61,7 +61,7 @@ const s = (id: number, title: string, render: () => ReactNode, opts: { kicker?: 
 
 export const SLIDES: Slide[] = [
   // ===== SECTION 1: OPENING =====
-  s(0, "AI for the M&A Team", () => (
+  s(1, "AI for the M&A Team", () => (
     <L.Title
       kicker="Tenet Advisory × Sentia Partners"
       title={<>AI for the <span style={{color:"var(--accent)"}}>M&amp;A Team</span>.</>}
@@ -70,7 +70,7 @@ export const SLIDES: Slide[] = [
     />
   ), { notes: "Set the room: this is not a lecture. Three concrete outcomes." }),
 
-  s(1, "The ratio we are trying to change", () => (
+  s(2, "The ratio we are trying to change", () => (
     <L.Body kicker="The problem" title="The ratio we are trying to change">
       <RatioBar />
       <p className="slide-body mt-8 max-w-3xl">Most of your M&amp;A week goes into <b>assembling</b> materials — pulling data, formatting decks, chasing sources. Only a sliver goes into <b>the decision itself</b>. Today is about <span className="text-[color:var(--accent)] font-semibold">flipping that ratio</span>.</p>
@@ -78,7 +78,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(2, "What you will leave with", () => (
+  s(3, "What you will leave with", () => (
     <L.Body kicker="Outcomes" title="What you will leave with">
       <div className="grid md:grid-cols-3 gap-5 mt-2">
         {[
@@ -96,7 +96,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(3, "Housekeeping", () => (
+  s(4, "Housekeeping", () => (
     <L.Body kicker="Housekeeping" title="A few practicalities">
       <div className="grid md:grid-cols-2 gap-4 mt-4 max-w-4xl">
         {[
@@ -116,7 +116,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(4, "What you told us", () => (
+  s(5, "What you told us", () => (
     <L.Body kicker="Pre-workshop survey" title="What you told us">
       <SurveyBar />
       <p className="slide-caption mt-6">Placeholder chart — will be replaced after the pre-workshop survey completes.</p>
@@ -124,7 +124,7 @@ export const SLIDES: Slide[] = [
   )),
 
   // ===== SECTION 2: HOW MODERN AI WORKS =====
-  s(5, "What is a Large Language Model?", () => (
+  s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3 + LLM History pp.2–8" title="What is a Large Language Model?">
       <div className="mt-2 max-w-4xl space-y-3">
         <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
@@ -152,7 +152,7 @@ export const SLIDES: Slide[] = [
 
 
 
-  s(6, "The AI family tree", () => (
+  s(7, "The AI family tree", () => (
     <L.Body kicker="Slide 7 · Source: AI Landscape p.3" title="The AI family tree">
       <AITree />
     </L.Body>
