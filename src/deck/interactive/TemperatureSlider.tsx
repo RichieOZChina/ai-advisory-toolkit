@@ -112,7 +112,7 @@ export function TemperatureSlider() {
             </tbody>
           </table>
         </div>
-        <div className="slide-caption mt-2">Indicative pricing, 2026. Output tokens are typically 3–5× the price of input.</div>
+        <div className="slide-caption mt-2">Published rates as of July 2026. Output tokens are typically 3–5× the price of input.</div>
       </div>
     </div>
   );
