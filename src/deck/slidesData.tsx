@@ -215,10 +215,25 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(12, "Neural networks in one slide", () => (
-
-    <L.Body kicker="Slide 15 · Source: LLM Theory pp.4–10" title="Neural networks in one slide">
+  s(12, "Neural networks", () => (
+    <L.Body kicker="Slide 12 · Source: LLM Theory pp.4–10" title="Neural networks">
+      <p className="slide-body max-w-3xl mt-2">
+        Why are we suddenly talking about neural networks? Because <b>every modern LLM is one</b>.
+        When ChatGPT writes a paragraph, what's running under the hood is a very large neural network
+        making one prediction after another. To understand how an LLM behaves — why it's confident,
+        why it hallucinates, why bigger models are smarter — you have to understand the machine underneath.
+      </p>
+      <p className="slide-body max-w-3xl mt-4">
+        A neural network is a stack of simple units — <b>artificial neurons</b> — loosely inspired by the brain.
+        Each neuron takes some inputs, multiplies them by learned weights, adds them up, and passes the result on.
+        Stack millions of these together in layers, train them on huge amounts of text, and patterns emerge:
+        grammar, facts, reasoning, style. Nobody programs those rules in — the network learns them from data.
+      </p>
       <NeuronCompare />
+      <p className="slide-caption mt-6 max-w-3xl">
+        Biological neurons inspired the design; artificial neurons are the math. An LLM is billions of the
+        right-hand kind, wired into layers.
+      </p>
     </L.Body>
   )),
 
