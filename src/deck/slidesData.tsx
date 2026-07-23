@@ -125,7 +125,7 @@ export const SLIDES: Slide[] = [
 
   // ===== SECTION 2: HOW MODERN AI WORKS =====
   s(6, "What is a Large Language Model?", () => (
-    <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3 + LLM History pp.2–8" title="What is a Large Language Model?">
+    <L.Body kicker="Section 2" title="What is a Large Language Model?">
       <div className="mt-2 max-w-4xl space-y-3">
         <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
         <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
@@ -153,13 +153,13 @@ export const SLIDES: Slide[] = [
 
 
   s(7, "The AI family tree", () => (
-    <L.Body kicker="Slide 7 · Source: AI Landscape p.3" title="The AI family tree">
+    <L.Body kicker="Slide 7" title="The AI family tree">
       <AITree />
     </L.Body>
   )),
 
   s(8, "Four ways machines learn", () => (
-    <L.Body kicker="Slide 8 · Source: AI Landscape pp.5–9" title="Four ways machines learn">
+    <L.Body kicker="Slide 8" title="Four ways machines learn">
       <div className="grid md:grid-cols-2 gap-5 mt-2">
         {[
           {t:"Supervised Learning",d:"Labelled data. The model learns patterns from input-output examples.",e:"Credit scoring: past applications labelled 'default / no default'."},
@@ -181,7 +181,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(9, "Three places this shows up", () => (
-    <L.Body kicker="Slide 9 · Source: AI Landscape pp.10–13" title="Three places this shows up">
+    <L.Body kicker="Slide 9" title="Three places this shows up">
       <div className="grid md:grid-cols-3 gap-5 mt-2">
         {[
           {t:"Computer Vision",i:"eye",d:"Image and video understanding.",in:"Scanned annual report page",out:"Extracted tables + text"},
@@ -203,13 +203,13 @@ export const SLIDES: Slide[] = [
   )),
 
   s(10, "Closed vs open — and who's who", () => (
-    <L.Body kicker="Slide 10 · Source: AI Landscape p.14 + LLM History pp.19–20" title="Closed vs open — and who's who">
+    <L.Body kicker="Slide 10" title="Closed vs open — and who's who">
       <OpenClosedAccordion />
     </L.Body>
   )),
 
   s(11, "Neural networks", () => (
-    <L.Body kicker="Slide 10 · Source: LLM Theory pp.4–10" title="Neural networks">
+    <L.Body kicker="Slide 10" title="Neural networks">
       <p className="slide-body max-w-3xl mt-2">
         Why are we suddenly talking about neural networks? Because <b>every modern LLM is one</b>.
         When ChatGPT writes a paragraph, what's running under the hood is a very large neural network
@@ -231,31 +231,31 @@ export const SLIDES: Slide[] = [
   )),
 
   s(12, "Tokens — the pieces models read", () => (
-    <L.Body kicker="Slide 14 · Source: LLM Theory pp.12–16" title="Tokens — the pieces models read">
+    <L.Body kicker="Slide 14" title="Tokens — the pieces models read">
       <TokenSplitter />
     </L.Body>
   )),
 
   s(13, "Embeddings & semantic meaning", () => (
-    <L.Body kicker="Source: LLM Theory pp.17–25" title="Embeddings — giving tokens meaning">
+    <L.Body kicker="Slide 13" title="Embeddings — giving tokens meaning">
       <EmbeddingSpace />
     </L.Body>
   )),
 
   s(14, "Vector databases & RAG", () => (
-    <L.Body kicker="Slide 14 · Source: LLM Field Work pp.7–18" title="Vector databases & RAG — giving the model your files">
+    <L.Body kicker="Slide 14" title="Vector databases & RAG — giving the model your files">
       <RagFlow />
     </L.Body>
   )),
 
   s(15, "Chunking", () => (
-    <L.Body kicker="Slide 15 · Source: LLM Field Work pp.16, 25" title="Chunking — how documents get sliced for retrieval">
+    <L.Body kicker="Slide 15" title="Chunking — how documents get sliced for retrieval">
       <ChunkingCompare />
     </L.Body>
   )),
 
   s(16, "Transformers & attention", () => (
-    <L.Body kicker="Slide 16 · Source: LLM Theory pp.26–35" title="Transformers &amp; attention — why order and context matter">
+    <L.Body kicker="Slide 16" title="Transformers &amp; attention — why order and context matter">
       <div className="mt-4 grid md:grid-cols-[1.15fr_1fr] gap-5">
         <div className="slide-card">
           <div className="slide-chip">Why we need attention</div>
@@ -265,9 +265,9 @@ export const SLIDES: Slide[] = [
             dependencies broke.
           </p>
           <p className="slide-body mt-3">
-            The 2017 <b>Transformer</b> paper fixed this with one idea: <b>self-attention</b>. Every word looks at
-            every other word simultaneously and decides which ones matter most for its meaning. That parallel
-            reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
+            In 2017 the <b>Transformer</b> architecture fixed this with one idea: <b>self-attention</b>. Every word
+            looks at every other word simultaneously and decides which ones matter most for its meaning. That
+            parallel reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
           </p>
         </div>
         <div className="slide-card-dark">
@@ -287,7 +287,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(17, "Temperature & model choice", () => (
-    <L.Body kicker="Slide 17 · Source: LLM Theory pp.39–49" title="Temperature &amp; model choice — the two dials that matter">
+    <L.Body kicker="Slide 17" title="Temperature &amp; model choice — the two dials that matter">
       <TemperatureSlider />
     </L.Body>
   )),
@@ -295,7 +295,7 @@ export const SLIDES: Slide[] = [
 
 
   s(18, "LLM strengths & weaknesses", () => (
-    <L.Body kicker="Slide 20 · Source: LLM Field Work pp.2–6" title="LLM strengths &amp; weaknesses">
+    <L.Body kicker="Slide 20" title="LLM strengths &amp; weaknesses">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card border-l-4" style={{borderLeftColor:"var(--good)"}}>
           <div className="text-[color:var(--good)] font-semibold uppercase tracking-widest text-xs">Strengths</div>
@@ -322,13 +322,13 @@ export const SLIDES: Slide[] = [
   )),
 
   s(19, "AI agents, tools & OpenClaw", () => (
-    <L.Body kicker="Slide 21 · Source: LLM Field Work pp.28–45" title="AI agents, tools & the loop">
+    <L.Body kicker="Slide 21" title="AI agents, tools & the loop">
       <AgentLoop />
     </L.Body>
   )),
 
   s(20, "Claude Code — your afternoon workbench", () => (
-    <L.Body kicker="Slide 22 · Source: LLM Field Work pp.46–47" title="Claude Code — your afternoon workbench">
+    <L.Body kicker="Slide 22" title="Claude Code — your afternoon workbench">
       <div className="grid md:grid-cols-2 gap-6 mt-4 items-center">
         <div className="slide-card-dark font-mono text-[13px]" style={{padding:"22px 24px"}}>
           <div className="text-emerald-300">➜ ~/tenet/deal-folder</div>
@@ -348,7 +348,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(21, "LLM privacy", () => (
-    <L.Body kicker="Slide 23 · Source: LLM Field Work pp.53–57" title="LLM privacy — three tiers">
+    <L.Body kicker="Slide 23" title="LLM privacy — three tiers">
       <PrivacyTiers />
     </L.Body>
   )),
@@ -422,7 +422,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(27, "The lazy brief vs the structured brief", () => (
-    <L.Body kicker="Slide 29 · Source: Prompt Planning Sheet + Building a Prompt" title="The lazy brief vs the structured brief">
+    <L.Body kicker="Slide 29" title="The lazy brief vs the structured brief">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="rounded-xl border border-[color:var(--muted-line)] p-6 bg-[color:var(--secondary)] opacity-90">
           <div className="flex items-center gap-2 text-red-600 font-semibold"><span>✗</span> Lazy brief</div>
@@ -505,7 +505,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   s(32, "The assembled prompt & three takeaways", () => (
-    <L.Body kicker="Slide 34 · Source: Prompt Planning Sheet (full framework)" title="The assembled prompt">
+    <L.Body kicker="Slide 34" title="The assembled prompt">
       <div className="mt-4 grid md:grid-cols-3 gap-3">
         {[
           ["Role","You are an M&A Director…"],

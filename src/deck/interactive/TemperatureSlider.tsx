@@ -43,8 +43,8 @@ export function TemperatureSlider() {
           <div className="slide-chip">Why the same prompt gives different answers</div>
           <p className="slide-body mt-3">
             LLMs don't pick the single "best" next token — they <b>sample</b> from a probability distribution.
-            The Theory PDF puts it plainly: GPT models are <b>inherently non-deterministic</b>. Even at
-            temperature 0 there is a small chance of variation.
+            Put plainly: GPT models are <b>inherently non-deterministic</b>. Even at temperature 0 there is a small
+            chance of variation.
           </p>
           <p className="slide-body mt-3">
             <b>Temperature</b> is the dial that decides how much of that distribution the model is allowed to explore.

@@ -6,7 +6,7 @@ type Strategy = "tiny" | "right" | "huge";
 
 const STRATEGIES: Record<Strategy, { label: string; size: number; verdict: string; tone: "warn"|"good"; explain: string }> = {
   tiny:  { label: "Too small",  size: 60,  tone: "warn", verdict: "Sentences split mid-thought. Retrieval loses meaning.", explain: "Chunks are too short to carry a complete idea, so similarity search matches fragments instead of arguments." },
-  right: { label: "Right-sized",size: 180, tone: "good", verdict: "One idea per chunk. Retrieval is sharp and quotable.", explain: "Each chunk holds a self-contained thought — this is the sweet spot the PDF calls semantic chunking." },
+  right: { label: "Right-sized",size: 180, tone: "good", verdict: "One idea per chunk. Retrieval is sharp and quotable.", explain: "Each chunk holds a self-contained thought — the sweet spot for semantic chunking." },
   huge:  { label: "Too large",  size: 999, tone: "warn", verdict: "The whole doc is one chunk. Everything matches → nothing is specific.", explain: "Vector similarity averages across the entire document, diluting relevance and burning context window." },
 };
 
