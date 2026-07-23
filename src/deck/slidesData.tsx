@@ -685,9 +685,8 @@ A: | Risk | Page | Severity | Rationale |
     <L.Center>
       <div className="max-w-4xl text-center">
         <div className="text-[clamp(28px,3.6vw,52px)] leading-tight font-semibold" style={{letterSpacing:"-0.02em"}}>
-          "AI content is very cheap to create and <span style={{color:"var(--accent)"}}>incredibly expensive</span> to consume."
+          AI content is very cheap to create and <span style={{color:"var(--accent)"}}>incredibly expensive</span> to consume.
         </div>
-        <div className="slide-caption mt-6 uppercase tracking-widest">— Lewis, Sentia Partners</div>
         <div className="mt-16 slide-subtitle">At a bare minimum, don't make your stuff look like AI.</div>
       </div>
     </L.Center>
