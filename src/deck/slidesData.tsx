@@ -243,64 +243,56 @@ export const SLIDES: Slide[] = [
   )),
 
   s(14, "Vector databases & RAG", () => (
-    <L.Body kicker="Slide 16 · Source: LLM Field Work pp.7–18" title="Vector databases & RAG">
+    <L.Body kicker="Slide 14 · Source: LLM Field Work pp.7–18" title="Vector databases & RAG — giving the model your files">
       <RagFlow />
     </L.Body>
   )),
 
   s(15, "Chunking", () => (
-    <L.Body kicker="Slide 17 · Source: LLM Field Work pp.16, 25" title="Chunking — the size decision that quietly matters">
+    <L.Body kicker="Slide 15 · Source: LLM Field Work pp.16, 25" title="Chunking — how documents get sliced for retrieval">
       <ChunkingCompare />
     </L.Body>
   )),
 
   s(16, "Transformers & attention", () => (
-    <L.Body kicker="Slide 18 · Source: LLM Theory pp.26–35" title="Transformers &amp; attention">
+    <L.Body kicker="Slide 16 · Source: LLM Theory pp.26–35" title="Transformers &amp; attention — why order and context matter">
+      <div className="mt-4 grid md:grid-cols-[1.15fr_1fr] gap-5">
+        <div className="slide-card">
+          <div className="slide-chip">Why we need attention</div>
+          <p className="slide-body mt-3">
+            Before Transformers, models read words <b>one at a time, left to right</b>. By the time they reached
+            the end of a long sentence, the beginning had faded. Pronouns like "it" lost their referent. Long-range
+            dependencies broke.
+          </p>
+          <p className="slide-body mt-3">
+            The 2017 <b>Transformer</b> paper fixed this with one idea: <b>self-attention</b>. Every word looks at
+            every other word simultaneously and decides which ones matter most for its meaning. That parallel
+            reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
+          </p>
+        </div>
+        <div className="slide-card-dark">
+          <div className="slide-chip" style={{background:"rgba(0,92,255,0.2)",color:"#7ab0ff"}}>The intuition</div>
+          <p className="slide-body mt-3 text-slate-200">
+            Reading <i>"The vendor flagged three risks to EBITDA"</i>, the word <b>"risks"</b> only makes sense in
+            context of <b>"flagged"</b> and <b>"EBITDA"</b>. Attention is how the model learns which words to lean on.
+          </p>
+          <p className="slide-body mt-3 text-slate-300">
+            Modern models run this in <b>parallel across dozens of layers</b> with many "attention heads" — each head
+            learns a different kind of relationship (grammar, coreference, tone, etc.).
+          </p>
+        </div>
+      </div>
       <AttentionDiagram />
-      <p className="slide-body mt-6 max-w-3xl">Every word looks at every other word and decides which ones matter for its meaning. That single idea — <b>self-attention</b> — is what unlocked modern LLMs.</p>
     </L.Body>
   )),
 
   s(17, "Temperature & model choice", () => (
-    <L.Body kicker="Slide 19 · Source: LLM Theory pp.39–49" title="Temperature &amp; model choice">
+    <L.Body kicker="Slide 17 · Source: LLM Theory pp.39–49" title="Temperature &amp; model choice — the two dials that matter">
       <TemperatureSlider />
     </L.Body>
   )),
 
-  s(18, "Open-source vs closed-source LLMs", () => (
-    <L.Body kicker="Slide 20 · Source: LLM History pp.12–15" title="Open-source vs closed-source LLMs">
-      <div className="grid md:grid-cols-2 gap-5 mt-4">
-        <div className="slide-card">
-          <div className="slide-chip">Closed-source</div>
-          <div className="mt-3 text-lg font-semibold">API-only, hosted by the vendor</div>
-          <p className="slide-body mt-2">GPT-4o, Claude Sonnet 5, Gemini. You send data to their servers.</p>
-        </div>
-        <div className="slide-card">
-          <div className="slide-chip">Open-source</div>
-          <div className="mt-3 text-lg font-semibold">Downloadable weights, self-hostable</div>
-          <p className="slide-body mt-2">Llama, DeepSeek, Mistral, Qwen. You run them in your environment.</p>
-        </div>
-      </div>
-      <div className="mt-6 overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
-        <table className="w-full slide-body">
-          <thead className="bg-[color:var(--secondary)]">
-            <tr><th className="text-left px-4 py-3">Criterion</th><th className="px-4 py-3">Closed-source</th><th className="px-4 py-3">Open-source</th></tr>
-          </thead>
-          <tbody>
-            {[
-              ["Data privacy","△ Depends on tier","✓ Fully controlled"],
-              ["Cost control","× Per-token pricing","✓ Fixed infra cost"],
-              ["Ease of use","✓ Turnkey","△ Requires engineering"],
-              ["Customisation","△ Limited","✓ Full fine-tune"],
-              ["Peak quality","✓ Frontier","△ Catching up"],
-            ].map((r) => (
-              <tr key={r[0]} className="border-t border-[color:var(--muted-line)]"><td className="px-4 py-3 font-medium">{r[0]}</td><td className="px-4 py-3 text-center">{r[1]}</td><td className="px-4 py-3 text-center">{r[2]}</td></tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </L.Body>
-  )),
+
 
   s(19, "LLM strengths & weaknesses", () => (
     <L.Body kicker="Slide 21 · Source: LLM Field Work pp.2–6" title="LLM strengths &amp; weaknesses">
