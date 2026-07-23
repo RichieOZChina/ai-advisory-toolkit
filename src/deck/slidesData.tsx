@@ -15,6 +15,7 @@ import { PrivacyTiers } from "./interactive/PrivacyTiers";
 import { WorkflowTimeline } from "./interactive/WorkflowTimeline";
 import { StampAccordion } from "./interactive/StampAccordion";
 import { StampExercise } from "./interactive/StampExercise";
+import { EtiquetteAccordion } from "./interactive/EtiquetteAccordion";
 import { TextPredictor } from "./interactive/TextPredictor";
 import { SurveyBar } from "./interactive/SurveyBar";
 import { RatioBar } from "./interactive/RatioBar";
@@ -42,7 +43,7 @@ export const SECTIONS: Section[] = [
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 6, color: "#60a5fa" },
   { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 26, color: "#a78bfa" },
   { id: "banker-moves", title: "Five Banker Moves", startSlide: 35, color: "#fb923c" },
-  { id: "stamp", title: "STAMP Guardrails", startSlide: 45, color: "#f43f5e" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 43, color: "#f43f5e" },
   { id: "morning-close", title: "Morning Close", startSlide: 48, color: "#22c55e" },
   { id: "afternoon", title: "Afternoon Build Labs", startSlide: 52, color: "#0ea5e9" },
 ];
@@ -656,25 +657,17 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(44, "Do not use AI for these three things", () => (
-    <L.Body kicker="Hard lines" title="Do not use AI for these three things">
-      <div className="grid md:grid-cols-3 gap-5 mt-4">
-        {[
-          ["Confidential client data","without explicit permission and a business-grade API."],
-          ["Final sign-off","without thorough human review and verification."],
-          ["Anything you can't explain","if you can't walk through the reasoning, don't send it."],
-        ].map(([t,d]) => (
-          <div key={t} className="slide-card border-l-4" style={{borderLeftColor:"#dc2626"}}>
-            <div className="text-red-600 font-semibold text-xl">✗</div>
-            <div className="mt-2 font-semibold">{t}</div>
-            <p className="slide-body mt-2">{d}</p>
-          </div>
-        ))}
-      </div>
+  s(44, "AI etiquette — six operating rules", () => (
+    <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
+      <p className="slide-body max-w-4xl">
+        The human professional remains accountable for the brief, the evidence, the judgement and the release.
+        Open a rule only when the room needs the detail.
+      </p>
+      <EtiquetteAccordion />
     </L.Body>
-  )),
+  ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The six rules are collapsed by default so facilitators can expand only the relevant detail." }),
 
-  // ===== SECTION 5: STAMP =====
+  // ===== SECTION 5: AI ETIQUETTE & CONTROLS =====
   s(45, "STAMP — five checks before anything leaves the building", () => (
     <L.Body kicker="Slide 46 · Guardrails" title="STAMP — five checks before anything leaves the building">
       <StampAccordion />
@@ -702,7 +695,7 @@ A: | Risk | Page | Severity | Rationale |
   s(48, "This morning in one slide", () => (
     <L.Body kicker="Recap" title="This morning in one slide">
       <div className="mt-8 flex flex-wrap items-center gap-4 justify-center">
-        {["How AI Works","How to Prompt","Five Moves","STAMP"].map((t,i,a) => (
+        {["How AI Works","How to Prompt","Five Moves","AI Etiquette + STAMP"].map((t,i,a) => (
           <div key={t} className="flex items-center gap-4">
             <div className="slide-card px-6 py-4 font-semibold">{t}</div>
             {i < a.length-1 && <div className="text-[color:var(--accent)] text-2xl">→</div>}
