@@ -126,12 +126,13 @@ export const SLIDES: Slide[] = [
 
   // ===== SECTION 2: HOW MODERN AI WORKS =====
   s(6, "What is a Large Language Model?", () => (
-    <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3" title="What is a Large Language Model?">
+    <L.Body kicker="Section 2 · Source: LLM Theory pp.1–3 + LLM History pp.2–8" title="What is a Large Language Model?">
       <p className="slide-subtitle mt-2 max-w-4xl">"AI systems trained on vast amounts of text data, capable of understanding and generating human-like language."</p>
       <div className="grid md:grid-cols-2 gap-6 mt-8">
         <div className="slide-card">
           <div className="slide-chip">Scale</div>
-          <p className="slide-body mt-3">Billions of parameters, trained on billions of words scraped from across the internet. GPT-3 (June 2020) was the first true LLM at 175B parameters — a 100× jump over GPT-2.</p>
+          <p className="slide-body mt-3">Billions of parameters, trained on trillions of words scraped from across the internet. Parameter counts have exploded — from millions a few years ago to well over a trillion today.</p>
+          <div className="mt-4"><ParameterChart /></div>
         </div>
         <div className="slide-card">
           <div className="slide-chip">Emergent properties</div>
@@ -145,6 +146,7 @@ export const SLIDES: Slide[] = [
       </div>
     </L.Body>
   )),
+
 
   s(7, "So what actually is an LLM?", () => (
     <L.Body kicker="Module 2 · How modern AI works" title="So what actually is an LLM?">
