@@ -52,7 +52,7 @@ export function EmbeddingSpace() {
   const [yaw, setYaw] = useState(0.6);
   const [paused, setPaused] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
-  const raf = useRef<number>();
+  const raf = useRef<number | undefined>(undefined);
   const last = useRef<number>(performance.now());
   const tilt = -0.35;
 
