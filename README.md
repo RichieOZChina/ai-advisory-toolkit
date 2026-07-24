@@ -2,7 +2,7 @@
 
 A web-based slide deck for the full-day AI workshop delivered to the Tenet Advisory M&A team. Built as a React SPA with a collapsible sidebar, keyboard navigation, and custom interactive diagrams — designed to feel like a premium consulting deliverable, not PowerPoint.
 
-Live preview (via Lovable): https://id-preview--b4a44578-ac3f-4cbd-ac4a-b6c85e5b36a9.lovable.app
+Published presentation (via Lovable): https://sentia-insight-draft.lovable.app/
 
 ## Team workflow
 
