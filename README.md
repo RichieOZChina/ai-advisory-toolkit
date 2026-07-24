@@ -2,11 +2,19 @@
 
 A web-based slide deck for the full-day AI workshop delivered to the Tenet Advisory M&A team. Built as a React SPA with a collapsible sidebar, keyboard navigation, and custom interactive diagrams — designed to feel like a premium consulting deliverable, not PowerPoint.
 
-Published presentation (via Lovable): https://sentia-insight-draft.lovable.app/
+## Published URLs
+
+- **Auto-deploying public site (GitHub Pages — updates on every push to `main`):**  
+  https://RichieOZChina.github.io/ai-advisory-toolkit/
+
+- **Lovable published site (manual "Update" click required to refresh):**  
+  https://sentia-insight-draft.lovable.app/
 
 ## Team workflow
 
 This repo is the source of truth. Anyone with access can edit the deck locally (Claude Code, Cursor, VS Code) and push. Lovable stays in two-way sync — pushes here update the Lovable preview, and edits in Lovable get committed back here.
+
+**For the public site:** every merge/push to `main` automatically rebuilds and redeploys the GitHub Pages URL above. No manual steps.
 
 ```sh
 git clone https://github.com/RichieOZChina/ai-advisory-toolkit.git
