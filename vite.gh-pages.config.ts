@@ -17,7 +17,9 @@ export default defineConfig({
   build: {
     outDir: "dist",
     rollupOptions: {
-      input: "index.gh-pages.html",
+      input: {
+        index: "index.gh-pages.html",
+      },
     },
   },
 });
