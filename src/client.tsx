@@ -1,21 +1,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { HeadContent, RouterProvider } from "@tanstack/react-router";
+import { RouterProvider } from "@tanstack/react-router";
 import { getRouter } from "./router";
 
-const router = getRouter();
+// Load the global stylesheet for the GitHub Pages build.
+import "./styles.css";
 
-function HeadInjector() {
-  return <HeadContent />;
-}
+const router = getRouter();
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Root element not found");
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <HeadInjector />
-    </RouterProvider>
+    <RouterProvider router={router} />
   </StrictMode>,
 );
