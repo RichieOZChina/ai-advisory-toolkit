@@ -657,7 +657,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(44, "AI etiquette — six operating rules", () => (
+  s(44, "AI etiquette — seven operating rules", () => (
     <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
       <p className="slide-body max-w-4xl">
         The human professional remains accountable for the brief, the evidence, the judgement and the release.
@@ -665,7 +665,7 @@ A: | Risk | Page | Severity | Rationale |
       </p>
       <EtiquetteAccordion />
     </L.Body>
-  ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The six rules are collapsed by default so facilitators can expand only the relevant detail." }),
+  ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The seven rules are collapsed by default so facilitators can expand only the relevant detail." }),
 
   // ===== SECTION 5: AI ETIQUETTE & CONTROLS =====
   s(45, "STAMP — five checks before anything leaves the building", () => (
