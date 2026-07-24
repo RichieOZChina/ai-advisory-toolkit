@@ -155,13 +155,13 @@ export const SLIDES: Slide[] = [
 
 
   s(7, "The AI family tree", () => (
-    <L.Body kicker="Slide 7" title="The AI family tree">
+    <L.Body title="The AI family tree">
       <AITree />
     </L.Body>
   )),
 
   s(8, "Four ways machines learn", () => (
-    <L.Body kicker="Slide 8" title="Four ways machines learn">
+    <L.Body title="Four ways machines learn">
       <div className="grid md:grid-cols-2 gap-5 mt-2">
         {[
           {t:"Supervised Learning",d:"Labelled data. The model learns patterns from input-output examples.",e:"Credit scoring: past applications labelled 'default / no default'."},
@@ -183,7 +183,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(9, "Three places this shows up", () => (
-    <L.Body kicker="Slide 9" title="Three places this shows up">
+    <L.Body title="Three places this shows up">
       <div className="grid md:grid-cols-3 gap-5 mt-2">
         {[
           {t:"Computer Vision",i:"eye",d:"Image and video understanding.",in:"Scanned annual report page",out:"Extracted tables + text"},
@@ -205,13 +205,13 @@ export const SLIDES: Slide[] = [
   )),
 
   s(10, "Closed vs open — and who's who", () => (
-    <L.Body kicker="Slide 10" title="Closed vs open — and who's who">
+    <L.Body title="Closed vs open — and who's who">
       <OpenClosedAccordion />
     </L.Body>
   )),
 
   s(11, "Neural networks", () => (
-    <L.Body kicker="Slide 10" title="Neural networks">
+    <L.Body title="Neural networks">
       <p className="slide-body max-w-3xl mt-2">
         Why are we suddenly talking about neural networks? Because <b>every modern LLM is one</b>.
         When ChatGPT writes a paragraph, what's running under the hood is a very large neural network
@@ -233,31 +233,31 @@ export const SLIDES: Slide[] = [
   )),
 
   s(12, "Tokens — the pieces models read", () => (
-    <L.Body kicker="Slide 14" title="Tokens — the pieces models read">
+    <L.Body title="Tokens — the pieces models read">
       <TokenSplitter />
     </L.Body>
   )),
 
   s(13, "Embeddings & semantic meaning", () => (
-    <L.Body kicker="Slide 13" title="Embeddings — giving tokens meaning">
+    <L.Body title="Embeddings — giving tokens meaning">
       <EmbeddingSpace />
     </L.Body>
   )),
 
   s(14, "Vector databases & RAG", () => (
-    <L.Body kicker="Slide 14" title="Vector databases & RAG — giving the model your files">
+    <L.Body title="Vector databases & RAG — giving the model your files">
       <RagFlow />
     </L.Body>
   )),
 
   s(15, "Chunking", () => (
-    <L.Body kicker="Slide 15" title="Chunking — how documents get sliced for retrieval">
+    <L.Body title="Chunking — how documents get sliced for retrieval">
       <ChunkingCompare />
     </L.Body>
   )),
 
   s(16, "Transformers & attention", () => (
-    <L.Body kicker="Slide 16" title="Transformers &amp; attention — why order and context matter">
+    <L.Body title="Transformers &amp; attention — why order and context matter">
       <div className="mt-4 grid md:grid-cols-[1.15fr_1fr] gap-5">
         <div className="slide-card">
           <div className="slide-chip">Why we need attention</div>
@@ -289,7 +289,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(17, "Temperature & model choice", () => (
-    <L.Body kicker="Slide 17" title="Temperature &amp; model choice — the two dials that matter">
+    <L.Body title="Temperature &amp; model choice — the two dials that matter">
       <TemperatureSlider />
     </L.Body>
   )),
@@ -297,7 +297,7 @@ export const SLIDES: Slide[] = [
 
 
   s(18, "LLM strengths & weaknesses", () => (
-    <L.Body kicker="Slide 20" title="LLM strengths &amp; weaknesses">
+    <L.Body title="LLM strengths &amp; weaknesses">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card border-l-4" style={{borderLeftColor:"var(--good)"}}>
           <div className="text-[color:var(--good)] font-semibold uppercase tracking-widest text-xs">Strengths</div>
@@ -324,7 +324,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(19, "AI agents, tools & the loop", () => (
-    <L.Body kicker="Slide 21" title="AI agents, tools & the loop">
+    <L.Body title="AI agents, tools & the loop">
       <AgentLoop />
     </L.Body>
   )),
@@ -338,7 +338,7 @@ export const SLIDES: Slide[] = [
 
 
   s(21, "Claude Code — your afternoon workbench", () => (
-    <L.Body kicker="Slide 22" title="Claude Code — your afternoon workbench">
+    <L.Body title="Claude Code — your afternoon workbench">
       <div className="grid md:grid-cols-2 gap-6 mt-4 items-center">
         <div className="slide-card-dark font-mono text-[13px]" style={{padding:"22px 24px"}}>
           <div className="text-emerald-300">➜ ~/tenet/deal-folder</div>
@@ -358,7 +358,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(22, "LLM privacy", () => (
-    <L.Body kicker="Slide 23" title="LLM privacy — three tiers">
+    <L.Body title="LLM privacy — three tiers">
       <PrivacyTiers />
     </L.Body>
   )),
@@ -432,7 +432,7 @@ export const SLIDES: Slide[] = [
   )),
 
   s(28, "The lazy brief vs the structured brief", () => (
-    <L.Body kicker="Slide 29" title="The lazy brief vs the structured brief">
+    <L.Body title="The lazy brief vs the structured brief">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="rounded-xl border border-[color:var(--muted-line)] p-6 bg-[color:var(--secondary)] opacity-90">
           <div className="flex items-center gap-2 text-red-600 font-semibold"><span>✗</span> Lazy brief</div>
@@ -515,7 +515,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   s(33, "The assembled prompt & three takeaways", () => (
-    <L.Body kicker="Slide 34" title="The assembled prompt">
+    <L.Body title="The assembled prompt">
       <div className="mt-4 grid md:grid-cols-3 gap-3">
         {[
           ["Role","You are an M&A Director…"],
@@ -669,7 +669,7 @@ A: | Risk | Page | Severity | Rationale |
 
   // ===== SECTION 5: AI ETIQUETTE & CONTROLS =====
   s(45, "STAMP — five checks before anything leaves the building", () => (
-    <L.Body kicker="Slide 46 · Guardrails" title="STAMP — five checks before anything leaves the building">
+    <L.Body kicker="Guardrails" title="STAMP — five checks before anything leaves the building">
       <StampAccordion />
     </L.Body>
   )),
@@ -686,7 +686,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   s(47, "Live exercise — apply STAMP", () => (
-    <L.Body kicker="Slide 48 · Interactive" title="Live exercise — apply STAMP">
+    <L.Body kicker="Interactive" title="Live exercise — apply STAMP">
       <StampExercise />
     </L.Body>
   )),
