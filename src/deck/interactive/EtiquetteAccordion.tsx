@@ -26,12 +26,6 @@ const RULES = [
       "A challenger can find missing questions, test logic and suggest checks. Verification still returns to the controlling source, calculation or authorised reviewer.",
   },
   {
-    title: "Read and curate everything you send",
-    summary: "AI may draft the document; it may not outsource your thinking to the reader.",
-    detail:
-      "Before sharing, read the full output, decide what matters, remove what does not and be able to defend every conclusion. Sending unreviewed AI volume transfers the work—and the cost of making sense of it—to the recipient. That is not efficiency; it is poor professional etiquette.",
-  },
-  {
     title: "Work in copies; protect master files",
     summary: "AI may assist around models, but signed-off masters stay human-owned.",
     detail:
@@ -42,6 +36,12 @@ const RULES = [
     summary: "Being allowed to read something does not mean being allowed to act on it.",
     detail:
       "Use approved environments and honour deal, client and clean-team restrictions. No external send, master-file update, permission change, irreversible file operation or release without named approval.",
+  },
+  {
+    title: "Read and curate everything you send",
+    summary: "AI may draft the document; it may not outsource your thinking to the reader.",
+    detail:
+      "Before sharing, read the full output, decide what matters, remove what does not and be able to defend every conclusion. Sending unreviewed AI volume transfers the work—and the cost of making sense of it—to the recipient. That is not efficiency; it is poor professional etiquette.",
   },
 ];
 
