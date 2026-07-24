@@ -1,26 +1,23 @@
-Problem: https://richieozchina.github.io/ai-advisory-toolkit/ returns a GitHub Pages 404.
+The URL is still returning GitHub’s own 404 page, which means the Pages site has not been created/deployed yet — this is before the app code even loads.
 
-Root cause (most likely): GitHub Pages has not been enabled in the repo settings, or the source is still set to "Deploy from a branch" instead of "GitHub Actions". The workflow file `.github/workflows/deploy.yml` and the Vite static build config are already in place.
+Plan:
 
-Steps to fix:
+1. **Confirm GitHub Pages settings**
+   - In the repo, go to **Settings → Pages**.
+   - Under **Build and deployment**, set **Source** to **GitHub Actions**.
 
-1. Enable GitHub Pages with GitHub Actions as the source
-   - Go to https://github.com/RichieOZChina/ai-advisory-toolkit/settings/pages
-   - Under "Build and deployment" → "Source", select **GitHub Actions**
-   - Save
+2. **Run the first deployment manually**
+   - Go to **Actions** in the repo.
+   - Open the **Deploy to GitHub Pages** workflow.
+   - Click **Run workflow** on the `main` branch.
+   - Wait for the workflow to finish successfully.
 
-2. Trigger the deployment workflow
-   - The workflow runs on every push to `main`. If Pages is now enabled, make any trivial commit+push to `main` (e.g., update README) to trigger it.
-   - Alternatively, go to **Actions** tab → "Deploy to GitHub Pages" → **Run workflow**.
+3. **Verify the live URL**
+   - Re-check: `https://richieozchina.github.io/ai-advisory-toolkit/`
+   - If it still 404s after a successful Action, inspect the workflow logs for the exact failure.
 
-3. Verify the Actions run succeeds
-   - Check https://github.com/RichieOZChina/ai-advisory-toolkit/actions
-   - Confirm both "build" and "deploy" jobs complete green.
+4. **If the workflow is missing or failing**
+   - I’ll review the repository workflow/config in this project and adjust the GitHub Pages build setup so the generated artifact is valid for Pages.
 
-4. Verify the live URL loads the deck
-   - Re-check https://richieozchina.github.io/ai-advisory-toolkit/
-   - If it still 404s after a green deploy, investigate whether the subpath router base is working; the current `src/router.tsx` reads `import.meta.env.BASE_URL` and the Vite config sets `base: "/ai-advisory-toolkit/"`, so it should match.
-
-5. If the page loads but the router shows "This page doesn't exist", fix the TanStack Router basepath handling for the GitHub Pages subpath and re-deploy.
-
-Expected outcome: the live deck loads at the URL, and every future push to `main` auto-redeploys it.
+Technical detail:
+- A 404 saying **“There isn’t a GitHub Pages site here”** is not an app routing bug. It means GitHub Pages has not served any deployment for that repo yet, usually because Pages is disabled, the source is not set to GitHub Actions, or the first workflow has not completed.

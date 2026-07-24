@@ -16,6 +16,8 @@ This repo is the source of truth. Anyone with access can edit the deck locally (
 
 **For the public site:** every merge/push to `main` automatically rebuilds and redeploys the GitHub Pages URL above. No manual steps.
 
+If the GitHub Pages URL shows GitHub's own 404 page, enable it once in **Settings → Pages → Build and deployment → Source → GitHub Actions**, then re-run the deploy workflow from the **Actions** tab.
+
 ```sh
 git clone https://github.com/RichieOZChina/ai-advisory-toolkit.git
 cd ai-advisory-toolkit
