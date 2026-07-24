@@ -41,11 +41,11 @@ export type Slide = {
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 6, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 26, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 35, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 43, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 48, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 52, color: "#0ea5e9" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 27, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 36, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 44, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 49, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 53, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -294,9 +294,48 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
+  s(18, "Model choice × thinking effort × cost", () => (
+    <L.Body kicker="Model economics · FrontierCode 1.1" title="The best model setting is a cost–quality choice">
+      <div className="mt-2 grid grid-cols-[minmax(0,1.55fr)_minmax(280px,0.75fr)] gap-5 items-start">
+        <a
+          href="https://x.com/i/status/2080701743097344427"
+          target="_blank"
+          rel="noreferrer"
+          className="block rounded-xl border border-[color:var(--muted-line)] bg-white p-2 shadow-sm"
+          title="Open source post on X"
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}assets/sources/frontiercode-test-time-compute-scaling-composite.jpg`}
+            alt="FrontierCode main and extended set scores plotted against average cost per task across model reasoning-effort settings"
+            className="w-full max-h-[58vh] object-contain"
+          />
+        </a>
+        <div className="space-y-2.5">
+          {[
+            ["01 · Pick the curve", "Model choice sets the underlying capability and cost frontier."],
+            ["02 · Pick the point", "Reasoning effort moves you along that model’s curve — usually with diminishing returns."],
+            ["03 · Optimise for the task", "Target the required quality at the lowest reliable cost. More thinking is not automatically better."],
+          ].map(([t, d]) => (
+            <div key={t} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-4">
+              <div className="text-[color:var(--accent)] text-xs font-mono uppercase tracking-wider">{t}</div>
+              <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{d}</p>
+            </div>
+          ))}
+          <div className="px-1 pt-1 text-[11px] leading-relaxed text-slate-500">
+            Opus 5 peaks at <b>medium</b>; Fable 5 improves through <b>xhigh</b>, but costs more.
+            Benchmark-specific result — the curve, not the exact ranking, is the lesson.
+            <div className="mt-1">
+              Source: <a className="underline hover:text-[color:var(--accent)]" href="https://x.com/i/status/2080701743097344427" target="_blank" rel="noreferrer">Edison Zhang / Cognition, X, 24 Jul 2026</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </L.Body>
+  ), { notes: "Three dials interact: model family, reasoning effort and task economics. Start from the quality threshold the work requires, then choose the lowest-cost model/effort combination that clears it reliably. On this benchmark, maximum effort can hurt because the model makes unnecessary changes that are penalised. Benchmark-specific result; do not generalise the exact ranking to M&A work." }),
 
 
-  s(18, "LLM strengths & weaknesses", () => (
+
+  s(19, "LLM strengths & weaknesses", () => (
     <L.Body title="LLM strengths &amp; weaknesses">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card border-l-4" style={{borderLeftColor:"var(--good)"}}>
@@ -323,13 +362,13 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(19, "AI agents, tools & the loop", () => (
+  s(20, "AI agents, tools & the loop", () => (
     <L.Body title="AI agents, tools & the loop">
       <AgentLoop />
     </L.Body>
   )),
 
-  s(20, "Four ways to run an agent", () => (
+  s(21, "Four ways to run an agent", () => (
     <L.Body kicker="Agents · autonomy ladder" title="Four ways to run an agent">
       <AgentLoopTypes />
     </L.Body>
@@ -337,7 +376,7 @@ export const SLIDES: Slide[] = [
 
 
 
-  s(21, "Claude Code — your afternoon workbench", () => (
+  s(22, "Claude Code — your afternoon workbench", () => (
     <L.Body title="Claude Code — your afternoon workbench">
       <div className="grid md:grid-cols-2 gap-6 mt-4 items-center">
         <div className="slide-card-dark font-mono text-[13px]" style={{padding:"22px 24px"}}>
@@ -357,13 +396,13 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(22, "LLM privacy", () => (
+  s(23, "LLM privacy", () => (
     <L.Body title="LLM privacy — three tiers">
       <PrivacyTiers />
     </L.Body>
   )),
 
-  s(23, "Why this matters to bankers now", () => (
+  s(24, "Why this matters to bankers now", () => (
     <L.Body kicker="Market signal" title="Why this matters to bankers now">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -382,13 +421,13 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(24, "The old workflow vs the new workflow", () => (
+  s(25, "The old workflow vs the new workflow", () => (
     <L.Body kicker="Before / after" title="The old workflow vs the new workflow">
       <WorkflowTimeline />
     </L.Body>
   )),
 
-  s(25, "The three things that affect every real task", () => (
+  s(26, "The three things that affect every real task", () => (
     <L.Body kicker="Bridge to practice" title="The three things that affect every real task">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -405,7 +444,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(26, "What this session will not teach you", () => (
+  s(27, "What this session will not teach you", () => (
     <L.Body kicker="Expectations" title="What this session will not teach you">
       <ul className="mt-4 space-y-3 max-w-2xl slide-body">
         {[
@@ -427,11 +466,11 @@ export const SLIDES: Slide[] = [
   )),
 
   // ===== SECTION 3: HOW TO WRITE A PROMPT =====
-  s(27, "Module 3 — How to write a prompt", () => (
+  s(28, "Module 3 — How to write a prompt", () => (
     <L.Section number="03" title="How to write a prompt" subtitle="A repeatable six-part structure. The single most-used skill of the day." />
   )),
 
-  s(28, "The lazy brief vs the structured brief", () => (
+  s(29, "The lazy brief vs the structured brief", () => (
     <L.Body title="The lazy brief vs the structured brief">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="rounded-xl border border-[color:var(--muted-line)] p-6 bg-[color:var(--secondary)] opacity-90">
@@ -454,7 +493,7 @@ export const SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(29, "Role", () => (
+  s(30, "Role", () => (
     <L.Prompt step="1" label="Role" title="Tell the AI who to be.">
       <p className="slide-body">A clear, advantageous role primes the model to draw on the right patterns.</p>
       <div className="mt-6 slide-card-dark font-mono text-sm">
@@ -463,7 +502,7 @@ export const SLIDES: Slide[] = [
     </L.Prompt>
   )),
 
-  s(30, "Task", () => (
+  s(31, "Task", () => (
     <L.Prompt step="2" label="Task" title="Tell it exactly what to produce.">
       <p className="slide-body">Start with an action verb. Specify the output shape.</p>
       <div className="mt-6 slide-card-dark font-mono text-sm">
@@ -472,7 +511,7 @@ export const SLIDES: Slide[] = [
     </L.Prompt>
   )),
 
-  s(31, "Specifics & context", () => (
+  s(32, "Specifics & context", () => (
     <L.Prompt step="3–4" label="Specifics & Context" title="Ground it in your world.">
       <p className="slide-body">Formats, audience, word limits, exclusions, tone.</p>
       <div className="mt-6 grid md:grid-cols-2 gap-4">
@@ -496,7 +535,7 @@ export const SLIDES: Slide[] = [
     </L.Prompt>
   )),
 
-  s(32, "Examples & notes", () => (
+  s(33, "Examples & notes", () => (
     <L.Prompt step="5–6" label="Examples & Notes" title="Show it what good looks like.">
       <p className="slide-body">Two or three worked input-output pairs beat any amount of description.</p>
       <div className="mt-6 slide-card-dark font-mono text-xs whitespace-pre-wrap">
@@ -514,7 +553,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Prompt>
   )),
 
-  s(33, "The assembled prompt & three takeaways", () => (
+  s(34, "The assembled prompt & three takeaways", () => (
     <L.Body title="The assembled prompt">
       <div className="mt-4 grid md:grid-cols-3 gap-3">
         {[
@@ -546,7 +585,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(34, "Claude Code tips", () => (
+  s(35, "Claude Code tips", () => (
     <L.Body kicker="Working tips" title="Claude Code tips">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -563,7 +602,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(35, "Common failure modes", () => (
+  s(36, "Common failure modes", () => (
     <L.Body kicker="Watch out" title="Common failure modes">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {["Too vague — the AI guesses what you want, and guesses wrong.",
@@ -579,7 +618,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ===== SECTION 4: FIVE BANKER MOVES =====
-  s(36, "Five things you can do with AI by Monday", () => (
+  s(37, "Five things you can do with AI by Monday", () => (
     <L.Section number="04" title="Five things you can do with AI by Monday" subtitle="The moves that survive contact with a real deal week.">
       <div className="mt-10 grid grid-cols-5 gap-3 max-w-3xl">
         {["Draft","Research","Actions","Compare","Dictate"].map((t,i) => (
@@ -592,38 +631,38 @@ A: | Risk | Page | Severity | Rationale |
     </L.Section>
   )),
 
-  s(37, "Move 1 — First draft in two minutes", () => (
+  s(38, "Move 1 — First draft in two minutes", () => (
     <L.Move n={1} title="First draft in two minutes"
       flow={["Blank page","Paste context","Write prompt","Editable draft"]}
       example={`Draft a one-page company overview from these bullet points. Include: business description, ownership, key financials (table), and 3 strategic questions for management.`}
     />
   )),
-  s(38, "Move 2 — Research without the forty tabs", () => (
+  s(39, "Move 2 — Research without the forty tabs", () => (
     <L.Move n={2} title="Research without the forty tabs"
       flow={["Question","One prompt","Cited answer"]}
       example={`What are the 3 largest M&A deals in Australian food manufacturing since 2023? For each: buyer, target, reported value, and strategic rationale. Cite your sources.`}
     />
   )),
-  s(39, "Move 3 — Meeting to action list", () => (
+  s(40, "Move 3 — Meeting to action list", () => (
     <L.Move n={3} title="Meeting to action list"
       flow={["Transcript","→","Action table"]}
       example={`Paste meeting notes. Output a table: Action, Owner, Deadline, Priority (P1/P2/P3), Dependencies.`}
     />
   )),
-  s(40, "Move 4 — Compare before you sign", () => (
+  s(41, "Move 4 — Compare before you sign", () => (
     <L.Move n={4} title="Compare before you sign"
       flow={["Draft SPA","Execution SPA","Diff table"]}
       example={`Compare these two versions of the SPA. Highlight: changed clauses, new provisions, deleted sections, modified numbers. Table format.`}
     />
   )),
-  s(41, "Move 5 — Draft while you talk", () => (
+  s(42, "Move 5 — Draft while you talk", () => (
     <L.Move n={5} title="Draft while you talk"
       flow={["Voice","Transcript","Formatted email"]}
       example={`Dictate a client update after this call. Output a formatted email: key points, agreed next steps, outstanding items, proposed follow-up date.`}
     />
   )),
 
-  s(42, "Putting the moves together", () => (
+  s(43, "Putting the moves together", () => (
     <L.Body kicker="A day on the desk" title="Putting the moves together">
       <div className="mt-6 relative">
         <div className="absolute left-0 right-0 top-8 h-px bg-[color:var(--muted-line)]" />
@@ -648,7 +687,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(43, "The rule underneath the rules", () => (
+  s(44, "The rule underneath the rules", () => (
     <L.Center>
       <div className="text-center">
         <div className="slide-title-lg">AI drafts. <span style={{color:"var(--accent)"}}>You decide.</span></div>
@@ -657,7 +696,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(44, "AI etiquette — seven operating rules", () => (
+  s(45, "AI etiquette — seven operating rules", () => (
     <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
       <p className="slide-body max-w-4xl">
         The human professional remains accountable for the brief, the evidence, the judgement and the release.
@@ -668,13 +707,13 @@ A: | Risk | Page | Severity | Rationale |
   ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The seven rules are collapsed by default so facilitators can expand only the relevant detail." }),
 
   // ===== SECTION 5: AI ETIQUETTE & CONTROLS =====
-  s(45, "STAMP — five checks before anything leaves the building", () => (
+  s(46, "STAMP — five checks before anything leaves the building", () => (
     <L.Body kicker="Guardrails" title="STAMP — five checks before anything leaves the building">
       <StampAccordion />
     </L.Body>
   )),
 
-  s(46, "Don't ship slop", () => (
+  s(47, "Don't ship slop", () => (
     <L.Center>
       <div className="max-w-4xl text-center">
         <div className="text-[clamp(28px,3.6vw,52px)] leading-tight font-semibold" style={{letterSpacing:"-0.02em"}}>
@@ -685,14 +724,14 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(47, "Live exercise — apply STAMP", () => (
+  s(48, "Live exercise — apply STAMP", () => (
     <L.Body kicker="Interactive" title="Live exercise — apply STAMP">
       <StampExercise />
     </L.Body>
   )),
 
   // ===== SECTION 6: MORNING CLOSE =====
-  s(48, "This morning in one slide", () => (
+  s(49, "This morning in one slide", () => (
     <L.Body kicker="Recap" title="This morning in one slide">
       <div className="mt-8 flex flex-wrap items-center gap-4 justify-center">
         {["How AI Works","How to Prompt","Five Moves","AI Etiquette + STAMP"].map((t,i,a) => (
@@ -705,7 +744,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(49, "What changes this afternoon", () => (
+  s(50, "What changes this afternoon", () => (
     <L.Center>
       <div className="max-w-4xl text-center">
         <div className="slide-title-lg">Morning was the <span style={{color:"var(--accent)"}}>operating system</span>.</div>
@@ -719,7 +758,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(50, "One thing you will try this week", () => (
+  s(51, "One thing you will try this week", () => (
     <L.Body kicker="Reflection" title="One thing you will try this week">
       <div className="mt-8 max-w-3xl">
         <p className="slide-subtitle">Write down one move you'll use before Friday.</p>
@@ -730,7 +769,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(51, "Morning end", () => (
+  s(52, "Morning end", () => (
     <L.Center>
       <div className="text-center">
         <div className="slide-title-lg">See you after lunch.</div>
@@ -740,7 +779,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ===== SECTION 7: AFTERNOON =====
-  s(52, "Installing the apps", () => (
+  s(53, "Installing the apps", () => (
     <L.Section number="05" title="Installing the apps" subtitle="From concepts to workflows you can actually run.">
       <div className="mt-8 grid grid-cols-3 gap-4 max-w-3xl text-slate-300">
         <div><div className="text-xs uppercase tracking-widest text-slate-400">Lab 1</div><div className="mt-1 font-semibold">Reusable Skill</div></div>
@@ -750,7 +789,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Section>
   )),
 
-  s(53, "The strongest starter asset", () => (
+  s(54, "The strongest starter asset", () => (
     <L.Body kicker="Lab 1 · Setup" title="Turn diligence notes into a structured issue log">
       <p className="slide-subtitle mt-4 max-w-3xl">Every M&amp;A analyst already has the raw material. The AI turns unstructured notes into a reusable, queryable asset.</p>
       <div className="mt-8 grid grid-cols-3 gap-4 max-w-4xl text-center">
@@ -761,7 +800,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(54, "Project source pack", () => (
+  s(55, "Project source pack", () => (
     <L.Body kicker="Shared evidence base" title="Project source pack — one source pack, one truth">
       <div className="mt-4 grid md:grid-cols-2 gap-6">
         <div>
@@ -782,7 +821,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(55, "Turn a manual instruction into a controlled workflow", () => (
+  s(56, "Turn a manual instruction into a controlled workflow", () => (
     <L.Body kicker="Lab 1 · Exercise" title="Turn a manual instruction into a controlled workflow">
       <ol className="mt-6 grid md:grid-cols-5 gap-3">
         {["Write the instruction","Test on sample data","Review output","Refine the instruction","Save as reusable asset"].map((t,i) => (
@@ -795,7 +834,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(56, "Test on a clean case and a difficult case", () => (
+  s(57, "Test on a clean case and a difficult case", () => (
     <L.Body kicker="Lab 1 · Testing" title="Test on a clean case and a difficult case">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card">
@@ -812,7 +851,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(57, "Peer review — controls before elegance", () => (
+  s(58, "Peer review — controls before elegance", () => (
     <L.Body kicker="Lab 1 · Review" title="Peer review should target controls before elegance">
       <ul className="mt-6 space-y-3 slide-body max-w-3xl">
         {[
@@ -827,7 +866,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(58, "Save the asset together", () => (
+  s(59, "Save the asset together", () => (
     <L.Body kicker="Lab 1 · Packaging" title="Save the instruction, sample output, and known limits together">
       <div className="grid md:grid-cols-4 gap-4 mt-6">
         {[
@@ -842,30 +881,30 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(59, "Lab 1 · Build step 1 · Set up", () => (
+  s(60, "Lab 1 · Build step 1 · Set up", () => (
     <L.Build step={1} of={5} title="Set up your workspace" prompt="Open Claude Code in your deal folder. Confirm you can read the DD notes file." />
   )),
-  s(60, "Lab 1 · Build step 2 · Build", () => (
+  s(61, "Lab 1 · Build step 2 · Build", () => (
     <L.Build step={2} of={5} title="Build the instruction" prompt="Draft the Role/Task/Specifics/Notes for the issue-log workflow. 20 minutes." />
   )),
-  s(61, "Lab 1 · Build step 3 · Test", () => (
+  s(62, "Lab 1 · Build step 3 · Test", () => (
     <L.Build step={3} of={5} title="Run against the clean case" prompt="Test on the standard DD note. Compare output to the reference issue log." />
   )),
-  s(62, "Lab 1 · Build step 4 · Peer review", () => (
+  s(63, "Lab 1 · Build step 4 · Peer review", () => (
     <L.Build step={4} of={5} title="Peer review" prompt="Swap with the person next to you. Run the controls checklist. 10 minutes." />
   )),
-  s(63, "Lab 1 · Build step 5 · Save", () => (
+  s(64, "Lab 1 · Build step 5 · Save", () => (
     <L.Build step={5} of={5} title="Save the asset" prompt="Commit prompt + sample output + known limits to /assets. This is now yours." />
   )),
 
   // ---- Lab 2 ----
-  s(64, "Source control, not slide generation", () => (
+  s(65, "Source control, not slide generation", () => (
     <L.Body kicker="Lab 2 · Discipline" title="Client-materials work begins with source control, not slide generation">
       <p className="slide-subtitle mt-4 max-w-3xl">Gather sources first. Index them. <b>Then</b> generate. Never generate first and source later.</p>
     </L.Body>
   )),
 
-  s(65, "Every claim needs a locator and a date", () => (
+  s(66, "Every claim needs a locator and a date", () => (
     <L.Body kicker="Lab 2 · Evidence" title="Every claim needs a precise locator and an as-of date">
       <div className="mt-6 overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
         <table className="w-full slide-body">
@@ -886,7 +925,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(66, "A pitch and an IM answer different questions", () => (
+  s(67, "A pitch and an IM answer different questions", () => (
     <L.Body kicker="Lab 2 · Framing" title="A pitch and an IM answer different questions">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card">
@@ -903,7 +942,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(67, "Start with the decision the page must enable", () => (
+  s(68, "Start with the decision the page must enable", () => (
     <L.Body kicker="Lab 2 · Method" title="Start with the decision the page must enable">
       <p className="slide-subtitle mt-4 max-w-3xl">Before writing: what does the reader need to decide after this page? Write that at the top. Everything on the page serves that decision.</p>
       <div className="mt-8 slide-card-dark max-w-3xl">
@@ -913,7 +952,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(68, "A supported headline beats a topic label", () => (
+  s(69, "A supported headline beats a topic label", () => (
     <L.Body kicker="Lab 2 · Craft" title="A supported headline is more useful than a topic label">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card border-l-4" style={{borderLeftColor:"var(--warn)"}}>
@@ -930,7 +969,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(69, "Separate facts, claims, calculations, inferences, conflicts", () => (
+  s(70, "Separate facts, claims, calculations, inferences, conflicts", () => (
     <L.Body kicker="Lab 2 · Categories" title="Separate facts, claims, calculations, inferences, and conflicts">
       <div className="grid md:grid-cols-5 gap-3 mt-4">
         {[
@@ -949,7 +988,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(70, "Encode approved formatting as explicit rules", () => (
+  s(71, "Encode approved formatting as explicit rules", () => (
     <L.Body kicker="Lab 2 · House style" title="Encode approved formatting as explicit rules">
       <ul className="mt-6 space-y-3 slide-body max-w-3xl">
         {[
@@ -962,7 +1001,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(71, "Exercise — build a four-page excerpt and its reusable creator", () => (
+  s(72, "Exercise — build a four-page excerpt and its reusable creator", () => (
     <L.Body kicker="Lab 2 · Main exercise" title="Build a four-page excerpt and its reusable creator">
       <div className="grid md:grid-cols-2 gap-5 mt-6">
         {[
@@ -975,7 +1014,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(72, "First create the source index and page plan", () => (
+  s(73, "First create the source index and page plan", () => (
     <L.Body kicker="Lab 2 · Step 1" title="First create the source index and page plan">
       <ol className="mt-6 space-y-4 slide-body max-w-3xl">
         <li><b>1.</b> List every source document.</li>
@@ -985,7 +1024,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(73, "Generate an editable first pass with evidence tags", () => (
+  s(74, "Generate an editable first pass with evidence tags", () => (
     <L.Body kicker="Lab 2 · Step 2" title="Generate an editable first pass with evidence tags">
       <p className="slide-body mt-4">Every factual claim gets an inline source tag. Verification becomes a Ctrl-F, not a hunt.</p>
       <div className="mt-6 slide-card-dark font-mono text-sm max-w-3xl">
@@ -994,7 +1033,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(74, "Complete only after evidence and format review", () => (
+  s(75, "Complete only after evidence and format review", () => (
     <L.Body kicker="Lab 2 · Step 3" title="A client-materials draft is complete only after evidence and format review">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card"><div className="slide-chip">Pass 1</div><div className="mt-2 font-semibold">Evidence review</div><p className="slide-body mt-2">Does every claim tie to a source?</p></div>
@@ -1004,7 +1043,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ---- Lab 3 ----
-  s(75, "Research is a traceable chain", () => (
+  s(76, "Research is a traceable chain", () => (
     <L.Body kicker="Lab 3 · Foundation" title="Research is a traceable chain from question to recommendation">
       <div className="mt-8 flex items-center gap-3 justify-center flex-wrap">
         {["Research question","Search strategy","Sources collected","Analysis","Recommendation"].map((t,i,a) => (
@@ -1018,7 +1057,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(76, "Three workflows share the same discipline", () => (
+  s(77, "Three workflows share the same discipline", () => (
     <L.Body kicker="Lab 3 · Scope" title="Three workflows share the same evidence discipline">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -1032,7 +1071,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(77, "Buyer screening — thesis + explicit exclusions", () => (
+  s(78, "Buyer screening — thesis + explicit exclusions", () => (
     <L.Body kicker="Lab 3 · Screening" title="Buyer screening starts with a thesis and explicit exclusions">
       <div className="grid md:grid-cols-2 gap-5 mt-4">
         <div className="slide-card"><div className="slide-chip">In-thesis</div><ul className="mt-3 slide-body space-y-1"><li>· ANZ acquirers</li><li>· EV $50–250m</li><li>· Food & beverage</li><li>· Strategic buyers only</li></ul></div>
@@ -1041,7 +1080,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(78, "A scoring model organises judgement", () => (
+  s(79, "A scoring model organises judgement", () => (
     <L.Body kicker="Lab 3 · Scoring" title="A scoring model should organise judgement, not disguise it">
       <div className="mt-6 overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
         <table className="w-full slide-body">
@@ -1061,13 +1100,13 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(79, "Sector research — questions before search", () => (
+  s(80, "Sector research — questions before search", () => (
     <L.Body kicker="Lab 3 · Sector" title="Sector research improves when questions are set before search begins">
       <p className="slide-body mt-4 max-w-3xl">Write your research questions first. Then search. Prevents confirmation bias and wandering through results.</p>
     </L.Body>
   )),
 
-  s(80, "PE portfolio mapping — current ownership evidence", () => (
+  s(81, "PE portfolio mapping — current ownership evidence", () => (
     <L.Body kicker="Lab 3 · PE mapping" title="PE portfolio mapping requires current ownership evidence">
       <p className="slide-body mt-4 max-w-3xl">PE portfolios change constantly. Your mapping is only as good as your last ownership verification.</p>
       <div className="grid md:grid-cols-4 gap-3 mt-6">
@@ -1078,7 +1117,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(81, "Source ladder + access dates", () => (
+  s(82, "Source ladder + access dates", () => (
     <L.Body kicker="Lab 3 · Sourcing" title="Use a source ladder and record access dates">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -1095,7 +1134,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(82, "One evidence ledger makes uncertainty visible", () => (
+  s(83, "One evidence ledger makes uncertainty visible", () => (
     <L.Body kicker="Lab 3 · Evidence ledger" title="One evidence ledger makes uncertainty and conflicts visible">
       <div className="mt-6 overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
         <table className="w-full slide-body">
@@ -1111,7 +1150,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(83, "Exercise — build a defensible first-pass buyer screen", () => (
+  s(84, "Exercise — build a defensible first-pass buyer screen", () => (
     <L.Body kicker="Lab 3 · Exercise" title="Build a defensible first-pass buyer screen">
       <ol className="mt-6 grid md:grid-cols-4 gap-3">
         {["Define screening criteria","Run the screen","Ranked shortlist with evidence","Document exclusions"].map((t,i) => (
@@ -1121,14 +1160,14 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(84, "Challenge the top candidate", () => (
+  s(85, "Challenge the top candidate", () => (
     <L.Body kicker="Lab 3 · Stress test" title="Challenge the top candidate before you defend it">
       <p className="slide-subtitle mt-4 max-w-3xl">Before presenting: spend 10 minutes trying to kill your top pick.</p>
       <p className="slide-body mt-4 max-w-3xl">What would a sceptical partner ask? The AI can role-play the sceptic.</p>
     </L.Body>
   )),
 
-  s(85, "A usable screen shows rationale, evidence, and a review trail", () => (
+  s(86, "A usable screen shows rationale, evidence, and a review trail", () => (
     <L.Body kicker="Lab 3 · Output" title="A usable screen shows rationale, evidence, and a review trail">
       <div className="mt-6 overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
         <table className="w-full slide-body">
@@ -1143,14 +1182,14 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ---- Virtual employee ----
-  s(86, "A virtual employee is a controlled workflow", () => (
+  s(87, "A virtual employee is a controlled workflow", () => (
     <L.Body kicker="Demo · Definition" title="A virtual employee is a controlled workflow with tools and approval gates">
       <p className="slide-subtitle mt-4 max-w-3xl">An AI agent that runs a defined workflow, connected to specific tools, with human approval before any consequential action.</p>
       <p className="slide-body mt-6 max-w-3xl">Not a chatbot. A <b>process</b>.</p>
     </L.Body>
   )),
 
-  s(87, "One synthetic request end to end", () => (
+  s(88, "One synthetic request end to end", () => (
     <L.Body kicker="Demo · Walkthrough" title="The demonstration follows one synthetic request end to end">
       <div className="mt-6 space-y-3 max-w-3xl">
         {[
@@ -1169,7 +1208,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(88, "Human approval before every consequential action", () => (
+  s(89, "Human approval before every consequential action", () => (
     <L.Body kicker="Demo · Gates" title="Human approval sits before every consequential action">
       <div className="mt-6 flex items-center gap-3 flex-wrap justify-center">
         {[
@@ -1189,7 +1228,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(89, "Capability depends on integration, permissions, exception handling", () => (
+  s(90, "Capability depends on integration, permissions, exception handling", () => (
     <L.Body kicker="Demo · Pillars" title="Capability depends on integration, permissions, and exception handling">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
@@ -1203,7 +1242,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(90, "Start with one measured, reversible pilot", () => (
+  s(91, "Start with one measured, reversible pilot", () => (
     <L.Body kicker="Demo · Rollout" title="Start implementation with one measured, reversible pilot">
       <div className="grid md:grid-cols-5 gap-3 mt-4">
         {["One workflow","One owner","Clear success metric","30-day trial","Weekly check-in"].map((t) => (
@@ -1215,7 +1254,7 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ---- Close ----
-  s(91, "Five repeatable moves reduce rework", () => (
+  s(92, "Five repeatable moves reduce rework", () => (
     <L.Body kicker="Close" title="Five repeatable moves reduce rework">
       <ul className="mt-6 grid md:grid-cols-5 gap-3">
         {["Structured prompts","Source-first generation","STAMP review","Claim registers","Approval gates"].map((t) => (
@@ -1225,7 +1264,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(92, "Your workshop outputs form a starter operating system", () => (
+  s(93, "Your workshop outputs form a starter operating system", () => (
     <L.Body kicker="Close" title="Your workshop outputs form a starter operating system">
       <div className="grid md:grid-cols-2 gap-5 mt-6 max-w-4xl">
         {[
@@ -1240,7 +1279,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(93, "Choose one live workflow, clear owner, safe boundary", () => (
+  s(94, "Choose one live workflow, clear owner, safe boundary", () => (
     <L.Body kicker="Close" title="Choose one live workflow with a clear owner and safe boundary">
       <ul className="mt-6 slide-body space-y-2 max-w-3xl">
         <li>· High repetition</li>
@@ -1252,7 +1291,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(94, "Exercise — write and stress-test your 30-day commitment", () => (
+  s(95, "Exercise — write and stress-test your 30-day commitment", () => (
     <L.Body kicker="Close · Exercise" title="Write and stress-test your 30-day commitment">
       <div className="mt-6 slide-card-dark font-mono text-sm max-w-3xl">
         In the next 30 days, I will <span className="text-emerald-300">[specific workflow]</span> using <span className="text-emerald-300">[specific tool]</span>. Success looks like <span className="text-emerald-300">[measurable outcome]</span>. I'll review progress on <span className="text-emerald-300">[specific date]</span>.
@@ -1261,7 +1300,7 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(95, "Closing", () => (
+  s(96, "Closing", () => (
     <L.Center>
       <div className="text-center max-w-4xl">
         <div className="slide-title-lg">AI drafts. <span style={{color:"var(--accent)"}}>You decide.</span></div>
