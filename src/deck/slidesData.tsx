@@ -375,7 +375,10 @@ const RAW_SLIDES: Slide[] = [
   )),
 
   s(18, "Model choice × thinking effort × cost", () => (
-    <L.Body kicker="Model economics · FrontierCode 1.1" title="The best model setting is a cost–quality choice">
+    <L.Body
+      kicker="Model economics · Two independent levers"
+      title={<span className="text-[clamp(34px,4.2vw,54px)]">Model size buys wisdom. Effort buys diligence.</span>}
+    >
       <div className="mt-2 grid grid-cols-[minmax(0,1.55fr)_minmax(280px,0.75fr)] gap-5 items-start">
         <a
           href="https://x.com/i/status/2080701743097344427"
@@ -387,31 +390,39 @@ const RAW_SLIDES: Slide[] = [
           <img
             src={`${import.meta.env.BASE_URL}assets/sources/frontiercode-test-time-compute-scaling-composite.jpg`}
             alt="FrontierCode main and extended set scores plotted against average cost per task across model reasoning-effort settings"
-            className="w-full max-h-[58vh] object-contain"
+            className="w-full max-h-[52vh] object-contain"
           />
         </a>
-        <div className="space-y-2.5">
+        <div className="space-y-1.5">
           {[
-            ["01 · Pick the curve", "Model choice sets the underlying capability and cost frontier."],
-            ["02 · Pick the point", "Reasoning effort moves you along that model’s curve — usually with diminishing returns."],
-            ["03 · Optimise for the task", "Target the required quality at the lowest reliable cost. More thinking is not automatically better."],
+            ["Wisdom · Pick the model", "Larger models bring broader learned expertise, stronger intuition and a better chance of finding a novel path."],
+            ["Diligence · Pick the effort", "More reasoning makes the chosen model check more paths, consequences and edge cases — usually with diminishing returns."],
           ].map(([t, d]) => (
-            <div key={t} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-4">
+            <div key={t} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-3">
               <div className="text-[color:var(--accent)] text-xs font-mono uppercase tracking-wider">{t}</div>
               <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{d}</p>
             </div>
           ))}
-          <div className="px-1 pt-1 text-[11px] leading-relaxed text-slate-500">
-            Opus 5 peaks at <b>medium</b>; Fable 5 improves through <b>xhigh</b>, but costs more.
-            Benchmark-specific result — the curve, not the exact ranking, is the lesson.
-            <div className="mt-1">
-              Source: <a className="underline hover:text-[color:var(--accent)]" href="https://x.com/i/status/2080701743097344427" target="_blank" rel="noreferrer">Edison Zhang / Cognition, X, 24 Jul 2026</a>
+          <div className="rounded-xl bg-[color:var(--navy)] p-3 text-white">
+            <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-blue-200">Choose by the work</div>
+            <div className="mt-1.5 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[12px] leading-snug">
+              <span className="font-semibold text-white">Needs insight?</span><span className="text-slate-300">Use the wiser model.</span>
+              <span className="font-semibold text-white">Needs exhaustive work?</span><span className="text-slate-300">Increase effort.</span>
+              <span className="font-semibold text-white">Needs both?</span><span className="text-slate-300">Turn up both.</span>
+            </div>
+          </div>
+          <div className="px-1 text-[9px] leading-snug text-slate-500">
+            Wisdom and diligence are complements. Effort moves along a model’s cost curve and can pass the point of useful return.
+            <div className="mt-0.5">
+              Sources: <a className="underline hover:text-[color:var(--accent)]" href="https://x.com/kunchenguid/status/2081765555091177537" target="_blank" rel="noreferrer">Kun Chen, X, 27 Jul 2026</a>
+              {" · "}
+              <a className="underline hover:text-[color:var(--accent)]" href="https://x.com/i/status/2080701743097344427" target="_blank" rel="noreferrer">Edison Zhang / Cognition, X, 24 Jul 2026</a>
             </div>
           </div>
         </div>
       </div>
     </L.Body>
-  ), { notes: "Three dials interact: model family, reasoning effort and task economics. Start from the quality threshold the work requires, then choose the lowest-cost model/effort combination that clears it reliably. On this benchmark, maximum effort can hurt because the model makes unnecessary changes that are penalised. Benchmark-specific result; do not generalise the exact ranking to M&A work." }),
+  ), { notes: "Use Kun Chen's analogy: model scale contributes 'wisdom' — learned expertise, intuition and creative reframing — while reasoning effort contributes 'diligence' — exploring branches and checking consequences. They are orthogonal. If the work needs insight, move to the larger model; if it needs exhaustive checking, increase effort; if it needs both, increase both. Then use the chart to show that effort has a cost curve and can reach diminishing or negative returns. Benchmark-specific result; do not generalise the exact ranking to M&A work." }),
 
 
 
