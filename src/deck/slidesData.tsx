@@ -40,12 +40,12 @@ export type Slide = {
 
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
-  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 6, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 27, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 36, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 44, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 49, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 53, color: "#0ea5e9" },
+  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 45, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 50, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 54, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -61,7 +61,50 @@ const s = (id: number, title: string, render: () => ReactNode, opts: { kicker?: 
   id, section: sectionOf(id), title, render, ...opts,
 });
 
-export const SLIDES: Slide[] = [
+const TEAM_MEMBERS = [
+  {
+    name: "Lewis Grafton",
+    role: "Partner",
+    position: "4.8% 29%",
+    points: [
+      "Private capital and investment banking experience",
+      "Co-founded a consumer AI image-generation startup",
+      "Operational improvement in complex environments",
+    ],
+  },
+  {
+    name: "Ken Luo",
+    role: "Partner",
+    position: "48.1% 29%",
+    points: [
+      "Corporate finance and strategy background",
+      "Financial modelling and AI training experience",
+      "Practical AI for finance workflows",
+    ],
+  },
+  {
+    name: "Richard Wong",
+    role: "Partner",
+    position: "93% 29%",
+    points: [
+      "Financing, M&A and corporate advisory",
+      "Commercial perspective from assessing hundreds of businesses",
+      "Practical AI and automation for scalable operations",
+    ],
+  },
+];
+
+const EXPERIENCE_LOGOS = [
+  "OpenAI",
+  "Bain Capital",
+  "Accenture",
+  "Houlihan Lokey",
+  "ANZ",
+  "UBS",
+  "Deutsche Bank",
+];
+
+const RAW_SLIDES: Slide[] = [
   // ===== SECTION 1: OPENING =====
   s(1, "AI for the M&A Team", () => (
     <L.Title
@@ -71,6 +114,43 @@ export const SLIDES: Slide[] = [
       footer="Full-day workshop · Morning theory · Afternoon build labs"
     />
   ), { notes: "Set the room: this is not a lecture. Three concrete outcomes." }),
+
+  s(1.5, "Our people", () => (
+    <L.Body kicker="Sentia Partners" title="Our people">
+      <p className="slide-subtitle !text-[clamp(15px,1.5vw,21px)] max-w-5xl -mt-2">
+        Finance practitioners who combine transaction experience with practical AI and automation.
+      </p>
+      <div className="grid md:grid-cols-3 gap-4 mt-5">
+        {TEAM_MEMBERS.map((member) => (
+          <article key={member.name} className="team-card">
+            <div
+              className="team-headshot"
+              style={{ backgroundPosition: member.position }}
+              role="img"
+              aria-label={`${member.name} headshot`}
+            />
+            <div className="px-5 pt-4 pb-5">
+              <div className="flex items-baseline justify-between gap-3">
+                <h2 className="text-xl font-semibold tracking-tight">{member.name}</h2>
+                <span className="slide-chip shrink-0">{member.role}</span>
+              </div>
+              <ul className="mt-3 space-y-2">
+                {member.points.map((point) => (
+                  <li key={point} className="team-bio-point">{point}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="experience-band mt-5">
+        <span className="experience-label">Experience across</span>
+        <div className="experience-logos">
+          {EXPERIENCE_LOGOS.map((logo) => <span key={logo}>{logo}</span>)}
+        </div>
+      </div>
+    </L.Body>
+  ), { notes: "Introduce the team briefly. Keep this to transaction credibility plus practical AI delivery." }),
 
   s(2, "The ratio we are trying to change", () => (
     <L.Body kicker="The problem" title="The ratio we are trying to change">
@@ -1311,5 +1391,9 @@ A: | Risk | Page | Severity | Rationale |
   )),
 ];
 
-// Sanity: ensure section index recomputed with final startSlide values
-SLIDES.forEach((sl) => { sl.section = sectionOf(sl.id); });
+// Slide IDs are derived from display order so insertions renumber the deck safely.
+export const SLIDES: Slide[] = RAW_SLIDES.map((slide, index) => ({
+  ...slide,
+  id: index + 1,
+  section: sectionOf(index + 1),
+}));
