@@ -21,6 +21,7 @@ import { SurveyBar } from "./interactive/SurveyBar";
 import { RatioBar } from "./interactive/RatioBar";
 import { OpenClosedAccordion } from "./interactive/OpenClosedAccordion";
 import { WorkCycleFramework } from "./interactive/WorkCycleFramework";
+import { AIStack } from "./interactive/AIStack";
 import * as L from "./layouts";
 
 export type Section = {
@@ -207,6 +208,16 @@ const RAW_SLIDES: Slide[] = [
   )),
 
   // ===== SECTION 2: HOW MODERN AI WORKS =====
+  s(5.5, "The AI stack", () => (
+    <L.Body kicker="How modern AI works" title={<span className="text-[clamp(34px,3.5vw,48px)]">How the AI stack creates useful work</span>}>
+      <p className="slide-subtitle !text-[clamp(14px,1.35vw,19px)] max-w-5xl -mt-2">
+        Click a layer to see what it does, familiar examples and why it matters. Most firms consume the lower layers and make their real choices near the top.
+      </p>
+      <AIStack />
+      <p className="slide-caption mt-2 text-right">Adapted from an AI stack framework shared by Chamath Palihapitiya · January 2026</p>
+    </L.Body>
+  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. Click Models to explain the distinction: proprietary models are operated by a provider, while open-weight models can be hosted or adapted by others under their licence. Open weights can increase control and deployment flexibility, but transfer more responsibility for hosting, security, evaluation and maintenance to the operator. Data and accountability are cross-cutting rather than discrete layers." }),
+
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2" title="What is a Large Language Model?">
       <div className="mt-2 max-w-4xl space-y-3">
