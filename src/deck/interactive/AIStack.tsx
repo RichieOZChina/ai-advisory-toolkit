@@ -66,7 +66,7 @@ const LAYERS: Layer[] = [
     name: "Physical infrastructure",
     short: "What keeps compute alive",
     description: "The physical estate required to house, power, cool and connect large-scale computing systems.",
-    examples: "Equinix · Digital Realty · Vertiv · Schneider Electric · Eaton · utilities and fibre networks",
+    examples: "NEXTDC · AirTrunk · CDC Data Centres · Macquarie Data Centres · Equinix · Vertiv · Schneider Electric",
     relevance: "Essential to AI economics and availability, but rarely a direct operating decision for an advisory firm.",
     color: "#1e293b",
     tint: "#f1f5f9",
