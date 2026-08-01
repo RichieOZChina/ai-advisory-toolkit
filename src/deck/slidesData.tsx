@@ -20,6 +20,7 @@ import { TextPredictor } from "./interactive/TextPredictor";
 import { SurveyBar } from "./interactive/SurveyBar";
 import { RatioBar } from "./interactive/RatioBar";
 import { OpenClosedAccordion } from "./interactive/OpenClosedAccordion";
+import { WorkCycleFramework } from "./interactive/WorkCycleFramework";
 import * as L from "./layouts";
 
 export type Section = {
@@ -43,9 +44,9 @@ export const SECTIONS: Section[] = [
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
   { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
   { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 45, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 51, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 55, color: "#0ea5e9" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 46, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 52, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 56, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -777,6 +778,15 @@ A: | Risk | Page | Severity | Rationale |
       </div>
     </L.Body>
   )),
+
+  s(44, "Review. Structure. Create. Challenge.", () => (
+    <L.Body kicker="AI across the work cycle" title="Review. Structure. Create. Challenge.">
+      <p className="slide-subtitle !text-[clamp(15px,1.5vw,20px)] max-w-4xl -mt-2">
+        The same AI should play a different role as the work develops. Choose the stage, then the task, to reveal a banker-grade prompt.
+      </p>
+      <WorkCycleFramework />
+    </L.Body>
+  ), { notes: "Introduce this as a reusable workflow, not a list of prompt tricks. Click through one task at each stage. Review organises inbound material; Structure turns understanding into an approach; Create produces a controlled first pass; Challenge stress-tests the work before release. Emphasise that the human remains responsible at every stage. The separate one-page reference sheet contains the complete prompt set." }),
 
   s(44, "The rule underneath the rules", () => (
     <L.Center>
