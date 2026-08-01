@@ -214,9 +214,8 @@ const RAW_SLIDES: Slide[] = [
         Click a layer to see what it does, familiar examples and why it matters. Most firms consume the lower layers and make their real choices near the top.
       </p>
       <AIStack />
-      <p className="slide-caption mt-2 text-right">Adapted from an AI stack framework shared by Chamath Palihapitiya · January 2026</p>
     </L.Body>
-  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. Click Models to explain the distinction: proprietary models are operated by a provider, while open-weight models can be hosted or adapted by others under their licence. Open weights can increase control and deployment flexibility, but transfer more responsibility for hosting, security, evaluation and maintenance to the operator. Data and accountability are cross-cutting rather than discrete layers." }),
+  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. Click Models to explain three deployment routes: direct access from a model company; a third-party managed host; or self-hosting open weights. The route changes control, cost, privacy and operating responsibility. Data and accountability are cross-cutting rather than discrete layers." }),
 
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2" title="What is a Large Language Model?">

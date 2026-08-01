@@ -8,7 +8,7 @@ type Layer = {
   relevance: string;
   color: string;
   tint: string;
-  openNote?: string;
+  deployment?: { label: string; detail: string }[];
 };
 
 const LAYERS: Layer[] = [
@@ -16,7 +16,7 @@ const LAYERS: Layer[] = [
     name: "Applications",
     short: "Where people use AI",
     description: "The products and interfaces that turn AI capability into a task someone can complete.",
-    examples: "ChatGPT · Microsoft 365 Copilot · sector software · custom deal tools",
+    examples: "ChatGPT · Claude · Gemini · Microsoft 365 Copilot",
     relevance: "For most firms, this is the first build-versus-buy decision — and where users experience the value.",
     color: "#0f766e",
     tint: "#e7f7f4",
@@ -24,9 +24,9 @@ const LAYERS: Layer[] = [
   {
     name: "Orchestration",
     short: "How the work gets done",
-    description: "Instructions, tools, memory and workflow logic that coordinate models with data and systems.",
-    examples: "Prompts · agents · retrieval · tool use · approval steps · evaluations",
-    relevance: "This layer turns a general model into a repeatable, controlled workflow for a specific firm.",
+    description: "Agent harnesses that give models tools, memory, context and a loop for planning and completing multi-step work.",
+    examples: "Claude Code · Codex · OpenClaw · Hermes Agent",
+    relevance: "A harness turns a model from a response engine into an operator that can navigate files, use tools and execute workflows.",
     color: "#0d9488",
     tint: "#ecfdf8",
   },
@@ -35,16 +35,20 @@ const LAYERS: Layer[] = [
     short: "The reasoning engines",
     description: "Neural networks trained to interpret and generate language, images, code and analysis.",
     examples: "GPT · Claude · Gemini · Llama · Mistral · Qwen",
-    relevance: "Model choice affects quality, speed, cost, privacy, deployment options and the controls required.",
+    relevance: "The same model family can be consumed through different hosts; the route changes control, cost, privacy and operating responsibility.",
     color: "#2563eb",
     tint: "#eff6ff",
-    openNote: "Proprietary models are accessed as managed services. Open-weight models make the trained weights available under a licence, so an organisation can run or adapt them itself — gaining deployment control, but also taking on more infrastructure, security and evaluation responsibility.",
+    deployment: [
+      { label: "Model company", detail: "OpenAI · Anthropic · Google" },
+      { label: "Third-party host", detail: "Azure AI · AWS Bedrock · Vertex AI · Together · Fireworks" },
+      { label: "Self-hosted", detail: "Open-weight Llama · Mistral · Qwen on your own or private cloud" },
+    ],
   },
   {
     name: "Cloud & platforms",
     short: "Where AI is hosted",
     description: "Managed environments that provide model access, storage, security and enterprise AI services.",
-    examples: "Azure · AWS · Google Cloud · private cloud · specialist AI platforms",
+    examples: "AWS · Microsoft Azure · Google Cloud · Oracle Cloud · CoreWeave · Nebius · Crusoe · Lambda",
     relevance: "The platform determines how models connect to enterprise systems and how access, data and spend are governed.",
     color: "#475569",
     tint: "#f1f5f9",
@@ -53,7 +57,7 @@ const LAYERS: Layer[] = [
     name: "Compute",
     short: "What runs the models",
     description: "Specialised chips and servers used to train models and produce answers when users make requests.",
-    examples: "GPUs · AI accelerators · inference servers · high-speed networking",
+    examples: "NVIDIA GPUs · Google TPUs · AMD Instinct · AWS Trainium · inference servers · high-speed networking",
     relevance: "Most firms rent this capacity indirectly through a cloud or model provider rather than owning it.",
     color: "#334155",
     tint: "#f1f5f9",
@@ -62,7 +66,7 @@ const LAYERS: Layer[] = [
     name: "Physical infrastructure",
     short: "What keeps compute alive",
     description: "The physical estate required to house, power, cool and connect large-scale computing systems.",
-    examples: "Data centres · electricity · cooling · fibre connectivity",
+    examples: "Equinix · Digital Realty · Vertiv · Schneider Electric · Eaton · utilities and fibre networks",
     relevance: "Essential to AI economics and availability, but rarely a direct operating decision for an advisory firm.",
     color: "#1e293b",
     tint: "#f1f5f9",
@@ -74,8 +78,8 @@ export function AIStack() {
   const layer = LAYERS[selected];
 
   return (
-    <div className="mt-3 max-[1500px]:mt-2 grid grid-cols-[minmax(310px,0.86fr)_minmax(470px,1.14fr)] gap-5 max-[1500px]:gap-4 items-stretch">
-      <div className="relative rounded-2xl bg-[color:var(--navy)] px-5 py-4 max-[1500px]:px-4 max-[1500px]:py-3 min-h-[410px]">
+    <div className="mt-3 max-[1500px]:mt-2 grid h-[510px] max-[1500px]:h-[488px] grid-cols-[minmax(310px,0.86fr)_minmax(470px,1.14fr)] gap-5 max-[1500px]:gap-4 items-stretch">
+      <div className="relative rounded-2xl bg-[color:var(--navy)] px-5 py-4 max-[1500px]:px-4 max-[1500px]:py-3 h-full">
         <div className="flex items-center justify-between mb-2 max-[1500px]:mb-1.5">
           <span className="text-[11px] uppercase tracking-[0.18em] font-semibold text-slate-300">Closer to the user</span>
           <span className="text-slate-400 text-sm">↑</span>
@@ -112,7 +116,7 @@ export function AIStack() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-6 max-[1500px]:p-4 min-h-[410px] flex flex-col" aria-live="polite">
+      <div className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-6 max-[1500px]:p-[14px] h-full flex flex-col" aria-live="polite">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="slide-caption uppercase tracking-widest" style={{ color: layer.color }}>Selected layer</div>
@@ -130,13 +134,14 @@ export function AIStack() {
           <div className="mt-1.5 font-semibold text-[14px] leading-relaxed">{layer.examples}</div>
         </div>
 
-        {layer.openNote && (
-          <div className="mt-4 max-[1500px]:mt-3 rounded-xl border-2 border-blue-200 bg-blue-50 px-4 py-3 max-[1500px]:px-3.5 max-[1500px]:py-2.5">
-            <div className="flex items-center gap-2">
-              <span className="rounded-full bg-blue-700 px-2.5 py-1 text-[10px] uppercase tracking-widest font-bold text-white">Open models</span>
-              <span className="text-xs font-semibold text-blue-950">Open weights change who can operate the model</span>
-            </div>
-            <p className="mt-2 max-[1500px]:mt-1.5 text-[13px] max-[1500px]:text-[12px] leading-relaxed text-blue-950">{layer.openNote}</p>
+        {layer.deployment && (
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {layer.deployment.map((route) => (
+              <div key={route.label} className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2">
+                <div className="text-[10px] uppercase tracking-widest font-bold text-blue-700">{route.label}</div>
+                <div className="mt-1 text-[11px] leading-snug font-medium text-blue-950">{route.detail}</div>
+              </div>
+            ))}
           </div>
         )}
 
