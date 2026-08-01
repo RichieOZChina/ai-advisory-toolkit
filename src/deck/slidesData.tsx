@@ -215,7 +215,7 @@ const RAW_SLIDES: Slide[] = [
       </p>
       <AIStack />
     </L.Body>
-  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. Click Models to explain three deployment routes: direct access from a model company; a third-party managed host; or self-hosting open weights. The route changes control, cost, privacy and operating responsibility. Data and accountability are cross-cutting rather than discrete layers." }),
+  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. The boundaries are not absolute: some companies span layers. ChatGPT is an application built on GPT models; Claude is both a user-facing application and a model family. Click Models to explain three deployment routes: direct access from a model company; a third-party managed host; or self-hosting open weights. The route changes control, cost, privacy and operating responsibility. Data and accountability are cross-cutting rather than discrete layers." }),
 
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2" title="What is a Large Language Model?">

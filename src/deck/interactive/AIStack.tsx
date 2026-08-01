@@ -4,7 +4,8 @@ type Layer = {
   name: string;
   short: string;
   description: string;
-  examples: string;
+  examples?: string;
+  exampleGroups?: { label: string; detail: string }[];
   relevance: string;
   color: string;
   tint: string;
@@ -15,26 +16,37 @@ const LAYERS: Layer[] = [
   {
     name: "Applications",
     short: "Where people use AI",
-    description: "The products and interfaces that turn AI capability into a task someone can complete.",
-    examples: "ChatGPT · Claude · Gemini · Microsoft 365 Copilot",
-    relevance: "For most firms, this is the first build-versus-buy decision — and where users experience the value.",
+    description: "Finished products and interfaces that apply AI to research, analysis, drafting, search and other user jobs.",
+    exampleGroups: [
+      { label: "General assistants", detail: "ChatGPT · Claude · Gemini · Perplexity" },
+      { label: "Workplace", detail: "Microsoft 365 Copilot · Gemini for Workspace · Glean" },
+      { label: "Professional", detail: "Rogo · Hebbia Matrix · Harvey" },
+    ],
+    relevance: "Applications package models, data and workflow around a user need. This is where most firms buy first and users experience the value.",
     color: "#0f766e",
     tint: "#e7f7f4",
   },
   {
     name: "Orchestration",
     short: "How the work gets done",
-    description: "Agent harnesses that give models tools, memory, context and a loop for planning and completing multi-step work.",
-    examples: "Claude Code · Codex · OpenClaw · Hermes Agent",
-    relevance: "A harness turns a model from a response engine into an operator that can navigate files, use tools and execute workflows.",
+    description: "Harnesses, runtimes and agent builders that give models context, tools, memory and workflow logic.",
+    exampleGroups: [
+      { label: "Agent harnesses", detail: "Claude Code · Codex · OpenClaw · Hermes Agent" },
+      { label: "Developer runtimes", detail: "LangGraph · LlamaIndex · Semantic Kernel" },
+      { label: "Enterprise builders", detail: "Copilot Studio · Vertex AI Agent Builder · Bedrock Agents" },
+    ],
+    relevance: "Orchestration turns a response engine into a controlled operator that can navigate systems, use tools and complete multi-step workflows.",
     color: "#0d9488",
     tint: "#ecfdf8",
   },
   {
     name: "Models",
     short: "The reasoning engines",
-    description: "Neural networks trained to interpret and generate language, images, code and analysis.",
-    examples: "GPT · Claude · Gemini · Llama · Mistral · Qwen",
+    description: "Foundation models trained to interpret and generate language, images, code and analysis.",
+    exampleGroups: [
+      { label: "Proprietary / API", detail: "GPT · Claude · Gemini · Grok" },
+      { label: "Open-weight", detail: "Llama · Mistral · Qwen · DeepSeek · Gemma" },
+    ],
     relevance: "The same model family can be consumed through different hosts; the route changes control, cost, privacy and operating responsibility.",
     color: "#2563eb",
     tint: "#eff6ff",
@@ -129,10 +141,21 @@ export function AIStack() {
 
         <p className="mt-3 max-[1500px]:mt-2 text-[16px] max-[1500px]:text-[14px] leading-relaxed text-slate-700">{layer.description}</p>
 
-        <div className="mt-4 max-[1500px]:mt-3 rounded-xl p-4 max-[1500px]:p-3" style={{ background: layer.tint }}>
-          <div className="slide-caption uppercase tracking-widest" style={{ color: layer.color }}>Familiar examples</div>
-          <div className="mt-1.5 font-semibold text-[14px] leading-relaxed">{layer.examples}</div>
-        </div>
+        {layer.exampleGroups ? (
+          <div className={`mt-4 max-[1500px]:mt-3 grid gap-2 ${layer.exampleGroups.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+            {layer.exampleGroups.map((group) => (
+              <div key={group.label} className="rounded-lg px-3 py-2.5 max-[1500px]:py-2" style={{ background: layer.tint }}>
+                <div className="text-[10px] uppercase tracking-widest font-bold" style={{ color: layer.color }}>{group.label}</div>
+                <div className="mt-1 text-[11px] leading-snug font-semibold text-slate-800">{group.detail}</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-4 max-[1500px]:mt-3 rounded-xl p-4 max-[1500px]:p-3" style={{ background: layer.tint }}>
+            <div className="slide-caption uppercase tracking-widest" style={{ color: layer.color }}>Familiar examples</div>
+            <div className="mt-1.5 font-semibold text-[14px] leading-relaxed">{layer.examples}</div>
+          </div>
+        )}
 
         {layer.deployment && (
           <div className="mt-3 grid grid-cols-3 gap-2">
