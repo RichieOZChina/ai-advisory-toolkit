@@ -48,7 +48,7 @@ const LAYERS: Layer[] = [
     name: "Cloud & platforms",
     short: "Where AI is hosted",
     description: "Managed environments that provide model access, storage, security and enterprise AI services.",
-    examples: "AWS · Microsoft Azure · Google Cloud · Oracle Cloud · CoreWeave · Nebius · Crusoe · Lambda",
+    examples: "AWS · Microsoft Azure · Google Cloud · Oracle Cloud · CoreWeave · Firmus · Nebius · Crusoe · Lambda",
     relevance: "The platform determines how models connect to enterprise systems and how access, data and spend are governed.",
     color: "#475569",
     tint: "#f1f5f9",
