@@ -44,8 +44,8 @@ export const SECTIONS: Section[] = [
   { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
   { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
   { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 45, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 50, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 54, color: "#0ea5e9" },
+  { id: "morning-close", title: "Morning Close", startSlide: 51, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 55, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -786,6 +786,50 @@ A: | Risk | Page | Severity | Rationale |
       </div>
     </L.Center>
   )),
+
+  s(45, "AI scales efficiency. Humans retain accountability.", () => (
+    <L.Body kicker="AI etiquette · Accountability" title="AI scales efficiency. Humans retain accountability.">
+      <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-7 mt-1 items-stretch">
+        <blockquote className="slide-card-dark flex flex-col justify-between min-h-[300px] !p-8">
+          <p className="text-[clamp(25px,3vw,43px)] leading-[1.13] font-semibold tracking-[-0.025em]">
+            “A computer can never be held accountable, therefore a computer must never make a management decision.”
+          </p>
+          <footer className="mt-8 text-slate-300">
+            <div className="font-semibold text-white">IBM Training Manual, 1979</div>
+            <div className="slide-caption mt-1 text-slate-400">Quoted by IBM Think · “AI decision-making: Where do businesses draw the line?”</div>
+          </footer>
+        </blockquote>
+        <div className="rounded-2xl border border-[color:var(--muted-line)] bg-[color:var(--secondary)] p-6 flex flex-col">
+          <div className="slide-caption uppercase tracking-widest">The operating trade-off</div>
+          <div className="mt-5 space-y-4 flex-1">
+            <div className="rounded-xl bg-white border border-[color:var(--muted-line)] p-4">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-semibold">Low consequence</span>
+                <span className="slide-chip">Optimise for speed</span>
+              </div>
+              <p className="slide-caption mt-2">Let AI draft, organise and analyse within clear boundaries.</p>
+            </div>
+            <div className="flex items-center gap-3 px-2" aria-hidden="true">
+              <span className="h-px flex-1 bg-[color:var(--muted-line)]" />
+              <span className="text-[color:var(--accent)] font-semibold">CONSEQUENCE ↑</span>
+              <span className="h-px flex-1 bg-[color:var(--muted-line)]" />
+            </div>
+            <div className="rounded-xl border-2 border-rose-300 bg-rose-50 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-semibold text-rose-900">High consequence</span>
+                <span className="rounded-full bg-rose-700 px-3 py-1 text-xs font-semibold text-white">Human decides</span>
+              </div>
+              <p className="slide-caption mt-2 text-rose-900">Increase review, evidence and approval before action or release.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 rounded-xl bg-[color:var(--accent)] px-6 py-4 text-white flex items-center justify-between gap-6">
+        <span className="text-lg font-semibold">The operator chooses the tool, sets the guardrails and releases the output.</span>
+        <span className="text-xl font-bold whitespace-nowrap">The operator owns the outcome.</span>
+      </div>
+    </L.Body>
+  ), { notes: "Use the quote to frame the trade-off. AI efficiency is most attractive where errors are cheap and reversible. As the severity of a plausible mistake rises, human review and approval must rise with it. The model cannot absorb professional accountability: the human operator remains responsible for the decision and its consequences." }),
 
   s(45, "AI etiquette — seven operating rules", () => (
     <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
