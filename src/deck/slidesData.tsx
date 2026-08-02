@@ -67,7 +67,7 @@ const TEAM_MEMBERS = [
   {
     name: "Lewis Grafton",
     role: "Partner",
-    position: "4.8% 29%",
+    position: "0% 32%",
     points: [
       "Private capital and investment banking experience",
       "Co-founded a consumer AI image-generation startup",
@@ -77,7 +77,7 @@ const TEAM_MEMBERS = [
   {
     name: "Ken Luo",
     role: "Partner",
-    position: "48.1% 29%",
+    position: "49% 32%",
     points: [
       "Corporate finance and strategy background",
       "Financial modelling and AI training experience",
@@ -87,7 +87,7 @@ const TEAM_MEMBERS = [
   {
     name: "Richard Wong",
     role: "Partner",
-    position: "93% 29%",
+    position: "100% 32%",
     points: [
       "Financing, M&A and corporate advisory",
       "Commercial perspective from assessing hundreds of businesses",

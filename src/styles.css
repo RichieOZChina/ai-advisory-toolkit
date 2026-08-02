@@ -94,7 +94,7 @@
 .slide-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
 .team-card { overflow: hidden; background: #fff; border: 1px solid var(--muted-line); border-radius: 16px; box-shadow: 0 12px 32px rgba(10,37,64,0.07); }
-.team-headshot { height: clamp(150px, 20vh, 230px); background-image: url("/assets/sentia-team-reference.jpg"); background-repeat: no-repeat; background-size: 400% auto; background-color: #f2f0ec; border-bottom: 1px solid var(--muted-line); }
+.team-headshot { height: clamp(150px, 20vh, 230px); background-image: url("/assets/sentia-team-reference.jpg"); background-repeat: no-repeat; background-size: 300% auto; background-color: #f2f0ec; border-bottom: 1px solid var(--muted-line); }
 .team-bio-point { position: relative; padding-left: 14px; color: #46586e; font-size: clamp(12px, 1vw, 15px); line-height: 1.35; }
 .team-bio-point::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border-radius: 999px; background: var(--accent); }
 .experience-band { display: flex; align-items: center; gap: 18px; min-height: 64px; padding: 12px 18px; border-radius: 14px; background: var(--navy); color: white; }
