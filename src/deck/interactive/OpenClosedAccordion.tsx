@@ -66,11 +66,11 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
 type PanelKey = "closed" | "open";
 
 export function OpenClosedAccordion() {
-  const [openPanel, setOpenPanel] = useState<PanelKey | null>("closed");
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openPanel, setOpenPanel] = useState<PanelKey | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="mt-4 space-y-6">
+    <div className="mt-2 space-y-3">
       <div className="grid md:grid-cols-2 gap-5">
         <Panel
           tone="closed"
@@ -118,14 +118,14 @@ export function OpenClosedAccordion() {
         <div className="text-[10px] uppercase tracking-[0.18em] text-[#0a2540]/55 font-semibold mb-2">
           Jargon buster — click to expand
         </div>
-        <div className="rounded-xl border border-[#0a2540]/10 bg-white overflow-hidden divide-y divide-[#0a2540]/10">
+        <div className="grid grid-cols-2 rounded-xl border border-[#0a2540]/10 bg-white overflow-hidden divide-x divide-y divide-[#0a2540]/10">
           {FAQS.map((f, i) => {
             const active = openFaq === i;
             return (
               <div key={f.q}>
                 <button
                   onClick={() => setOpenFaq(active ? null : i)}
-                  className="w-full text-left px-5 py-3.5 flex items-center gap-3 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
+                  className="w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
                 >
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-[11px] font-semibold shrink-0">
                     ?
@@ -134,7 +134,7 @@ export function OpenClosedAccordion() {
                   <span aria-hidden className={`text-[#0a2540]/45 transition-transform ${active ? "rotate-180" : ""}`}>▾</span>
                 </button>
                 {active && (
-                  <div className="px-5 pb-4 pl-14 text-[13px] leading-relaxed text-[#0a2540]/80">
+                  <div className="px-4 pb-3 pl-12 text-[12px] leading-snug text-[#0a2540]/80">
                     {f.a}
                   </div>
                 )}
@@ -181,7 +181,7 @@ function Panel({
     >
       <button
         onClick={onToggle}
-        className="w-full text-left px-6 py-5 flex items-start gap-4 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
+        className="w-full text-left px-5 py-3.5 flex items-start gap-4 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
       >
         <span
           className={[
@@ -209,7 +209,7 @@ function Panel({
       </button>
 
       {active && (
-        <div className="px-6 pb-6 pt-1">
+        <div className="max-h-[calc(100vh-390px)] overflow-y-auto px-5 pb-4 pt-1">
           <p className="text-[14px] leading-relaxed text-[#0a2540]/80">{definition}</p>
 
           <div className="mt-5 grid grid-cols-2 gap-4">
