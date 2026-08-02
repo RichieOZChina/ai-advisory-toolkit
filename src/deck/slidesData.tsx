@@ -42,12 +42,12 @@ export type Slide = {
 
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
-  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 8, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 29, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 38, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 47, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 53, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 57, color: "#0ea5e9" },
+  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 46, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 52, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 56, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -212,38 +212,26 @@ const RAW_SLIDES: Slide[] = [
 
   s(3, "What you will leave with", () => (
     <L.Body kicker="Outcomes" title="What you will leave with">
-      <div className="grid md:grid-cols-3 gap-5 mt-2">
+      <div className="mt-3 rounded-2xl overflow-hidden bg-[color:var(--navy)] text-white shadow-[0_20px_60px_-35px_rgba(10,37,64,0.75)]">
+        <div className="grid md:grid-cols-3">
         {[
-          ["01","A working AI workspace","Configured to work safely with deal documents and reusable instructions."],
-          ["02","A tested issue-log workflow","Turn diligence notes into a structured output, then save it as a reusable skill."],
-          ["03","A client-ready control method","Source indexing, evidence tags and a review checklist for research and materials."],
-        ].map(([n,t,d]) => (
-          <div key={n} className="slide-card">
-            <div className="text-[color:var(--accent)] font-mono text-sm">{n}</div>
-            <div className="mt-3 text-xl font-semibold">{t}</div>
-            <p className="slide-body mt-2">{d}</p>
+          ["01","WORK","A working AI workspace","Configured for deal documents and reusable instructions."],
+          ["02","BUILD","A tested issue-log workflow","Diligence notes in; structured issues and a reusable skill out."],
+          ["03","CONTROL","A client-ready review method","Source index, evidence tags and release checklist included."],
+        ].map(([n,label,title,detail]) => (
+          <div key={n} className="relative px-6 py-7 border-b md:border-b-0 md:border-r last:border-0 border-white/15">
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-mono text-sm text-[#78adff]">{n}</span>
+              <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">{label}</span>
+            </div>
+            <div className="mt-8 text-[clamp(20px,1.85vw,27px)] font-semibold leading-[1.12] min-h-[3.35em]">{title}</div>
+            <p className="mt-4 text-[clamp(13px,1.05vw,15px)] leading-relaxed text-slate-300">{detail}</p>
           </div>
         ))}
-      </div>
-    </L.Body>
-  )),
-
-  s(4, "Housekeeping", () => (
-    <L.Body kicker="Housekeeping" title="A few practicalities">
-      <div className="grid md:grid-cols-2 gap-4 mt-4 max-w-4xl">
-        {[
-          ["Breaks","10:45 and 3:15 · 15 minutes each"],
-          ["Lunch","12:30 · downstairs"],
-          ["Wifi","Tenet-Guest · password on your table card"],
-          ["Glossary","Bookmarked in your workshop pack"],
-          ["Ask anytime","Interruptions welcome — this is your day"],
-          ["Recording","Off, by default. Say if you'd like a clip"],
-        ].map(([k,v]) => (
-          <div key={k} className="flex items-baseline gap-6 py-3 border-b border-[color:var(--muted-line)]">
-            <div className="w-28 slide-caption uppercase tracking-wider">{k}</div>
-            <div className="slide-body">{v}</div>
-          </div>
-        ))}
+        </div>
+        <div className="px-6 py-4 bg-[#071b2d] border-t border-white/10 text-sm text-slate-300">
+          By Monday: one environment, one reusable workflow, one safe way to review the output.
+        </div>
       </div>
     </L.Body>
   )),
@@ -300,23 +288,44 @@ const RAW_SLIDES: Slide[] = [
   )),
 
   s(8, "Four ways machines learn", () => (
-    <L.Body title="Four ways machines learn">
-      <div className="grid md:grid-cols-2 gap-5 mt-2">
+    <L.Body kicker="Training signals" title="Four ways machines learn">
+      <p className="slide-subtitle !text-[clamp(14px,1.35vw,19px)] max-w-4xl -mt-2">
+        The difference is the feedback available during training—not the type of task the model eventually performs.
+      </p>
+      <div className="grid md:grid-cols-4 gap-3 mt-5">
         {[
-          {t:"Supervised Learning",d:"Labelled data. The model learns patterns from input-output examples.",e:"Credit scoring: past applications labelled 'default / no default'."},
-          {t:"Unsupervised Learning",d:"Unlabelled data. The model finds hidden structure and clusters.",e:"Segmenting a buyer universe by acquisition behaviour, unprompted."},
-          {t:"Reinforcement Learning",d:"Trial and error, guided by reward signals over time.",e:"Optimising trade execution against a benchmark P&L."},
-          {t:"Deep Learning",d:"Many-layered neural networks that learn complex, non-linear patterns.",e:"Extracting numbers and clauses from a scanned SPA."},
-        ].map((c) => (
-          <div key={c.t} className="slide-card">
-            <div className="text-lg font-semibold">{c.t}</div>
-            <p className="slide-body mt-2">{c.d}</p>
-            <div className="mt-4 pt-4 border-t border-[color:var(--muted-line)]">
-              <div className="slide-caption uppercase tracking-wider">Banking example</div>
-              <p className="slide-body mt-1">{c.e}</p>
+          {n:"01",t:"Supervised",signal:"Correct answers",flow:["Input","Label","Prediction"],d:"Learns from examples paired with known outcomes.",e:"Past credits labelled default / no default."},
+          {n:"02",t:"Unsupervised",signal:"No answers",flow:["Raw data","Patterns","Clusters"],d:"Finds structure without a predefined target.",e:"Group buyers by acquisition behaviour."},
+          {n:"03",t:"Reinforcement",signal:"Rewards",flow:["Action","Result","Reward"],d:"Improves through trial, consequence and feedback.",e:"Optimise execution against a benchmark."},
+          {n:"04",t:"Self-supervised",signal:"Data itself",flow:["Hidden part","Predict","Compare"],d:"Creates its own training task from unlabelled data.",e:"Predict missing words across billions of documents."},
+        ].map((c, idx) => (
+          <div key={c.t} className={`rounded-xl border overflow-hidden bg-white ${idx === 3 ? "border-[#005cff]/45 shadow-[0_14px_35px_-24px_rgba(0,92,255,0.7)]" : "border-[color:var(--muted-line)]"}`}>
+            <div className={`px-4 py-3 flex items-center justify-between ${idx === 3 ? "bg-[#eef4ff]" : "bg-[#f7f9fc]"}`}>
+              <span className="font-mono text-xs text-[color:var(--accent)]">{c.n}</span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-slate-500">{c.signal}</span>
+            </div>
+            <div className="p-4">
+              <h2 className="text-[clamp(17px,1.45vw,21px)] font-semibold min-h-[2.5em] leading-tight">{c.t}</h2>
+              <div className="mt-4 flex items-center gap-1.5">
+                {c.flow.map((step, i) => (
+                  <div key={step} className="contents">
+                    <span className={`flex-1 rounded-md px-1.5 py-2 text-center text-[10px] font-semibold ${i === 2 ? "bg-[color:var(--navy)] text-white" : "bg-[#eef2f7] text-[#0a2540]"}`}>{step}</span>
+                    {i < c.flow.length - 1 && <span className="text-[#005cff] text-xs">→</span>}
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-[13px] leading-relaxed text-[#46586e] min-h-[4.9em]">{c.d}</p>
+              <div className="mt-4 pt-3 border-t border-[color:var(--muted-line)]">
+                <div className="text-[9px] uppercase tracking-[0.16em] text-slate-400">M&amp;A example</div>
+                <p className="mt-1 text-[12px] leading-relaxed font-medium text-[#0a2540]">{c.e}</p>
+              </div>
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-4 flex items-center gap-3 text-[12px] text-[#46586e]">
+        <span className="slide-chip">Why LLMs scale</span>
+        Most foundation-model pre-training is self-supervised: the text supplies both the question and the answer.
       </div>
     </L.Body>
   )),
