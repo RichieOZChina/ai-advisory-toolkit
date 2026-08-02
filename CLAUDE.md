@@ -74,7 +74,7 @@ src/deck/
 - Do not add heavy dependencies (chart libs, animation libs). Hand-roll SVG.
 - Do not touch `src/routeTree.gen.ts` — it's auto-generated.
 - Do not rewrite the whole slide array to renumber; edit in place and update section `startSlide` values.
-- Do not mention "Lovable", "the PDF", the workshop-author's private research, or vendor whitepapers in slide copy.
+- Do not mention internal tooling, the PDF, the workshop-author's private research, or vendor whitepapers in slide copy.
 
 ## Running
 
@@ -86,4 +86,4 @@ npm run build    # production build to dist/
 
 ## Publishing
 
-Live URL is currently served via Lovable's preview. To publish a permanent public URL, use Lovable's Publish action or deploy `dist/` to any static host (Cloudflare Pages, Vercel, Netlify).
+Pushes to `main` are built and published automatically by the GitHub Pages workflow.
