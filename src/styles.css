@@ -156,3 +156,8 @@
   .experience-band { align-items: flex-start; flex-direction: column; gap: 8px; }
   .experience-logos { justify-content: flex-start; }
 }
+
+/* On scaled laptop displays the sidebar overlays instead of shrinking the slide canvas. */
+@media (max-width: 1100px) {
+  .deck-main, .deck-chrome-left { margin-left: 0 !important; }
+}

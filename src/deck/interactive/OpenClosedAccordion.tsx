@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 /**
  * Merged from slides 11 + 12. Sourced from AI Landscape p.14 and LLM History pp.19–20.
  * Two accordion panels — Closed vs Open — each with definition, pros, cons,
@@ -66,62 +64,36 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
 type PanelKey = "closed" | "open";
 
 export function OpenClosedAccordion() {
-  const [openPanel, setOpenPanel] = useState<PanelKey | null>(null);
-
   return (
-    <div className="mt-2">
-      <div className="grid md:grid-cols-2 gap-5">
-        <Panel
-          tone="closed"
-          active={openPanel === "closed"}
-          onToggle={() => setOpenPanel(openPanel === "closed" ? null : "closed")}
-          label="Closed-source"
-          oneLiner="API-only. The vendor hosts the model; you send data to their servers."
-          definition="You never see the weights. Access is metered by API call, pricing is per-token, and the provider controls versioning, updates and deprecation."
-          pros={[
-            "Turnkey — no infrastructure to run",
-            "Frontier-quality models, first",
-            "Managed safety, evals and uptime",
-          ]}
-          cons={[
-            "Data leaves your environment",
-            "Per-token cost scales with usage",
-            "Limited customisation & fine-tuning",
-            "Vendor lock-in on prompts and tooling",
-          ]}
-        />
-        <Panel
-          tone="open"
-          active={openPanel === "open"}
-          onToggle={() => setOpenPanel(openPanel === "open" ? null : "open")}
-          label="Open-source"
-          oneLiner="Downloadable weights. You run the model in your own environment."
-          definition="The model file is published under a permissive or research licence. You can host it on your own infrastructure, fine-tune it on private data, and keep every prompt inside your perimeter."
-          pros={[
-            "Data never leaves your environment",
-            "Fixed infra cost — no per-token bill",
-            "Full fine-tuning and customisation",
-            "No vendor lock-in",
-          ]}
-          cons={[
-            "Requires ML engineering to run well",
-            "Peak quality still trails frontier closed models",
-            "You own safety, evals and uptime",
-          ]}
-        />
-      </div>
+    <div className="mt-2 grid grid-cols-2 gap-5">
+      {[
+        { label: "Closed-source", badge: "Hosted by vendor", definition: "API-only. The provider hosts the model, controls updates and charges for usage.", strengths: ["Turnkey deployment", "Frontier models arrive first", "Managed safety and uptime"], tradeoffs: ["Data goes to the provider", "Usage-linked cost", "Less customisation and more lock-in"], closed: true },
+        { label: "Open-weight", badge: "Run it yourself", definition: "Downloadable model weights. You choose the infrastructure, controls and customisation.", strengths: ["Keep data in your environment", "Full fine-tuning", "More control over cost and tooling"], tradeoffs: ["Requires engineering", "You own safety and uptime", "Licences and quality vary"], closed: false },
+      ].map((item) => (
+        <section key={item.label} className="rounded-2xl border border-[#0a2540]/12 bg-white p-5 shadow-sm">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-2xl font-bold text-[#0a2540]">{item.label}</h2>
+            <span className={`rounded px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${item.closed ? "bg-[#0a2540] text-white" : "bg-emerald-100 text-emerald-800"}`}>{item.badge}</span>
+          </div>
+          <p className="mt-3 text-[16px] leading-relaxed text-[#0a2540]/75">{item.definition}</p>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="rounded-xl bg-emerald-50 p-3"><div className="text-xs font-bold uppercase tracking-wider text-emerald-700">Strengths</div><ul className="mt-2 space-y-1.5 text-[14px] leading-snug text-[#0a2540]/80">{item.strengths.map((point) => <li key={point}>• {point}</li>)}</ul></div>
+            <div className="rounded-xl bg-rose-50 p-3"><div className="text-xs font-bold uppercase tracking-wider text-rose-700">Trade-offs</div><ul className="mt-2 space-y-1.5 text-[14px] leading-snug text-[#0a2540]/80">{item.tradeoffs.map((point) => <li key={point}>• {point}</li>)}</ul></div>
+          </div>
+        </section>
+      ))}
     </div>
   );
 }
 
-export function JargonBuster() {
+export function JargonBuster({ start = 0 }: { start?: number }) {
   return (
     <div className="mt-3 grid grid-cols-2 gap-4">
-      {FAQS.map((item, index) => (
+      {FAQS.slice(start, start + 2).map((item, index) => (
         <section key={item.q} className="rounded-2xl border border-[#0a2540]/10 bg-white p-5 shadow-sm">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#0a2540] text-sm font-semibold text-white">
-              {index + 1}
+              {start + index + 1}
             </span>
             <h2 className="text-xl font-bold text-[#0a2540]">{item.q}</h2>
           </div>
@@ -132,14 +104,11 @@ export function JargonBuster() {
   );
 }
 
-export function ProviderLandscape() {
-  const providers = [
-    ...CLOSED_PROVIDERS.map((provider) => ({ ...provider, type: "Closed" })),
-    ...OPEN_PROVIDERS.map((provider) => ({ ...provider, type: "Open weight" })),
-  ];
+export function ProviderLandscape({ kind }: { kind: "closed" | "open" }) {
+  const providers = (kind === "closed" ? CLOSED_PROVIDERS : OPEN_PROVIDERS).map((provider) => ({ ...provider, type: kind === "closed" ? "Closed" : "Open weight" }));
 
   return (
-    <div className="mt-3 grid grid-cols-3 gap-3">
+    <div className={`mt-3 grid gap-4 ${kind === "closed" ? "grid-cols-2" : "grid-cols-3"}`}>
       {providers.map((provider) => (
         <section key={provider.name} className="rounded-xl border border-[#0a2540]/10 bg-white p-4 shadow-sm">
           <div className="flex items-start justify-between gap-3">

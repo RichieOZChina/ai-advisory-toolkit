@@ -42,11 +42,11 @@ export type Slide = {
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 30, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 39, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 48, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 54, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 58, color: "#0ea5e9" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 32, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 41, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 50, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 56, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 60, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -351,15 +351,27 @@ const RAW_SLIDES: Slide[] = [
     </L.Body>
   )),
 
-  s(11, "Provider landscape — who's who", () => (
-    <L.Body kicker="Model landscape" title="Provider landscape — who's who">
-      <ProviderLandscape />
+  s(11, "Closed-model providers", () => (
+    <L.Body kicker="Model landscape" title="Closed-model providers">
+      <ProviderLandscape kind="closed" />
     </L.Body>
   )),
 
-  s(12, "Jargon buster — four terms that matter", () => (
-    <L.Body kicker="Plain English" title="Jargon buster — four terms that matter">
-      <JargonBuster />
+  s(12, "Open-weight providers", () => (
+    <L.Body kicker="Model landscape" title="Open-weight providers">
+      <ProviderLandscape kind="open" />
+    </L.Body>
+  )),
+
+  s(13, "Jargon buster — weights and APIs", () => (
+    <L.Body kicker="Plain English" title="Jargon buster — weights and APIs">
+      <JargonBuster start={0} />
+    </L.Body>
+  )),
+
+  s(14, "Jargon buster — pricing and fine-tuning", () => (
+    <L.Body kicker="Plain English" title="Jargon buster — pricing and fine-tuning">
+      <JargonBuster start={2} />
     </L.Body>
   )),
 
