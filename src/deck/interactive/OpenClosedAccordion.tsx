@@ -67,10 +67,9 @@ type PanelKey = "closed" | "open";
 
 export function OpenClosedAccordion() {
   const [openPanel, setOpenPanel] = useState<PanelKey | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="mt-2 space-y-3">
+    <div className="mt-2">
       <div className="grid md:grid-cols-2 gap-5">
         <Panel
           tone="closed"
@@ -90,7 +89,6 @@ export function OpenClosedAccordion() {
             "Limited customisation & fine-tuning",
             "Vendor lock-in on prompts and tooling",
           ]}
-          providers={CLOSED_PROVIDERS}
         />
         <Panel
           tone="open"
@@ -110,39 +108,53 @@ export function OpenClosedAccordion() {
             "Peak quality still trails frontier closed models",
             "You own safety, evals and uptime",
           ]}
-          providers={OPEN_PROVIDERS}
         />
       </div>
+    </div>
+  );
+}
 
-      <div>
-        <div className="text-[10px] uppercase tracking-[0.18em] text-[#0a2540]/55 font-semibold mb-2">
-          Jargon buster — click to expand
-        </div>
-        <div className="grid grid-cols-2 rounded-xl border border-[#0a2540]/10 bg-white overflow-hidden divide-x divide-y divide-[#0a2540]/10">
-          {FAQS.map((f, i) => {
-            const active = openFaq === i;
-            return (
-              <div key={f.q}>
-                <button
-                  onClick={() => setOpenFaq(active ? null : i)}
-                  className="w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-[#0a2540]/[0.02] focus:outline-none focus:ring-2 focus:ring-[#005cff]/40"
-                >
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#0a2540] text-white text-[11px] font-semibold shrink-0">
-                    ?
-                  </span>
-                  <span className="flex-1 text-[14px] font-semibold text-[#0a2540]">{f.q}</span>
-                  <span aria-hidden className={`text-[#0a2540]/45 transition-transform ${active ? "rotate-180" : ""}`}>▾</span>
-                </button>
-                {active && (
-                  <div className="px-4 pb-3 pl-12 text-[12px] leading-snug text-[#0a2540]/80">
-                    {f.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+export function JargonBuster() {
+  return (
+    <div className="mt-3 grid grid-cols-2 gap-4">
+      {FAQS.map((item, index) => (
+        <section key={item.q} className="rounded-2xl border border-[#0a2540]/10 bg-white p-5 shadow-sm">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#0a2540] text-sm font-semibold text-white">
+              {index + 1}
+            </span>
+            <h2 className="text-xl font-bold text-[#0a2540]">{item.q}</h2>
+          </div>
+          <div className="mt-4 text-[16px] leading-relaxed text-[#0a2540]/80">{item.a}</div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+export function ProviderLandscape() {
+  const providers = [
+    ...CLOSED_PROVIDERS.map((provider) => ({ ...provider, type: "Closed" })),
+    ...OPEN_PROVIDERS.map((provider) => ({ ...provider, type: "Open weight" })),
+  ];
+
+  return (
+    <div className="mt-3 grid grid-cols-3 gap-3">
+      {providers.map((provider) => (
+        <section key={provider.name} className="rounded-xl border border-[#0a2540]/10 bg-white p-4 shadow-sm">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="text-lg font-bold text-[#0a2540]">{provider.name}</h2>
+              <div className="mt-0.5 text-sm font-semibold text-[#005cff]">{provider.flagship}</div>
+            </div>
+            <span className={`rounded px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${provider.type === "Closed" ? "bg-[#0a2540] text-white" : "bg-emerald-100 text-emerald-800"}`}>
+              {provider.type}
+            </span>
+          </div>
+          <p className="mt-2 text-[14px] leading-snug text-[#0a2540]/75">{provider.note}</p>
+          <div className="mt-2 text-[11px] uppercase tracking-wider text-[#0a2540]/45">{provider.hq}</div>
+        </section>
+      ))}
     </div>
   );
 }
@@ -157,7 +169,6 @@ function Panel({
   definition,
   pros,
   cons,
-  providers,
 }: {
   tone: PanelKey;
   active: boolean;
@@ -167,7 +178,6 @@ function Panel({
   definition: string;
   pros: string[];
   cons: string[];
-  providers: Provider[];
 }) {
   const isClosed = tone === "closed";
   return (
@@ -234,29 +244,6 @@ function Panel({
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-[#0a2540]/50 font-semibold">
-              Providers
-            </div>
-            <div className="mt-2 grid sm:grid-cols-2 gap-2">
-              {providers.map((p) => (
-                <div
-                  key={p.name}
-                  className="rounded-md border border-[#0a2540]/10 bg-white p-3"
-                >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <div className="font-semibold text-[13px] text-[#0a2540]">{p.name}</div>
-                    <div className="text-[10px] uppercase tracking-[0.14em] text-[#0a2540]/45">
-                      {p.hq}
-                    </div>
-                  </div>
-                  <div className="text-[12px] text-[#005cff] mt-0.5">{p.flagship}</div>
-                  <p className="text-[12px] leading-snug text-[#0a2540]/70 mt-1">{p.note}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

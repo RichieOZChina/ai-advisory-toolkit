@@ -18,7 +18,7 @@ import { EtiquetteAccordion } from "./interactive/EtiquetteAccordion";
 import { TextPredictor } from "./interactive/TextPredictor";
 import { SurveyBar } from "./interactive/SurveyBar";
 import { RatioBar } from "./interactive/RatioBar";
-import { OpenClosedAccordion } from "./interactive/OpenClosedAccordion";
+import { JargonBuster, OpenClosedAccordion, ProviderLandscape } from "./interactive/OpenClosedAccordion";
 import { WorkCycleFramework } from "./interactive/WorkCycleFramework";
 import { AIStack } from "./interactive/AIStack";
 import * as L from "./layouts";
@@ -42,11 +42,11 @@ export type Slide = {
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 46, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 52, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 56, color: "#0ea5e9" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 30, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 39, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 48, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 54, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 58, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -348,6 +348,18 @@ const RAW_SLIDES: Slide[] = [
   s(10, "Closed vs open — and who's who", () => (
     <L.Body title="Closed vs open — and who's who">
       <div className="fit-component fit-open-closed"><OpenClosedAccordion /></div>
+    </L.Body>
+  )),
+
+  s(11, "Provider landscape — who's who", () => (
+    <L.Body kicker="Model landscape" title="Provider landscape — who's who">
+      <ProviderLandscape />
+    </L.Body>
+  )),
+
+  s(12, "Jargon buster — four terms that matter", () => (
+    <L.Body kicker="Plain English" title="Jargon buster — four terms that matter">
+      <JargonBuster />
     </L.Body>
   )),
 

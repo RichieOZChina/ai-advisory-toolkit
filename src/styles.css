@@ -100,7 +100,7 @@
 .fit-component { height: calc(100vh - 190px); overflow: hidden; }
 .fit-component > div { margin-top: 8px !important; max-height: 100%; }
 .fit-component svg { max-height: calc(100vh - 220px); }
-.fit-open-closed > div { transform: scale(.82); transform-origin: top left; width: 122%; }
+.fit-open-closed > div { transform: none; width: 100%; }
 .fit-embeddings > div { transform: scale(.59); transform-origin: top left; width: 169.5%; }
 .fit-rag > div { transform: scale(.65); transform-origin: top left; width: 153.9%; }
 .fit-chunking > div { transform: scale(.86); transform-origin: top left; width: 116.3%; }
