@@ -93,17 +93,22 @@
 .slide-card-dark .slide-caption { color: #a8bdd6; }
 .slide-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
+/* Keep slide content clear of the fixed page counter and navigation chrome. */
+.slide-page { padding-bottom: 72px !important; }
+
 /* Presentation-fit wrappers: keep interactive teaching visuals inside one 16:9 frame. */
-.fit-component { height: calc(100vh - 150px); overflow: hidden; }
+.fit-component { height: calc(100vh - 190px); overflow: hidden; }
 .fit-component > div { margin-top: 8px !important; max-height: 100%; }
 .fit-component svg { max-height: calc(100vh - 220px); }
 .fit-open-closed > div { transform: scale(.82); transform-origin: top left; width: 122%; }
-.fit-embeddings > div { transform: scale(.72); transform-origin: top left; width: 138.8%; }
-.fit-rag > div { transform: scale(.76); transform-origin: top left; width: 131.5%; }
-.fit-temperature > div { transform: scale(.69); transform-origin: top left; width: 144.9%; }
-.fit-agent-types > div { transform: scale(.64); transform-origin: top left; width: 151%; }
+.fit-embeddings > div { transform: scale(.59); transform-origin: top left; width: 169.5%; }
+.fit-rag > div { transform: scale(.65); transform-origin: top left; width: 153.9%; }
+.fit-chunking > div { transform: scale(.86); transform-origin: top left; width: 116.3%; }
+.fit-temperature > div { transform: scale(.62); transform-origin: top left; width: 161.3%; }
+.fit-agent-loop > div { transform: scale(.76); transform-origin: top left; width: 131.6%; }
+.fit-agent-types > div { transform: scale(.56); transform-origin: top left; width: 178.6%; }
 .fit-attention { height: calc(100vh - 430px); }
-.fit-attention > div { transform: scale(.78); transform-origin: top left; width: 128%; }
+.fit-attention > div { transform: scale(.68); transform-origin: top left; width: 147.1%; }
 .neuron-compact { height: calc(100vh - 245px); overflow: hidden; }
 .neuron-compact > div { margin-top: 12px; padding: 14px 20px; transform: scale(.62); transform-origin: top left; width: 161%; }
 .compact-attention-copy .slide-card, .compact-attention-copy .slide-card-dark { padding: 16px; }

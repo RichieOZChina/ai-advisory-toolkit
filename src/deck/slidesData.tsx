@@ -388,7 +388,7 @@ const RAW_SLIDES: Slide[] = [
 
   s(15, "Chunking", () => (
     <L.Body title="Chunking — how documents get sliced for retrieval">
-      <div className="fit-component"><ChunkingCompare /></div>
+      <div className="fit-component fit-chunking"><ChunkingCompare /></div>
     </L.Body>
   )),
 
@@ -398,25 +398,15 @@ const RAW_SLIDES: Slide[] = [
         <div className="slide-card">
           <div className="slide-chip">Why we need attention</div>
           <p className="slide-body mt-3">
-            Before Transformers, models read words <b>one at a time, left to right</b>. By the time they reached
-            the end of a long sentence, the beginning had faded. Pronouns like "it" lost their referent. Long-range
-            dependencies broke.
-          </p>
-          <p className="slide-body mt-3">
-            In 2017 the <b>Transformer</b> architecture fixed this with one idea: <b>self-attention</b>. Every word
-            looks at every other word simultaneously and decides which ones matter most for its meaning. That
-            parallel reading is what unlocked modern LLMs — it's the <b>T</b> in G<b>P</b><b>T</b>.
+            Earlier models read left to right and lost distant context. <b>Self-attention</b> lets every word weigh
+            every other word at once, preserving long-range meaning and enabling parallel processing.
           </p>
         </div>
         <div className="slide-card-dark">
           <div className="slide-chip" style={{background:"rgba(0,92,255,0.2)",color:"#7ab0ff"}}>The intuition</div>
           <p className="slide-body mt-3 text-slate-200">
-            Reading <i>"The vendor flagged three risks to EBITDA"</i>, the word <b>"risks"</b> only makes sense in
-            context of <b>"flagged"</b> and <b>"EBITDA"</b>. Attention is how the model learns which words to lean on.
-          </p>
-          <p className="slide-body mt-3 text-slate-300">
-            Modern models run this in <b>parallel across dozens of layers</b> with many "attention heads" — each head
-            learns a different kind of relationship (grammar, coreference, tone, etc.).
+            In <i>"The vendor flagged three risks to EBITDA"</i>, <b>"risks"</b> draws meaning from <b>"flagged"</b>
+            and <b>"EBITDA"</b>. Different attention heads learn different relationships.
           </p>
         </div>
       </div>
@@ -503,7 +493,7 @@ const RAW_SLIDES: Slide[] = [
 
   s(20, "AI agents, tools & the loop", () => (
     <L.Body title="AI agents, tools & the loop">
-      <div className="fit-component"><AgentLoop /></div>
+      <div className="fit-component fit-agent-loop"><AgentLoop /></div>
     </L.Body>
   )),
 
