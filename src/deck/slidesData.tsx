@@ -42,12 +42,12 @@ export type Slide = {
 
 export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
-  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
-  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 28, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 37, color: "#fb923c" },
-  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 46, color: "#f43f5e" },
-  { id: "morning-close", title: "Morning Close", startSlide: 52, color: "#22c55e" },
-  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 56, color: "#0ea5e9" },
+  { id: "how-ai-works", title: "How Modern AI Works", startSlide: 8, color: "#60a5fa" },
+  { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 29, color: "#a78bfa" },
+  { id: "banker-moves", title: "Five Banker Moves", startSlide: 38, color: "#fb923c" },
+  { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 47, color: "#f43f5e" },
+  { id: "morning-close", title: "Morning Close", startSlide: 53, color: "#22c55e" },
+  { id: "afternoon", title: "Afternoon Build Labs", startSlide: 57, color: "#0ea5e9" },
 ];
 
 function sectionOf(id: number): number {
@@ -112,10 +112,58 @@ const RAW_SLIDES: Slide[] = [
     <L.Title
       kicker="Tenet Advisory × Sentia Partners"
       title={<>AI for the <span style={{color:"var(--accent)"}}>M&amp;A Team</span>.</>}
-      subtitle="Three things you will do really well by the end of today."
+      subtitle="A practical day of learning, building and applying AI to M&A work."
       footer="Full-day workshop · Morning theory · Afternoon build labs"
     />
-  ), { notes: "Set the room: this is not a lecture. Three concrete outcomes." }),
+  ), { notes: "Set the room: this is a practical working session. The morning builds shared understanding and safe habits; the afternoon turns them into reusable M&A workflows." }),
+
+  s(1.25, "Today's programme", () => (
+    <L.Body kicker="Full-day workshop" title="Today’s programme">
+      <p className="slide-subtitle !text-[clamp(14px,1.35vw,19px)] max-w-4xl -mt-2">
+        Shared foundations in the morning. Hands-on workflow building in the afternoon.
+      </p>
+      <div className="grid md:grid-cols-2 gap-5 mt-5">
+        {[
+          {
+            label: "Morning · understand and apply",
+            items: [
+              ["09:00", "Welcome, goals and the M&A opportunity"],
+              ["09:30", "How modern AI works"],
+              ["10:45", "Break"],
+              ["11:00", "Prompting, five banker moves and controls"],
+              ["12:30", "Lunch"],
+            ],
+          },
+          {
+            label: "Afternoon · build and test",
+            items: [
+              ["13:15", "Set up the tools + Lab 1: reusable skill"],
+              ["14:10", "Lab 2: client materials"],
+              ["15:15", "Break"],
+              ["15:30", "Lab 3: research and buyer screening"],
+              ["16:30", "Agents, automation and 30-day action plan"],
+              ["17:00", "Close"],
+            ],
+          },
+        ].map((block) => (
+          <section key={block.label} className="slide-card !p-0 overflow-hidden">
+            <div className="px-5 py-3.5 bg-[color:var(--navy)] text-white text-sm font-semibold tracking-wide">
+              {block.label}
+            </div>
+            <div className="px-5 py-2">
+              {block.items.map(([time, item], i) => (
+                <div key={time} className={`grid grid-cols-[66px_1fr] gap-4 py-3 ${i < block.items.length - 1 ? "border-b border-[color:var(--muted-line)]" : ""}`}>
+                  <time className="font-mono text-sm font-semibold text-[color:var(--accent)]">{time}</time>
+                  <div className={`text-[clamp(13px,1.15vw,16px)] leading-snug ${item === "Break" || item === "Lunch" ? "font-semibold text-slate-500" : "font-medium"}`}>{item}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <p className="slide-caption mt-4">Timing is indicative; we will flex the build labs around the room’s pace.</p>
+    </L.Body>
+  ), { notes: "Walk through the shape of the day, not every slide. Confirm the two breaks and lunch. Emphasise that the afternoon produces working assets, not demonstrations." }),
 
   s(1.5, "Our people", () => (
     <L.Body kicker="Sentia Partners" title="Our people">
@@ -166,9 +214,9 @@ const RAW_SLIDES: Slide[] = [
     <L.Body kicker="Outcomes" title="What you will leave with">
       <div className="grid md:grid-cols-3 gap-5 mt-2">
         {[
-          ["01","One practical environment","You can use this week — configured, tested, yours."],
-          ["02","One method for writing prompts","A structure that works repeatedly, not luck."],
-          ["03","One guardrail","That stops bad outputs reaching clients."],
+          ["01","A working AI workspace","Configured to work safely with deal documents and reusable instructions."],
+          ["02","A tested issue-log workflow","Turn diligence notes into a structured output, then save it as a reusable skill."],
+          ["03","A client-ready control method","Source indexing, evidence tags and a review checklist for research and materials."],
         ].map(([n,t,d]) => (
           <div key={n} className="slide-card">
             <div className="text-[color:var(--accent)] font-mono text-sm">{n}</div>
