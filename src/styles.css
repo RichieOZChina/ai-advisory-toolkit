@@ -93,6 +93,26 @@
 .slide-card-dark .slide-caption { color: #a8bdd6; }
 .slide-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
+/* Presentation-fit wrappers: keep interactive teaching visuals inside one 16:9 frame. */
+.fit-component { height: calc(100vh - 150px); overflow: hidden; }
+.fit-component > div { margin-top: 8px !important; max-height: 100%; }
+.fit-component svg { max-height: calc(100vh - 220px); }
+.fit-open-closed > div { transform: scale(.82); transform-origin: top left; width: 122%; }
+.fit-embeddings > div { transform: scale(.72); transform-origin: top left; width: 138.8%; }
+.fit-rag > div { transform: scale(.76); transform-origin: top left; width: 131.5%; }
+.fit-temperature > div { transform: scale(.69); transform-origin: top left; width: 144.9%; }
+.fit-agent-types > div { transform: scale(.64); transform-origin: top left; width: 151%; }
+.fit-attention { height: calc(100vh - 430px); }
+.fit-attention > div { transform: scale(.78); transform-origin: top left; width: 128%; }
+.neuron-compact { height: calc(100vh - 245px); overflow: hidden; }
+.neuron-compact > div { margin-top: 12px; padding: 14px 20px; transform: scale(.62); transform-origin: top left; width: 161%; }
+.compact-attention-copy .slide-card, .compact-attention-copy .slide-card-dark { padding: 16px; }
+.compact-attention-copy .slide-body { font-size: 14px; line-height: 1.4; }
+.work-cycle-fit { height: calc(100vh - 190px); overflow: hidden; }
+.work-cycle-fit > div { transform: scale(.88); transform-origin: top left; width: 113.6%; margin-top: 6px !important; }
+.stamp-exercise-fit .slide-card { padding: 20px; }
+.stamp-exercise-fit .slide-body { font-size: clamp(15px, 1.25vw, 18px); }
+
 .team-card { overflow: hidden; background: #fff; border: 1px solid var(--muted-line); border-radius: 16px; box-shadow: 0 12px 32px rgba(10,37,64,0.07); }
 .team-headshot { height: clamp(150px, 20vh, 230px); background-image: url("/assets/sentia-team-reference.jpg"); background-repeat: no-repeat; background-size: 300% auto; background-color: #f2f0ec; border-bottom: 1px solid var(--muted-line); }
 .team-bio-point { position: relative; padding-left: 14px; color: #46586e; font-size: clamp(12px, 1vw, 15px); line-height: 1.35; }

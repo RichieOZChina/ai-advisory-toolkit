@@ -2,7 +2,6 @@ import { type ReactNode } from "react";
 import { AITree } from "./interactive/AITree";
 import { ProviderGrid } from "./interactive/ProviderGrid";
 import { ParameterChart } from "./interactive/ParameterChart";
-import { NeuronCompare } from "./interactive/NeuronCompare";
 import { TokenSplitter } from "./interactive/TokenSplitter";
 import { EmbeddingSpace } from "./interactive/EmbeddingSpace";
 import { RagFlow } from "./interactive/RagFlow";
@@ -255,26 +254,20 @@ const RAW_SLIDES: Slide[] = [
 
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2" title="What is a Large Language Model?">
-      <div className="mt-2 max-w-4xl space-y-3">
-        <p className="slide-body">An LLM is a computer program that has read most of the internet and learned the patterns of how humans use language.</p>
-        <p className="slide-body">When you type something, it predicts — one piece at a time — what a helpful response looks like.</p>
-        <p className="slide-body">It doesn't <i>know</i> things the way you do. It recognises patterns extremely well.</p>
-      </div>
-      <div className="grid md:grid-cols-2 gap-6 mt-8">
-        <div className="slide-card">
-          <div className="slide-chip">Scale</div>
-          <p className="slide-body mt-3">Billions of parameters, trained on trillions of words scraped from across the internet. Parameter counts have exploded — from millions a few years ago to well over a trillion today.</p>
-          <div className="mt-4"><ParameterChart /></div>
+      <div className="grid grid-cols-[0.82fr_1.18fr] gap-5 mt-1">
+        <div className="space-y-3">
+          {[["01","Learn","Reads vast amounts of text and learns language patterns."],["02","Predict","Generates a response one token at a time."],["03","Emerge","Scale unlocks capabilities that were not explicitly programmed."]].map(([n,t,d]) => (
+            <div key={n} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-4 grid grid-cols-[32px_1fr] gap-2">
+              <span className="font-mono text-sm text-[color:var(--accent)]">{n}</span><div><h2 className="text-xl font-semibold">{t}</h2><p className="mt-1 text-[15px] leading-snug text-slate-600">{d}</p></div>
+            </div>
+          ))}
+          <div className="rounded-xl bg-[color:var(--navy)] p-4 text-white"><div className="text-xs uppercase tracking-widest text-blue-200">Remember</div><p className="mt-2 text-lg leading-snug font-semibold">Pattern recognition—not human understanding.</p></div>
         </div>
-        <div className="slide-card">
-          <div className="slide-chip">Emergent properties</div>
-          <p className="slide-body mt-3">Capabilities that arise from training rather than being explicitly programmed. Like a chef who has memorised 1,000 recipes and can now improvise a meal from ingredients they've never seen combined before.</p>
-        </div>
-      </div>
-      <div className="mt-8 slide-card-dark max-w-4xl">
+        <div className="slide-card-dark !p-6">
         <div className="slide-chip" style={{background:"rgba(0,92,255,0.2)",color:"#7ab0ff"}}>One way to picture it</div>
-        <p className="slide-body mt-3 text-white/90">A very sophisticated next-word predictor. Everything else is engineering to make the prediction better, faster, and safer.</p>
-        <div className="mt-4"><TextPredictor /></div>
+        <p className="mt-3 text-lg text-white/90">A sophisticated next-token predictor. Everything else makes the prediction better, faster and safer.</p>
+        <div className="mt-5"><TextPredictor /></div>
+        </div>
       </div>
     </L.Body>
   )),
@@ -354,29 +347,24 @@ const RAW_SLIDES: Slide[] = [
 
   s(10, "Closed vs open — and who's who", () => (
     <L.Body title="Closed vs open — and who's who">
-      <OpenClosedAccordion />
+      <div className="fit-component fit-open-closed"><OpenClosedAccordion /></div>
     </L.Body>
   )),
 
   s(11, "Neural networks", () => (
     <L.Body title="Neural networks">
-      <p className="slide-body max-w-3xl mt-2">
-        Why are we suddenly talking about neural networks? Because <b>every modern LLM is one</b>.
-        When ChatGPT writes a paragraph, what's running under the hood is a very large neural network
-        making one prediction after another. To understand how an LLM behaves — why it's confident,
-        why it hallucinates, why bigger models are smarter — you have to understand the machine underneath.
-      </p>
-      <p className="slide-body max-w-3xl mt-4">
-        A neural network is a stack of simple units — <b>artificial neurons</b> — loosely inspired by the brain.
-        Each neuron takes some inputs, multiplies them by learned weights, adds them up, and passes the result on.
-        Stack millions of these together in layers, train them on huge amounts of text, and patterns emerge:
-        grammar, facts, reasoning, style. Nobody programs those rules in — the network learns them from data.
-      </p>
-      <NeuronCompare />
-      <p className="slide-caption mt-6 max-w-3xl">
-        Biological neurons inspired the design; artificial neurons are the math. An LLM is billions of the
-        right-hand kind, wired into layers.
-      </p>
+      <div className="grid grid-cols-3 gap-3 mt-1">
+        {[["Inputs","Signals enter the network"],["Weights","Training strengthens useful connections"],["Layers","Patterns become predictions"]].map(([t,d],i)=><div key={t} className="rounded-lg bg-[color:var(--secondary)] p-3"><span className="font-mono text-xs text-[color:var(--accent)]">0{i+1}</span><div className="font-semibold text-lg">{t}</div><div className="text-sm text-slate-600">{d}</div></div>)}
+      </div>
+      <div className="mt-4 rounded-2xl bg-[color:var(--navy)] p-6 text-white">
+        <div className="grid grid-cols-[1fr_54px_1fr_54px_1fr] items-center gap-3 text-center">
+          {["Words + context","→","Weighted connections","→","Next-token prediction"].map((label, i) => i % 2 ? <div key={`${label}-${i}`} className="text-3xl text-blue-300">{label}</div> : <div key={label} className="rounded-xl border border-white/15 bg-white/5 px-4 py-8 text-2xl font-bold">{label}</div>)}
+        </div>
+        <div className="mt-5 grid grid-cols-3 gap-3 text-center text-[15px] text-slate-300">
+          <div>Signals enter as numbers</div><div>Training adjusts billions of weights</div><div>Layers turn patterns into probabilities</div>
+        </div>
+      </div>
+      <div className="mt-4 rounded-xl border border-[color:var(--muted-line)] bg-white px-5 py-4 text-center text-lg font-semibold">An LLM is a very large neural network repeating this prediction one token at a time.</div>
     </L.Body>
   )),
 
@@ -388,25 +376,25 @@ const RAW_SLIDES: Slide[] = [
 
   s(13, "Embeddings & semantic meaning", () => (
     <L.Body title="Embeddings — giving tokens meaning">
-      <EmbeddingSpace />
+      <div className="fit-component fit-embeddings"><EmbeddingSpace /></div>
     </L.Body>
   )),
 
   s(14, "Vector databases & RAG", () => (
     <L.Body title="Vector databases & RAG — giving the model your files">
-      <RagFlow />
+      <div className="fit-component fit-rag"><RagFlow /></div>
     </L.Body>
   )),
 
   s(15, "Chunking", () => (
     <L.Body title="Chunking — how documents get sliced for retrieval">
-      <ChunkingCompare />
+      <div className="fit-component"><ChunkingCompare /></div>
     </L.Body>
   )),
 
   s(16, "Transformers & attention", () => (
     <L.Body title="Transformers &amp; attention — why order and context matter">
-      <div className="mt-4 grid md:grid-cols-[1.15fr_1fr] gap-5">
+      <div className="mt-1 grid md:grid-cols-[1.15fr_1fr] gap-4 compact-attention-copy">
         <div className="slide-card">
           <div className="slide-chip">Why we need attention</div>
           <p className="slide-body mt-3">
@@ -432,13 +420,13 @@ const RAW_SLIDES: Slide[] = [
           </p>
         </div>
       </div>
-      <AttentionDiagram />
+      <div className="fit-component fit-attention"><AttentionDiagram /></div>
     </L.Body>
   )),
 
   s(17, "Temperature & model choice", () => (
     <L.Body title="Temperature &amp; model choice — the two dials that matter">
-      <TemperatureSlider />
+      <div className="fit-component fit-temperature"><TemperatureSlider /></div>
     </L.Body>
   )),
 
@@ -496,40 +484,32 @@ const RAW_SLIDES: Slide[] = [
 
   s(19, "LLM strengths & weaknesses", () => (
     <L.Body title="LLM strengths &amp; weaknesses">
-      <div className="grid md:grid-cols-2 gap-5 mt-4">
-        <div className="slide-card border-l-4" style={{borderLeftColor:"var(--good)"}}>
-          <div className="text-[color:var(--good)] font-semibold uppercase tracking-widest text-xs">Strengths</div>
-          <ul className="mt-4 space-y-2 slide-body">
-            <li>• Speed — draft in seconds</li>
-            <li>• Scale — parallel across hundreds of documents</li>
-            <li>• Pattern recognition across unstructured text</li>
-            <li>• 24/7 availability, no fatigue</li>
-            <li>• Handles messy inputs — PDFs, transcripts, emails</li>
-          </ul>
-        </div>
-        <div className="slide-card border-l-4" style={{borderLeftColor:"var(--warn)"}}>
-          <div className="text-[color:var(--warn)] font-semibold uppercase tracking-widest text-xs">Weaknesses</div>
-          <ul className="mt-4 space-y-2 slide-body">
-            <li>• Hallucination — invents plausible-sounding facts</li>
-            <li>• No real understanding — pattern-matching, not reasoning</li>
-            <li>• Context limits — forgets earlier parts of long inputs</li>
-            <li>• Inconsistent — same prompt, different answers</li>
-            <li>• Cannot verify its own work</li>
-          </ul>
-        </div>
+      <div className="mt-2 grid grid-cols-2 gap-3">
+        {[
+          ["Fast first passes", "Draft, classify and extract at machine speed.", "Plausible invention", "Can state unsupported facts with confidence."],
+          ["Broad document scale", "Work across large sets of PDFs, calls and emails.", "Context is finite", "Long or messy inputs can lose important detail."],
+          ["Flexible pattern recognition", "Find themes and structure in unstructured material.", "Output varies", "The same instruction can produce different answers."],
+          ["Always available", "Repeat bounded work without fatigue.", "Cannot own the answer", "Needs source checks, judgement and human release."],
+        ].map(([st, sd, wt, wd], i) => (
+          <div key={st} className="grid grid-cols-2 overflow-hidden rounded-xl border border-[color:var(--muted-line)] bg-white">
+            <div className="p-4 border-r border-[color:var(--muted-line)]"><div className="text-xs font-mono text-[color:var(--good)]">0{i+1} · STRONG WHEN</div><h2 className="mt-2 text-xl font-bold">{st}</h2><p className="mt-1 text-[15px] leading-snug text-slate-600">{sd}</p></div>
+            <div className="p-4 bg-amber-50/60"><div className="text-xs font-mono text-amber-700">WATCH FOR</div><h2 className="mt-2 text-xl font-bold">{wt}</h2><p className="mt-1 text-[15px] leading-snug text-slate-600">{wd}</p></div>
+          </div>
+        ))}
       </div>
+      <div className="mt-3 rounded-xl bg-[color:var(--navy)] px-5 py-3 text-center text-lg font-semibold text-white">Use AI for speed and scale. Keep humans on evidence, judgement and release.</div>
     </L.Body>
   )),
 
   s(20, "AI agents, tools & the loop", () => (
     <L.Body title="AI agents, tools & the loop">
-      <AgentLoop />
+      <div className="fit-component"><AgentLoop /></div>
     </L.Body>
   )),
 
   s(21, "Four ways to run an agent", () => (
     <L.Body kicker="Agents · autonomy ladder" title="Four ways to run an agent">
-      <AgentLoopTypes />
+      <div className="fit-component fit-agent-types"><AgentLoopTypes /></div>
     </L.Body>
   ), { notes: "Same loop, four levels of autonomy. Land the point: the more you hand off, the more governance you need — leading into STAMP." }),
 
@@ -823,9 +803,7 @@ A: | Risk | Page | Severity | Rationale |
 
   s(43, "Putting the moves together", () => (
     <L.Body kicker="A day on the desk" title="Putting the moves together">
-      <div className="mt-6 relative">
-        <div className="absolute left-0 right-0 top-8 h-px bg-[color:var(--muted-line)]" />
-        <div className="grid grid-cols-6 gap-2 relative">
+      <div className="mt-3 grid grid-cols-3 gap-3">
           {[
             ["8am","Move 2","Research the target"],
             ["10am","—","Client call"],
@@ -834,14 +812,11 @@ A: | Risk | Page | Severity | Rationale |
             ["4pm","Move 4","Compare term sheets"],
             ["5pm","Move 5","Dictate client update"],
           ].map(([time,move,label]) => (
-            <div key={time} className="text-center">
-              <div className="slide-caption uppercase">{time}</div>
-              <div className="mx-auto mt-1 w-4 h-4 rounded-full bg-[color:var(--accent)] border-4 border-white" />
-              <div className="mt-3 font-semibold text-sm">{move}</div>
-              <div className="slide-caption mt-1">{label}</div>
+            <div key={time} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-4 grid grid-cols-[54px_1fr] gap-3 items-center">
+              <div className="font-mono text-[color:var(--accent)] font-semibold">{time}</div>
+              <div><div className="text-xs uppercase tracking-widest text-slate-500">{move}</div><div className="mt-1 font-semibold text-lg">{label}</div></div>
             </div>
           ))}
-        </div>
       </div>
     </L.Body>
   )),
@@ -851,7 +826,7 @@ A: | Risk | Page | Severity | Rationale |
       <p className="slide-subtitle !text-[clamp(15px,1.5vw,20px)] max-w-4xl -mt-2">
         The same AI should play a different role as the work develops. Choose the stage, then the task, to reveal a banker-grade prompt.
       </p>
-      <WorkCycleFramework />
+      <div className="work-cycle-fit"><WorkCycleFramework /></div>
     </L.Body>
   ), { notes: "Introduce this as a reusable workflow, not a list of prompt tricks. Click through one task at each stage. Review organises inbound material; Structure turns understanding into an approach; Create produces a controlled first pass; Challenge stress-tests the work before release. Emphasise that the human remains responsible at every stage. The separate one-page reference sheet contains the complete prompt set." }),
 
@@ -866,19 +841,19 @@ A: | Risk | Page | Severity | Rationale |
 
   s(45, "AI scales efficiency. Humans retain accountability.", () => (
     <L.Body kicker="AI etiquette · Accountability" title="AI scales efficiency. Humans retain accountability.">
-      <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-7 mt-1 items-stretch">
-        <blockquote className="slide-card-dark flex flex-col justify-between min-h-[300px] !p-8">
+      <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-5 mt-1 items-stretch">
+        <blockquote className="slide-card-dark flex flex-col justify-between !p-6">
           <p className="text-[clamp(25px,3vw,43px)] leading-[1.13] font-semibold tracking-[-0.025em]">
             “A computer can never be held accountable, therefore a computer must never make a management decision.”
           </p>
-          <footer className="mt-8 text-slate-300">
+          <footer className="mt-5 text-slate-300">
             <div className="font-semibold text-white">IBM Training Manual, 1979</div>
             <div className="slide-caption mt-1 text-slate-400">Quoted by IBM Think · “AI decision-making: Where do businesses draw the line?”</div>
           </footer>
         </blockquote>
-        <div className="rounded-2xl border border-[color:var(--muted-line)] bg-[color:var(--secondary)] p-6 flex flex-col">
+        <div className="rounded-2xl border border-[color:var(--muted-line)] bg-[color:var(--secondary)] p-5 flex flex-col">
           <div className="slide-caption uppercase tracking-widest">The operating trade-off</div>
-          <div className="mt-5 space-y-4 flex-1">
+          <div className="mt-3 space-y-3 flex-1">
             <div className="rounded-xl bg-white border border-[color:var(--muted-line)] p-4">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-semibold">Low consequence</span>
@@ -901,7 +876,7 @@ A: | Risk | Page | Severity | Rationale |
           </div>
         </div>
       </div>
-      <div className="mt-5 rounded-xl bg-[color:var(--accent)] px-6 py-4 text-white flex items-center justify-between gap-6">
+      <div className="mt-3 rounded-xl bg-[color:var(--accent)] px-5 py-3 text-white flex items-center justify-between gap-6">
         <span className="text-lg font-semibold">The operator chooses the tool, sets the guardrails and releases the output.</span>
         <span className="text-xl font-bold whitespace-nowrap">The operator owns the outcome.</span>
       </div>
@@ -910,11 +885,14 @@ A: | Risk | Page | Severity | Rationale |
 
   s(45, "AI etiquette — seven operating rules", () => (
     <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
-      <p className="slide-body max-w-4xl">
-        The human professional remains accountable for the brief, the evidence, the judgement and the release.
-        Open a rule only when the room needs the detail.
-      </p>
-      <EtiquetteAccordion />
+      <div className="mt-2 grid grid-cols-3 gap-4">
+        {[
+          ["Evidence","Capture once, reconcile to source, and use a second model only as a challenger.",["Source every claim","Tie numbers and periods","Read everything you send"]],
+          ["Independence","Parallelise bounded lanes, then appoint one human integrator.",["One shared brief","Separate source / draft / review","Human resolves conflicts"]],
+          ["Permissions","The right to read never implies the right to act.",["Work in copies","Protect master files","Approve sends and irreversible actions"]],
+        ].map(([t,d,items],i)=><div key={String(t)} className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-5"><div className="font-mono text-sm text-[color:var(--accent)]">0{i+1}</div><h2 className="mt-2 text-2xl font-bold">{String(t)}</h2><p className="mt-2 text-[15px] leading-snug text-slate-600 min-h-[3.4em]">{String(d)}</p><div className="mt-4 space-y-2">{(items as string[]).map(x=><div key={x} className="rounded-lg bg-[color:var(--secondary)] px-3 py-2.5 font-semibold">{x}</div>)}</div></div>)}
+      </div>
+      <div className="mt-4 rounded-xl bg-[color:var(--navy)] px-5 py-3 text-white text-lg font-semibold text-center">The human professional owns the brief, evidence, judgement and release.</div>
     </L.Body>
   ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The seven rules are collapsed by default so facilitators can expand only the relevant detail." }),
 
@@ -938,20 +916,15 @@ A: | Risk | Page | Severity | Rationale |
 
   s(48, "Live exercise — apply STAMP", () => (
     <L.Body kicker="Interactive" title="Live exercise — apply STAMP">
-      <StampExercise />
+      <div className="stamp-exercise-fit"><StampExercise /></div>
     </L.Body>
   )),
 
   // ===== SECTION 6: MORNING CLOSE =====
   s(49, "This morning in one slide", () => (
     <L.Body kicker="Recap" title="This morning in one slide">
-      <div className="mt-8 flex flex-wrap items-center gap-4 justify-center">
-        {["How AI Works","How to Prompt","Five Moves","AI Etiquette + STAMP"].map((t,i,a) => (
-          <div key={t} className="flex items-center gap-4">
-            <div className="slide-card px-6 py-4 font-semibold">{t}</div>
-            {i < a.length-1 && <div className="text-[color:var(--accent)] text-2xl">→</div>}
-          </div>
-        ))}
+      <div className="mt-5 grid grid-cols-3 gap-4">
+        {[["01","Understand","How models work, where they are strong and where they fail."],["02","Prompt","Give context, define the task and specify a useful output."],["03","Control","Apply the five moves, retain accountability and run STAMP before release."]].map(([n,t,d])=><div key={n} className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-6"><div className="font-mono text-[color:var(--accent)]">{n}</div><div className="mt-4 text-3xl font-bold">{t}</div><p className="mt-3 text-lg leading-snug text-slate-600">{d}</p></div>)}
       </div>
     </L.Body>
   )),
@@ -1003,12 +976,12 @@ A: | Risk | Page | Severity | Rationale |
 
   s(54, "The strongest starter asset", () => (
     <L.Body kicker="Lab 1 · Setup" title="Turn diligence notes into a structured issue log">
-      <p className="slide-subtitle mt-4 max-w-3xl">Every M&amp;A analyst already has the raw material. The AI turns unstructured notes into a reusable, queryable asset.</p>
-      <div className="mt-8 grid grid-cols-3 gap-4 max-w-4xl text-center">
-        {["Unstructured DD notes","→","Structured issue log with page refs, severity, and owner"].map((t,i) => (
-          <div key={i} className={i===1 ? "text-3xl text-[color:var(--accent)]" : "slide-card"}>{t}</div>
-        ))}
+      <div className="mt-3 grid grid-cols-[0.72fr_50px_1.28fr] gap-3 items-stretch">
+        <div className="rounded-2xl bg-[color:var(--secondary)] p-5"><div className="text-xs uppercase tracking-widest text-slate-500">Before · raw notes</div><div className="mt-4 space-y-3 text-[16px] text-slate-600"><p>“Customer concentration maybe high”</p><p>“Check EBITDA adjustment p.47”</p><p>“Lease renewal? ask management”</p></div></div>
+        <div className="flex items-center justify-center text-3xl text-[color:var(--accent)]">→</div>
+        <div className="rounded-2xl bg-[color:var(--navy)] text-white p-5"><div className="text-xs uppercase tracking-widest text-blue-200">After · controlled issue log</div><div className="mt-4 grid grid-cols-[1.4fr_.65fr_.65fr_.7fr] text-sm"><div className="text-blue-200">Issue</div><div className="text-blue-200">Page</div><div className="text-blue-200">Severity</div><div className="text-blue-200">Owner</div>{[["Customer concentration","12","High","Lewis"],["EBITDA adjustment","47","High","Ken"],["Lease renewal","—","Open","Richard"]].flatMap((r,i)=>r.map((x,j)=><div key={`${i}-${j}`} className="border-t border-white/15 py-3 font-semibold">{x}</div>))}</div></div>
       </div>
+      <p className="mt-4 text-lg text-slate-600">The value is not the summary—it is a reusable, queryable record with evidence, severity and ownership.</p>
     </L.Body>
   )),
 

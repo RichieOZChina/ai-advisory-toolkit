@@ -1,13 +1,5 @@
 import { useState } from "react";
 
-const PRICING = [
-  { m: "OpenAI GPT-5.1", in: "$1.25", out: "$10.00", best: "Frontier reasoning" },
-  { m: "Anthropic Claude Opus 4.5", in: "$5.00", out: "$25.00", best: "Long-form analysis" },
-  { m: "Google Gemini 3 Pro", in: "$2.00", out: "$12.00", best: "Multimodal + long context" },
-  { m: "DeepSeek R2", in: "$0.55", out: "$2.19", best: "High-volume, cost-sensitive" },
-  { m: "Llama 4 (self-hosted)", in: "infra only", out: "infra only", best: "Full data privacy" },
-];
-
 const SAMPLES: Record<string, string[]> = {
   low:  [
     "The company generated £42.3m of revenue in FY24.",
@@ -87,32 +79,22 @@ export function TemperatureSlider() {
         </div>
       </div>
 
-      {/* Model landscape */}
+      {/* Model choice */}
       <div>
         <div className="slide-caption uppercase tracking-widest mb-2">The other lever: model choice</div>
-        <div className="overflow-hidden rounded-xl border border-[color:var(--muted-line)]">
-          <table className="w-full slide-body">
-            <thead className="bg-[color:var(--secondary)]">
-              <tr>
-                <th className="text-left px-4 py-3">Model</th>
-                <th className="text-left px-4 py-3">Best for</th>
-                <th className="text-right px-4 py-3">Input / 1M</th>
-                <th className="text-right px-4 py-3">Output / 1M</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PRICING.map((p) => (
-                <tr key={p.m} className="border-t border-[color:var(--muted-line)]">
-                  <td className="px-4 py-3 font-medium">{p.m}</td>
-                  <td className="px-4 py-3">{p.best}</td>
-                  <td className="px-4 py-3 text-right font-mono">{p.in}</td>
-                  <td className="px-4 py-3 text-right font-mono">{p.out}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            ["Complexity", "Use the strongest model when judgement and ambiguity matter."],
+            ["Volume", "Use a faster, cheaper model for repeatable extraction and classification."],
+            ["Sensitivity", "Use an approved private environment for confidential deal material."],
+          ].map(([title, detail], i) => (
+            <div key={title} className="rounded-xl border border-[color:var(--muted-line)] bg-white p-4">
+              <div className="font-mono text-xs text-[color:var(--accent)]">0{i + 1}</div>
+              <div className="mt-1 font-semibold">{title}</div>
+              <p className="mt-1 text-sm leading-snug text-slate-600">{detail}</p>
+            </div>
+          ))}
         </div>
-        <div className="slide-caption mt-2">Published rates as of July 2026. Output tokens are typically 3–5× the price of input.</div>
       </div>
     </div>
   );

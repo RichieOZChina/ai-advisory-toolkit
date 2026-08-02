@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 function Frame({ children, dark }: { children: ReactNode; dark?: boolean }) {
   return (
-    <div className={"slide-page fade-up min-h-full px-8 md:px-16 py-10 md:py-14 " + (dark ? "bg-[color:var(--navy)] text-slate-100" : "")}>
+    <div className={"slide-page fade-up h-screen overflow-hidden px-8 md:px-14 py-8 md:py-9 " + (dark ? "bg-[color:var(--navy)] text-slate-100" : "")}>
       <div className="max-w-6xl mx-auto">{children}</div>
     </div>
   );
@@ -28,7 +28,7 @@ export function Body({ kicker, title, children }: { kicker?: string; title?: Rea
     <Frame>
       {kicker && <div className="slide-kicker">{kicker}</div>}
       {title && <h1 className="slide-title mt-3">{title}</h1>}
-      <div className="mt-6">{children}</div>
+      <div className="mt-4">{children}</div>
     </Frame>
   );
 }
