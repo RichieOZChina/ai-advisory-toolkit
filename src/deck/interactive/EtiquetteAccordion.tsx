@@ -45,12 +45,14 @@ const RULES = [
   },
 ];
 
-export function EtiquetteAccordion() {
+export function EtiquetteAccordion({ start = 0, count = 4 }: { start?: number; count?: number }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="mt-4 max-h-[calc(100vh-300px)] overflow-y-auto rounded-xl border border-[color:var(--muted-line)]">
-      {RULES.map((rule, i) => (
+    <div className="mt-4 rounded-xl border border-[color:var(--muted-line)]">
+      {RULES.slice(start, start + count).map((rule, offset) => {
+        const i = start + offset;
+        return (
         <div key={rule.title} className="border-b border-[color:var(--muted-line)] last:border-b-0">
           <button
             onClick={() => setOpen(open === i ? null : i)}
@@ -73,7 +75,8 @@ export function EtiquetteAccordion() {
             </div>
           )}
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

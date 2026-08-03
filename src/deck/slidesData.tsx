@@ -1,7 +1,5 @@
 import { type ReactNode } from "react";
 import { AITree } from "./interactive/AITree";
-import { ProviderGrid } from "./interactive/ProviderGrid";
-import { ParameterChart } from "./interactive/ParameterChart";
 import { TokenSplitter } from "./interactive/TokenSplitter";
 import { EmbeddingSpace } from "./interactive/EmbeddingSpace";
 import { RagFlow } from "./interactive/RagFlow";
@@ -12,7 +10,6 @@ import { AgentLoop } from "./interactive/AgentLoop";
 import { AgentLoopTypes } from "./interactive/AgentLoopTypes";
 import { PrivacyTiers } from "./interactive/PrivacyTiers";
 import { WorkflowTimeline } from "./interactive/WorkflowTimeline";
-import { StampAccordion } from "./interactive/StampAccordion";
 import { StampExercise } from "./interactive/StampExercise";
 import { EtiquetteAccordion } from "./interactive/EtiquetteAccordion";
 import { TextPredictor } from "./interactive/TextPredictor";
@@ -21,6 +18,7 @@ import { RatioBar } from "./interactive/RatioBar";
 import { JargonBuster, OpenClosedAccordion, ProviderLandscape } from "./interactive/OpenClosedAccordion";
 import { WorkCycleFramework } from "./interactive/WorkCycleFramework";
 import { AIStack } from "./interactive/AIStack";
+import { TwoGateWorkCycle } from "./interactive/TwoGateWorkCycle";
 import * as L from "./layouts";
 
 export type Section = {
@@ -36,6 +34,7 @@ export type Slide = {
   title: string;
   kicker?: string;
   notes?: string;
+  sectionId?: string;
   render: () => ReactNode;
 };
 
@@ -43,23 +42,15 @@ export const SECTIONS: Section[] = [
   { id: "opening", title: "Opening", startSlide: 1, color: "#94a3b8" },
   { id: "how-ai-works", title: "How Modern AI Works", startSlide: 7, color: "#60a5fa" },
   { id: "how-to-prompt", title: "How to Write a Prompt", startSlide: 32, color: "#a78bfa" },
-  { id: "banker-moves", title: "Five Banker Moves", startSlide: 41, color: "#fb923c" },
+  { id: "banker-moves", title: "The Work Cycle", startSlide: 41, color: "#fb923c" },
   { id: "etiquette", title: "AI Etiquette & Controls", startSlide: 50, color: "#f43f5e" },
   { id: "morning-close", title: "Morning Close", startSlide: 56, color: "#22c55e" },
   { id: "afternoon", title: "Afternoon Build Labs", startSlide: 60, color: "#0ea5e9" },
 ];
 
-function sectionOf(id: number): number {
-  let idx = 0;
-  for (let i = 0; i < SECTIONS.length; i++) {
-    if (id >= SECTIONS[i].startSlide) idx = i;
-  }
-  return idx;
-}
-
 // Helper: build a slide entry
-const s = (id: number, title: string, render: () => ReactNode, opts: { kicker?: string; notes?: string } = {}): Slide => ({
-  id, section: sectionOf(id), title, render, ...opts,
+const s = (id: number, title: string, render: () => ReactNode, opts: { kicker?: string; notes?: string; sectionId?: string } = {}): Slide => ({
+  id, section: 0, title, render, ...opts,
 });
 
 const TEAM_MEMBERS = [
@@ -114,7 +105,7 @@ const RAW_SLIDES: Slide[] = [
       subtitle="A practical day of learning, building and applying AI to M&A work."
       footer="Full-day workshop · Morning theory · Afternoon build labs"
     />
-  ), { notes: "Set the room: this is a practical working session. The morning builds shared understanding and safe habits; the afternoon turns them into reusable M&A workflows." }),
+  ), { sectionId: "opening", notes: "Set the room: this is a practical working session. The morning builds shared understanding and safe habits; the afternoon turns them into reusable M&A workflows." }),
 
   s(1.25, "Today's programme", () => (
     <L.Body kicker="Full-day workshop" title="Today’s programme">
@@ -250,7 +241,7 @@ const RAW_SLIDES: Slide[] = [
       </p>
       <AIStack />
     </L.Body>
-  ), { notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. The boundaries are not absolute: some companies span layers. ChatGPT is an application built on GPT models; Claude is both a user-facing application and a model family. Click Models to explain three deployment routes: direct access from a model company; a third-party managed host; or self-hosting open weights. The route changes control, cost, privacy and operating responsibility. Data and accountability are cross-cutting rather than discrete layers." }),
+  ), { sectionId: "how-ai-works", notes: "Use this as shared vocabulary, not a technical deep dive. Start at physical infrastructure and move upward. Most advisory firms rent or consume the lower layers; their practical choices concern applications, orchestration, data connections and controls. The boundaries are not absolute: some companies span layers. ChatGPT is an application built on GPT models; Claude is both a user-facing application and a model family. Click Models to explain three deployment routes: direct access from a model company; a third-party managed host; or self-hosting open weights. The route changes control, cost, privacy and operating responsibility. Data and accountability are cross-cutting rather than discrete layers." }),
 
   s(6, "What is a Large Language Model?", () => (
     <L.Body kicker="Section 2" title="What is a Large Language Model?">
@@ -525,7 +516,7 @@ const RAW_SLIDES: Slide[] = [
     <L.Body kicker="Agents · autonomy ladder" title="Four ways to run an agent">
       <div className="fit-component fit-agent-types"><AgentLoopTypes /></div>
     </L.Body>
-  ), { notes: "Same loop, four levels of autonomy. Land the point: the more you hand off, the more governance you need — leading into STAMP." }),
+  ), { notes: "Same loop, four levels of autonomy. Land the point: the more you hand off, the more governance you need. The data gate and tie-out later this morning provide the human control points." }),
 
 
 
@@ -539,7 +530,7 @@ const RAW_SLIDES: Slide[] = [
           <div className="mt-3"><span className="text-slate-400">&gt;</span> Extract every EBITDA adjustment from vdd_v3.pdf and output as a markdown table with page refs</div>
           <div className="mt-3 text-slate-300">Reading vdd_v3.pdf (247 pages)...</div>
           <div className="text-slate-300">Found 14 adjustments. Drafting table.</div>
-          <div className="mt-3 text-emerald-300">✓ Wrote issues.md · 14 rows, 12 cited pages</div>
+          <div className="mt-3 text-emerald-300">✓ Wrote issues.md · 14 rows, 14 cited pages</div>
         </div>
         <div>
           <p className="slide-body">Claude Code reads files, writes scripts, runs commands, and iterates with your approval. It's a terminal, not a chatbot.</p>
@@ -559,8 +550,8 @@ const RAW_SLIDES: Slide[] = [
     <L.Body kicker="Market signal" title="Why this matters to bankers now">
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
-          {n:"60%",t:"faster IM production",d:"AI-native boutiques ship information memoranda 60% faster than traditional shops.",src:"Industry survey, Q2 2026"},
-          {n:"3 hrs",t:"vs 3 days",d:"Buy-side screens that took three days now complete in three hours.",src:"Sentia client benchmark"},
+          {n:"Faster",t:"first-pass production",d:"AI can compress research, drafting and formatting when the source pack and review process are well designed.",src:"Sentia observation"},
+          {n:"More",t:"time for review",d:"The value is not unreviewed speed; it is shifting analyst time from assembly toward checking and judgement.",src:"Sentia observation"},
           {n:"Judgement",t:"is the new bottleneck",d:"Production speed is no longer the constraint. Human judgement is.",src:"Sentia analysis"},
         ].map((c) => (
           <div key={c.n} className="slide-card">
@@ -621,7 +612,7 @@ const RAW_SLIDES: Slide[] = [
   // ===== SECTION 3: HOW TO WRITE A PROMPT =====
   s(28, "Module 3 — How to write a prompt", () => (
     <L.Section number="03" title="How to write a prompt" subtitle="A repeatable six-part structure. The single most-used skill of the day." />
-  )),
+  ), { sectionId: "how-to-prompt" }),
 
   s(29, "The lazy brief vs the structured brief", () => (
     <L.Body title="The lazy brief vs the structured brief">
@@ -743,7 +734,7 @@ A: | Risk | Page | Severity | Rationale |
       <div className="grid md:grid-cols-3 gap-5 mt-4">
         {[
           ["/compact","Summarise the conversation so far, freeing up the context window without losing the thread."],
-          ["/commit","Save your session progress with a commit message. Cheap insurance against a bad next step."],
+          ["Ask Claude to commit","Save your session progress with a clear commit message. Cheap insurance against a bad next step."],
           ["Escape","Cancel any in-progress action immediately. Use it more than you think you should."],
         ].map(([k,d]) => (
           <div key={k} className="slide-card-dark">
@@ -770,9 +761,9 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  // ===== SECTION 4: FIVE BANKER MOVES =====
-  s(37, "Five things you can do with AI by Monday", () => (
-    <L.Section number="04" title="Five things you can do with AI by Monday" subtitle="The moves that survive contact with a real deal week.">
+  // ===== SECTION 4: WORK CYCLE + FIVE BANKER MOVES =====
+  s(37, "The Work Cycle — and five moves for Monday", () => (
+    <L.Section number="04" title="The Work Cycle — and five moves for Monday" subtitle="One production process, applied to the moves that survive contact with a real deal week.">
       <div className="mt-10 grid grid-cols-5 gap-3 max-w-3xl">
         {["Draft","Research","Actions","Compare","Dictate"].map((t,i) => (
           <div key={t} className="text-center">
@@ -782,34 +773,47 @@ A: | Risk | Page | Severity | Rationale |
         ))}
       </div>
     </L.Section>
-  )),
+  ), { sectionId: "banker-moves" }),
+
+  s(37.5, "Two human gates around one AI work cycle", () => (
+    <L.Body kicker="The operating system" title="Two human gates around one AI work cycle">
+      <TwoGateWorkCycle />
+    </L.Body>
+  ), { notes: "Introduce the whole system before the examples. Humans own the data gate and the tie-out. AI works inside the cycle. Challenge is the model attacking the substance; the tie-out is the human verifying the final artefact. Challenge reduces what the tie-out catches but can never replace it." }),
+
+  s(37.75, "Review. Structure. Create. Challenge.", () => (
+    <L.Body kicker="AI across the work cycle" title="Review. Structure. Create. Challenge.">
+      <p className="slide-subtitle !text-[clamp(15px,1.5vw,20px)] max-w-4xl -mt-2">Choose the stage, then the task, to reveal a banker-grade prompt.</p>
+      <div className="work-cycle-fit"><WorkCycleFramework /></div>
+    </L.Body>
+  ), { notes: "Introduce this as a reusable production process. Review organises inbound material; Structure turns understanding into an approach; Create produces a controlled first pass; Challenge stress-tests the substance before the human tie-out." }),
 
   s(38, "Move 1 — First draft in two minutes", () => (
-    <L.Move n={1} title="First draft in two minutes"
+    <L.Move n={1} stage="Create" title="First draft in two minutes"
       flow={["Blank page","Paste context","Write prompt","Editable draft"]}
       example={`Draft a one-page company overview from these bullet points. Include: business description, ownership, key financials (table), and 3 strategic questions for management.`}
     />
   )),
   s(39, "Move 2 — Research without the forty tabs", () => (
-    <L.Move n={2} title="Research without the forty tabs"
+    <L.Move n={2} stage="Review" title="Research without the forty tabs"
       flow={["Question","One prompt","Cited answer"]}
-      example={`What are the 3 largest M&A deals in Australian food manufacturing since 2023? For each: buyer, target, reported value, and strategic rationale. Cite your sources.`}
+      example={`In a web-connected tool, find the 3 largest M&A deals in Australian food manufacturing since 2023. For each: buyer, target, reported value, rationale and source. Verify against CapIQ or MergerMarket before reuse.`}
     />
   )),
   s(40, "Move 3 — Meeting to action list", () => (
-    <L.Move n={3} title="Meeting to action list"
-      flow={["Transcript","→","Action table"]}
+    <L.Move n={3} stage="Review" title="Meeting to action list"
+      flow={["Transcript","Action table"]}
       example={`Paste meeting notes. Output a table: Action, Owner, Deadline, Priority (P1/P2/P3), Dependencies.`}
     />
   )),
   s(41, "Move 4 — Compare before you sign", () => (
-    <L.Move n={4} title="Compare before you sign"
+    <L.Move n={4} stage="Challenge" title="Compare before you sign"
       flow={["Draft SPA","Execution SPA","Diff table"]}
       example={`Compare these two versions of the SPA. Highlight: changed clauses, new provisions, deleted sections, modified numbers. Table format.`}
     />
   )),
   s(42, "Move 5 — Draft while you talk", () => (
-    <L.Move n={5} title="Draft while you talk"
+    <L.Move n={5} stage="Create" title="Draft while you talk"
       flow={["Voice","Transcript","Formatted email"]}
       example={`Dictate a client update after this call. Output a formatted email: key points, agreed next steps, outstanding items, proposed follow-up date.`}
     />
@@ -835,15 +839,6 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(44, "Review. Structure. Create. Challenge.", () => (
-    <L.Body kicker="AI across the work cycle" title="Review. Structure. Create. Challenge.">
-      <p className="slide-subtitle !text-[clamp(15px,1.5vw,20px)] max-w-4xl -mt-2">
-        The same AI should play a different role as the work develops. Choose the stage, then the task, to reveal a banker-grade prompt.
-      </p>
-      <div className="work-cycle-fit"><WorkCycleFramework /></div>
-    </L.Body>
-  ), { notes: "Introduce this as a reusable workflow, not a list of prompt tricks. Click through one task at each stage. Review organises inbound material; Structure turns understanding into an approach; Create produces a controlled first pass; Challenge stress-tests the work before release. Emphasise that the human remains responsible at every stage. The separate one-page reference sheet contains the complete prompt set." }),
-
   s(44, "The rule underneath the rules", () => (
     <L.Center>
       <div className="text-center">
@@ -851,7 +846,7 @@ A: | Risk | Page | Severity | Rationale |
         <div className="slide-subtitle mt-6">Speed without judgement is just faster mistakes.</div>
       </div>
     </L.Center>
-  )),
+  ), { sectionId: "etiquette" }),
 
   s(45, "AI scales efficiency. Humans retain accountability.", () => (
     <L.Body kicker="AI etiquette · Accountability" title="AI scales efficiency. Humans retain accountability.">
@@ -898,22 +893,21 @@ A: | Risk | Page | Severity | Rationale |
   ), { notes: "Use the quote to frame the trade-off. AI efficiency is most attractive where errors are cheap and reversible. As the severity of a plausible mistake rises, human review and approval must rise with it. The model cannot absorb professional accountability: the human operator remains responsible for the decision and its consequences." }),
 
   s(45, "AI etiquette — seven operating rules", () => (
-    <L.Body kicker="AI etiquette · Professional standards" title="Move faster without giving away accountability">
-      <div className="mt-2 grid grid-cols-3 gap-4">
-        {[
-          ["Evidence","Capture once, reconcile to source, and use a second model only as a challenger.",["Source every claim","Tie numbers and periods","Read everything you send"]],
-          ["Independence","Parallelise bounded lanes, then appoint one human integrator.",["One shared brief","Separate source / draft / review","Human resolves conflicts"]],
-          ["Permissions","The right to read never implies the right to act.",["Work in copies","Protect master files","Approve sends and irreversible actions"]],
-        ].map(([t,d,items],i)=><div key={String(t)} className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-5"><div className="font-mono text-sm text-[color:var(--accent)]">0{i+1}</div><h2 className="mt-2 text-2xl font-bold">{String(t)}</h2><p className="mt-2 text-[15px] leading-snug text-slate-600 min-h-[3.4em]">{String(d)}</p><div className="mt-4 space-y-2">{(items as string[]).map(x=><div key={x} className="rounded-lg bg-[color:var(--secondary)] px-3 py-2.5 font-semibold">{x}</div>)}</div></div>)}
-      </div>
-      <div className="mt-4 rounded-xl bg-[color:var(--navy)] px-5 py-3 text-white text-lg font-semibold text-center">The human professional owns the brief, evidence, judgement and release.</div>
+    <L.Body kicker="AI etiquette · Rules 1–4" title="Move faster without giving away accountability">
+      <EtiquetteAccordion start={0} count={4} />
     </L.Body>
-  ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. The seven rules are collapsed by default so facilitators can expand only the relevant detail." }),
+  ), { notes: "Core point: AI can prepare and challenge work, but professional ownership does not transfer. Use these four rules to cover task selection, capture, parallel work and model challenge." }),
+
+  s(45.5, "AI etiquette — protect the work and the reader", () => (
+    <L.Body kicker="AI etiquette · Rules 5–7" title="Protect the work, permissions and the reader">
+      <EtiquetteAccordion start={4} count={3} />
+    </L.Body>
+  ), { notes: "Complete the seven operating rules: work in copies, respect both data and action permissions, and read and curate everything before it is sent." }),
 
   // ===== SECTION 5: AI ETIQUETTE & CONTROLS =====
-  s(46, "STAMP — five checks before anything leaves the building", () => (
-    <L.Body kicker="Guardrails" title="STAMP — five checks before anything leaves the building">
-      <StampAccordion />
+  s(46, "The data gate and the tie-out", () => (
+    <L.Body kicker="Human control points" title="The data gate and the tie-out">
+      <TwoGateWorkCycle compact />
     </L.Body>
   )),
 
@@ -928,8 +922,8 @@ A: | Risk | Page | Severity | Rationale |
     </L.Center>
   )),
 
-  s(48, "Live exercise — apply STAMP", () => (
-    <L.Body kicker="Interactive" title="Live exercise — apply STAMP">
+  s(48, "Live exercise — run the tie-out", () => (
+    <L.Body kicker="Interactive" title="Live exercise — run the tie-out">
       <div className="stamp-exercise-fit"><StampExercise /></div>
     </L.Body>
   )),
@@ -938,10 +932,10 @@ A: | Risk | Page | Severity | Rationale |
   s(49, "This morning in one slide", () => (
     <L.Body kicker="Recap" title="This morning in one slide">
       <div className="mt-5 grid grid-cols-3 gap-4">
-        {[["01","Understand","How models work, where they are strong and where they fail."],["02","Prompt","Give context, define the task and specify a useful output."],["03","Control","Apply the five moves, retain accountability and run STAMP before release."]].map(([n,t,d])=><div key={n} className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-6"><div className="font-mono text-[color:var(--accent)]">{n}</div><div className="mt-4 text-3xl font-bold">{t}</div><p className="mt-3 text-lg leading-snug text-slate-600">{d}</p></div>)}
+        {[["01","Understand","How models work, where they are strong and where they fail."],["02","Produce","Use Review, Structure, Create and Challenge as the production cycle."],["03","Control","Use the data gate before work begins and the human tie-out before release."]].map(([n,t,d])=><div key={n} className="rounded-2xl border border-[color:var(--muted-line)] bg-white p-6"><div className="font-mono text-[color:var(--accent)]">{n}</div><div className="mt-4 text-3xl font-bold">{t}</div><p className="mt-3 text-lg leading-snug text-slate-600">{d}</p></div>)}
       </div>
     </L.Body>
-  )),
+  ), { sectionId: "morning-close" }),
 
   s(50, "What changes this afternoon", () => (
     <L.Center>
@@ -986,14 +980,14 @@ A: | Risk | Page | Severity | Rationale |
         <div><div className="text-xs uppercase tracking-widest text-slate-400">Lab 3</div><div className="mt-1 font-semibold">Research & Screening</div></div>
       </div>
     </L.Section>
-  )),
+  ), { sectionId: "afternoon" }),
 
   s(54, "The strongest starter asset", () => (
     <L.Body kicker="Lab 1 · Setup" title="Turn diligence notes into a structured issue log">
       <div className="mt-3 grid grid-cols-[0.72fr_50px_1.28fr] gap-3 items-stretch">
         <div className="rounded-2xl bg-[color:var(--secondary)] p-5"><div className="text-xs uppercase tracking-widest text-slate-500">Before · raw notes</div><div className="mt-4 space-y-3 text-[16px] text-slate-600"><p>“Customer concentration maybe high”</p><p>“Check EBITDA adjustment p.47”</p><p>“Lease renewal? ask management”</p></div></div>
         <div className="flex items-center justify-center text-3xl text-[color:var(--accent)]">→</div>
-        <div className="rounded-2xl bg-[color:var(--navy)] text-white p-5"><div className="text-xs uppercase tracking-widest text-blue-200">After · controlled issue log</div><div className="mt-4 grid grid-cols-[1.4fr_.65fr_.65fr_.7fr] text-sm"><div className="text-blue-200">Issue</div><div className="text-blue-200">Page</div><div className="text-blue-200">Severity</div><div className="text-blue-200">Owner</div>{[["Customer concentration","12","High","Lewis"],["EBITDA adjustment","47","High","Ken"],["Lease renewal","—","Open","Richard"]].flatMap((r,i)=>r.map((x,j)=><div key={`${i}-${j}`} className="border-t border-white/15 py-3 font-semibold">{x}</div>))}</div></div>
+        <div className="rounded-2xl bg-[color:var(--navy)] text-white p-5"><div className="text-xs uppercase tracking-widest text-blue-200">After · controlled issue log</div><div className="mt-4 grid grid-cols-[1.4fr_.65fr_.65fr_.7fr] text-sm"><div className="text-blue-200">Issue</div><div className="text-blue-200">Page</div><div className="text-blue-200">Severity</div><div className="text-blue-200">Owner</div>{[["Customer concentration","12","High","Analyst"],["EBITDA adjustment","47","High","VP"],["Lease renewal","—","Open","Director"]].flatMap((r,i)=>r.map((x,j)=><div key={`${i}-${j}`} className="border-t border-white/15 py-3 font-semibold">{x}</div>))}</div></div>
       </div>
       <p className="mt-4 text-lg text-slate-600">The value is not the summary—it is a reusable, queryable record with evidence, severity and ownership.</p>
     </L.Body>
@@ -1227,7 +1221,7 @@ A: | Risk | Page | Severity | Rationale |
     <L.Body kicker="Lab 2 · Step 2" title="Generate an editable first pass with evidence tags">
       <p className="slide-body mt-4">Every factual claim gets an inline source tag. Verification becomes a Ctrl-F, not a hunt.</p>
       <div className="mt-6 slide-card-dark font-mono text-sm max-w-3xl">
-        Revenue reached A$142m in FY26 <span className="text-emerald-300">[Source: Management accounts, p.4]</span>, with the top three customers contributing 61% of gross margin <span className="text-emerald-300">[Source: Vendor DD, p.24]</span>.
+        Revenue reached A$142m in FY26 <span className="text-emerald-300">[Source: Management accounts, p.4]</span>, with the top three customers contributing 61% of revenue <span className="text-emerald-300">[Source: Vendor DD, p.24]</span>.
       </div>
     </L.Body>
   )),
@@ -1372,8 +1366,8 @@ A: | Risk | Page | Severity | Rationale |
         <table className="w-full slide-body">
           <thead className="bg-[color:var(--secondary)]"><tr>{["Company","Fit","Rationale","Key evidence","Red flags","Reviewer"].map((h) => <th key={h} className="text-left px-4 py-3">{h}</th>)}</tr></thead>
           <tbody>
-            <tr className="border-t border-[color:var(--muted-line)]"><td className="px-4 py-3 font-medium">Peer Co A</td><td className="px-4 py-3">9</td><td className="px-4 py-3">Adjacent product line</td><td className="px-4 py-3">FY26 annual, p.32</td><td className="px-4 py-3">CEO transition</td><td className="px-4 py-3">JS</td></tr>
-            <tr className="border-t border-[color:var(--muted-line)]"><td className="px-4 py-3 font-medium">Peer Co B</td><td className="px-4 py-3">7</td><td className="px-4 py-3">Geographic fill</td><td className="px-4 py-3">CapIQ 12-Jul</td><td className="px-4 py-3">Balance-sheet stretch</td><td className="px-4 py-3">JS</td></tr>
+            <tr className="border-t border-[color:var(--muted-line)]"><td className="px-4 py-3 font-medium">Peer Co A</td><td className="px-4 py-3">9</td><td className="px-4 py-3">Adjacent product line</td><td className="px-4 py-3">FY26 annual, p.32</td><td className="px-4 py-3">CEO transition</td><td className="px-4 py-3">VP</td></tr>
+            <tr className="border-t border-[color:var(--muted-line)]"><td className="px-4 py-3 font-medium">Peer Co B</td><td className="px-4 py-3">7</td><td className="px-4 py-3">Geographic fill</td><td className="px-4 py-3">CapIQ 12-Jul</td><td className="px-4 py-3">Balance-sheet stretch</td><td className="px-4 py-3">VP</td></tr>
           </tbody>
         </table>
       </div>
@@ -1453,13 +1447,9 @@ A: | Risk | Page | Severity | Rationale |
   )),
 
   // ---- Close ----
-  s(92, "Five repeatable moves reduce rework", () => (
-    <L.Body kicker="Close" title="Five repeatable moves reduce rework">
-      <ul className="mt-6 grid md:grid-cols-5 gap-3">
-        {["Structured prompts","Source-first generation","STAMP review","Claim registers","Approval gates"].map((t) => (
-          <li key={t} className="slide-card text-center font-medium">{t}</li>
-        ))}
-      </ul>
+  s(92, "The system to take back to the desk", () => (
+    <L.Body kicker="Close" title="The system to take back to the desk">
+      <TwoGateWorkCycle compact />
     </L.Body>
   )),
 
@@ -1468,7 +1458,7 @@ A: | Risk | Page | Severity | Rationale |
       <div className="grid md:grid-cols-2 gap-5 mt-6 max-w-4xl">
         {[
           ["Prompt templates","Role/Task/Notes patterns for the five moves"],
-          ["STAMP checklist","One page. Pin above your monitor."],
+          ["Data gate and tie-out","One clear control model. Pin it above your monitor."],
           ["Build-lab outputs","The reusable asset you built today"],
           ["Source pack","Your reference source discipline"],
         ].map(([t,d]) => (
@@ -1478,8 +1468,8 @@ A: | Risk | Page | Severity | Rationale |
     </L.Body>
   )),
 
-  s(94, "Choose one live workflow, clear owner, safe boundary", () => (
-    <L.Body kicker="Close" title="Choose one live workflow with a clear owner and safe boundary">
+  s(94, "Choose the pilot you just saw scoped", () => (
+    <L.Body kicker="Close · Build on the demo" title="Now choose the pilot you just saw scoped">
       <ul className="mt-6 slide-body space-y-2 max-w-3xl">
         <li>· High repetition</li>
         <li>· Low risk if it fails</li>
@@ -1510,9 +1500,17 @@ A: | Risk | Page | Severity | Rationale |
   )),
 ];
 
-// Slide IDs are derived from display order so insertions renumber the deck safely.
-export const SLIDES: Slide[] = RAW_SLIDES.map((slide, index) => ({
-  ...slide,
-  id: index + 1,
-  section: sectionOf(index + 1),
-}));
+// Slide IDs and section boundaries are derived from display order and explicit
+// section tags so insertions can never silently break navigation.
+let activeSection = 0;
+export const SLIDES: Slide[] = RAW_SLIDES.map((slide, index) => {
+  if (slide.sectionId) {
+    const taggedSection = SECTIONS.findIndex((section) => section.id === slide.sectionId);
+    if (taggedSection >= 0) activeSection = taggedSection;
+  }
+  return { ...slide, id: index + 1, section: activeSection };
+});
+
+SECTIONS.forEach((section, sectionIndex) => {
+  section.startSlide = SLIDES.find((slide) => slide.section === sectionIndex)?.id ?? 1;
+});

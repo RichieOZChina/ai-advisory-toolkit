@@ -3,11 +3,11 @@ import { useState } from "react";
 type Defect = { id: string; text: string; check: string; why: string };
 
 const DEFECTS: Defect[] = [
-  { id: "growth", text: "industry growth of 8.3%", check: "S · Source", why: "No citation — this figure has no source attribution." },
-  { id: "generic", text: "leveraging its best-in-class platform to unlock transformational value", check: "M · Message", why: "Generic consulting-speak — no analyst would write this." },
-  { id: "number", text: "revenue of A$142m (per FY26 accounts)", check: "T · Tie-out", why: "Underlying FY26 accounts show A$138m — number doesn't tie." },
-  { id: "date", text: "cash balance of A$14m", check: "S · Source", why: "No as-of date on this financial figure." },
-  { id: "share", text: "with ~40% market share", check: "A · Assumptions", why: "Unstated assumption about the market definition used." },
+  { id: "growth", text: "industry growth of 8.3%", check: "Reference", why: "No citation — this figure has no source attribution." },
+  { id: "generic", text: "leveraging its best-in-class platform to unlock transformational value", check: "Readability", why: "Generic consulting-speak — no analyst would write this." },
+  { id: "number", text: "revenue of A$142m (per FY26 accounts)", check: "Number tie-out", why: "Underlying FY26 accounts show A$138m — number doesn't tie." },
+  { id: "date", text: "cash balance of A$14m", check: "Reference date", why: "No as-of date on this financial figure." },
+  { id: "share", text: "with ~40% market share", check: "Assumption", why: "Unstated assumption about the market definition used." },
 ];
 
 const CONTEXT = `Acme Foods is a leading Australian food manufacturer with revenue of A$142m (per FY26 accounts), leveraging its best-in-class platform to unlock transformational value in a sector experiencing industry growth of 8.3%. The business has a cash balance of A$14m and operates in a defensive category with ~40% market share.`;
@@ -46,7 +46,7 @@ export function StampExercise() {
       <div className="slide-card">
         <div className="slide-caption uppercase tracking-widest">AI-generated overview</div>
         <p className="slide-body mt-3 leading-relaxed">{renderText()}</p>
-        <div className="slide-caption mt-4">Click each underlined issue to reveal the STAMP check it fails.</div>
+        <div className="slide-caption mt-4">Click each underlined issue to reveal what the human tie-out should catch.</div>
       </div>
       <div className="slide-card">
         <div className="flex items-center justify-between">
@@ -60,7 +60,7 @@ export function StampExercise() {
             <p className="slide-body mt-3">{selDef.why}</p>
           </div>
         ) : (
-          <p className="slide-body mt-4">Select an issue to see which STAMP check it violates.</p>
+          <p className="slide-body mt-4">Select an issue to see what the human tie-out should catch.</p>
         )}
       </div>
     </div>

@@ -17,7 +17,7 @@ src/deck/
   layouts.tsx                 Layout templates: Title / Body / Section / Move / Build
   hooks/
     useDeckNav.ts             Hash routing, next/prev, jump-to-slide
-    useHotkeys.ts             Arrow keys, j/k, g, ?, esc
+    useHotkeys.ts             Arrow keys, space, m, n, 1–7, ?, esc
     useSidebar.ts             Collapse state
   components/
     Sidebar.tsx               Section + slide list
@@ -31,14 +31,12 @@ src/deck/
     AttentionDiagram.tsx      Transformer attention arcs
     ChunkingCompare.tsx       Chunking strategies
     EmbeddingSpace.tsx        3D-ish semantic space
-    NeuronCompare.tsx         Biological vs artificial neurons
     OpenClosedAccordion.tsx   Open vs closed models + provider list
-    ParameterChart.tsx        GPT-1 → GPT-4 parameter growth
     PrivacyTiers.tsx
     ProviderGrid.tsx
     RagFlow.tsx               Closed-book vs open-book (RAG)
-    StampAccordion.tsx        STAMP checklist
-    StampExercise.tsx
+    TwoGateWorkCycle.tsx      Data gate → work cycle → tie-out
+    StampExercise.tsx         Interactive human tie-out exercise
     SurveyBar.tsx
     TemperatureSlider.tsx     Temperature + 2026 model pricing table
     TextPredictor.tsx

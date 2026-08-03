@@ -74,7 +74,7 @@ const ROWS: Row[] = [
       { x: 240, label: "triage" },
       { x: 420, label: "draft" },
       { x: 600, label: "notify" },
-      { x: 760, label: "close" },
+      { x: 730, label: "close" },
     ],
     loopBack: "waits for next event",
   },
@@ -110,7 +110,7 @@ export function AgentLoopTypes() {
             The more you hand off, the less you babysit — and the more governance you need.
           </p>
           <p className="slide-caption mt-1 text-[#0a2540]/60">
-            STAMP (next section) is how we decide which loops are safe to run where.
+            The data gate and tie-out later this morning decide which loops are safe to run where.
           </p>
         </div>
       </div>

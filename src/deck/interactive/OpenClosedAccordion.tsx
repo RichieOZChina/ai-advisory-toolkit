@@ -12,8 +12,8 @@ type Provider = {
 };
 
 const CLOSED_PROVIDERS: Provider[] = [
-  { name: "OpenAI", flagship: "GPT-5.1", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
-  { name: "Anthropic", flagship: "Claude Opus 4.5", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
+  { name: "OpenAI", flagship: "GPT-5.6", hq: "San Francisco, US", note: "Frontier quality; deep Microsoft integration." },
+  { name: "Anthropic", flagship: "Claude 5 family", hq: "San Francisco, US", note: "Safety-first lab; strong long-context reasoning." },
   { name: "Google DeepMind", flagship: "Gemini 3 Pro", hq: "London / Mountain View", note: "Native multimodal; embedded across Workspace." },
   { name: "xAI", flagship: "Grok 5", hq: "San Francisco, US", note: "Real-time X integration." },
 ];
@@ -47,7 +47,7 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
     q: "What does \"per-token\" pricing mean?",
     a: (
       <>
-        Models don't read words, they read <span className="font-semibold text-[#0a2540]">tokens</span> — chunks of text roughly ¾ of a word each. Closed vendors charge a fraction of a cent per 1,000 tokens sent in and generated out, so cost scales directly with usage.
+        Models don't read words, they read <span className="font-semibold text-[#0a2540]">tokens</span> — chunks of text roughly ¾ of a word each. Vendors normally quote prices per million input and output tokens, so cost scales directly with usage.
       </>
     ),
   },
@@ -108,7 +108,7 @@ export function ProviderLandscape({ kind }: { kind: "closed" | "open" }) {
   const providers = (kind === "closed" ? CLOSED_PROVIDERS : OPEN_PROVIDERS).map((provider) => ({ ...provider, type: kind === "closed" ? "Closed" : "Open weight" }));
 
   return (
-    <div className={`mt-3 grid gap-4 ${kind === "closed" ? "grid-cols-2" : "grid-cols-3"}`}>
+    <div><div className="text-right text-[11px] uppercase tracking-wider text-slate-500">Model names as at August 2026</div><div className={`mt-2 grid gap-4 ${kind === "closed" ? "grid-cols-2" : "grid-cols-3"}`}>
       {providers.map((provider) => (
         <section key={provider.name} className="rounded-xl border border-[#0a2540]/10 bg-white p-4 shadow-sm">
           <div className="flex items-start justify-between gap-3">
@@ -124,7 +124,7 @@ export function ProviderLandscape({ kind }: { kind: "closed" | "open" }) {
           <div className="mt-2 text-[11px] uppercase tracking-wider text-[#0a2540]/45">{provider.hq}</div>
         </section>
       ))}
-    </div>
+    </div></div>
   );
 }
 

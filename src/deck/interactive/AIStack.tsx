@@ -31,7 +31,7 @@ const LAYERS: Layer[] = [
     short: "How the work gets done",
     description: "Harnesses, runtimes and agent builders that give models context, tools, memory and workflow logic.",
     exampleGroups: [
-      { label: "Agent harnesses", detail: "Claude Code · Codex · OpenClaw · Hermes Agent" },
+      { label: "Agent harnesses", detail: "Claude Code · Codex · OpenAI Agents SDK · AutoGen" },
       { label: "Developer runtimes", detail: "LangGraph · LlamaIndex · Semantic Kernel" },
       { label: "Enterprise builders", detail: "Copilot Studio · Vertex AI Agent Builder · Bedrock Agents" },
     ],

@@ -20,7 +20,7 @@ export function WorkflowTimeline() {
         </div>
       </div>
       <div>
-        <div className="slide-caption uppercase tracking-widest" style={{ color: "var(--accent)" }}>New · 4–6 hours</div>
+        <div className="slide-caption uppercase tracking-widest" style={{ color: "var(--accent)" }}>New · about 3 hours</div>
         <div className="mt-3 space-y-2">
           {NEW.map(([t, d]) => (
             <div key={t} className="flex items-center gap-3">

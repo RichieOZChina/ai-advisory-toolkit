@@ -67,10 +67,10 @@ export function Prompt({ step, label, title, children }: { step: string; label: 
   );
 }
 
-export function Move({ n, title, flow, example }: { n: number; title: string; flow: string[]; example: string }) {
+export function Move({ n, title, flow, example, stage }: { n: number; title: string; flow: string[]; example: string; stage?: string }) {
   return (
     <Frame>
-      <div className="slide-kicker">Move {n}</div>
+      <div className="flex items-center gap-3"><div className="slide-kicker">Move {n}</div>{stage && <span className="slide-chip">Work cycle · {stage}</span>}</div>
       <h1 className="slide-title mt-3">{title}</h1>
       <div className="mt-8 flex items-center gap-3 flex-wrap">
         {flow.map((t, i, a) => (
@@ -96,10 +96,6 @@ export function Build({ step, of, title, prompt }: { step: number; of: number; t
       </div>
       <h1 className="slide-title mt-3">{title}</h1>
       <div className="mt-10 slide-card-dark max-w-4xl text-lg">{prompt}</div>
-      <div className="mt-10 flex items-center gap-3">
-        <div className="slide-caption uppercase tracking-widest">Timer</div>
-        <div className="text-3xl font-mono text-[color:var(--accent)]">--:--</div>
-      </div>
     </Frame>
   );
 }

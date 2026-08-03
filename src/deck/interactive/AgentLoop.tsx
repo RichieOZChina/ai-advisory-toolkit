@@ -10,7 +10,7 @@ const STEPS = [
 
 const TOOLS = [
   { name: "File reader", ex: "read('CIM_deal.pdf')" },
-  { name: "Web search",  ex: "search('UK infra fund AUM > £500m')" },
+  { name: "Web search",  ex: "search('Australian infra fund AUM > A$500m')" },
   { name: "Email draft", ex: "draft(to, subject, body)" },
   { name: "CRM",         ex: "log_activity(deal_id, ...)" },
   { name: "Calendar",    ex: "propose_slots(next_week)" },
@@ -99,7 +99,7 @@ export function AgentLoop() {
       <div className="slide-card-dark">
         <p className="text-slate-200">
           <b className="text-white">The rule for banking:</b> agents may plan and draft, but every consequential
-          action — sending, filing, spending — sits behind a human approval. STAMP is how we enforce that.
+          action — sending, filing, spending — sits behind a human approval. The data gate and tie-out enforce that boundary.
         </p>
       </div>
     </div>

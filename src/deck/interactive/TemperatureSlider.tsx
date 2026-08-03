@@ -2,19 +2,19 @@ import { useState } from "react";
 
 const SAMPLES: Record<string, string[]> = {
   low:  [
-    "The company generated £42.3m of revenue in FY24.",
-    "The company generated £42.3m of revenue in FY24.",
-    "The company generated £42.3m of revenue in FY24.",
+    "The company generated A$42.3m of revenue in FY24.",
+    "The company generated A$42.3m of revenue in FY24.",
+    "The company generated A$42.3m of revenue in FY24.",
   ],
   mid:  [
-    "The company generated £42.3m of revenue in FY24, up 18% YoY.",
-    "In FY24, revenue reached £42.3m — an 18% year-on-year increase.",
-    "The business posted £42.3m in FY24 revenue, growing 18% YoY.",
+    "The company generated A$42.3m of revenue in FY24, up 18% YoY.",
+    "In FY24, revenue reached A$42.3m — an 18% year-on-year increase.",
+    "The business posted A$42.3m in FY24 revenue, growing 18% YoY.",
   ],
   high: [
-    "FY24 revenue landed at a punchy £42.3m — nearly a fifth up on last year.",
-    "£42.3m of top-line in FY24, riding an 18% growth wave.",
-    "Revenue surged to £42.3m in FY24, marking a stellar 18% climb.",
+    "FY24 revenue landed at a punchy A$42.3m — nearly a fifth up on last year.",
+    "A$42.3m of top-line in FY24, riding an 18% growth wave.",
+    "Revenue surged to A$42.3m in FY24, marking a stellar 18% climb.",
   ],
 };
 
@@ -35,9 +35,10 @@ export function TemperatureSlider() {
           <div className="slide-chip">Why the same prompt gives different answers</div>
           <p className="slide-body mt-3">
             LLMs don't pick the single "best" next token — they <b>sample</b> from a probability distribution.
-            Put plainly: GPT models are <b>inherently non-deterministic</b>. Even at temperature 0 there is a small
+            Put plainly: LLMs are <b>inherently non-deterministic</b>. Even at temperature 0 there is a small
             chance of variation.
           </p>
+          <p className="slide-caption mt-3">This control normally sits in an API or model workbench. The chat apps used by most bankers generally do not expose it.</p>
           <p className="slide-body mt-3">
             <b>Temperature</b> is the dial that decides how much of that distribution the model is allowed to explore.
             Low = the model picks the most likely word almost every time. High = it happily picks less likely words.

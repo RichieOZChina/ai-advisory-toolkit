@@ -90,14 +90,6 @@ export function Deck() {
         </main>
 
         {/* Chrome */}
-        <div
-          className="deck-chrome-left no-print fixed top-5 left-16 z-20 rounded-full border border-[color:var(--muted-line)] bg-white/90 px-3 py-1.5 font-mono text-[11px] tabular-nums tracking-wider text-slate-500 shadow-sm backdrop-blur"
-          style={{ marginLeft: open ? SIDEBAR_WIDTH : 0, transition: "margin-left 180ms ease" }}
-          aria-label={`Slide ${nav.index} of ${nav.total}`}
-        >
-          {String(nav.index).padStart(2, "0")} / {nav.total}
-        </div>
-
         <div className="deck-chrome-left no-print fixed bottom-4 left-4 z-30 font-mono text-xs text-slate-500 flex items-center gap-3"
              style={{ marginLeft: open ? SIDEBAR_WIDTH : 0, transition: "margin-left 180ms ease" }}>
           <span className="tabular-nums" aria-hidden="true">
